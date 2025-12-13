@@ -1,0 +1,8 @@
+drawing.c: Error!
+drawing_01.c: Error!
+drawing_02.c: Error!
+minimap_func.c: Error!
+parsing.h: Error!
+ray_calculation.c: Error!
+raycasting.h: Error!
+texture_and_color.c: Error!

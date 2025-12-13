@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_calculation01.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/11 17:25:09 by anel-men          #+#    #+#             */
+/*   Updated: 2025/12/11 17:27:13 by anel-men         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "parsing.h"
+
+void	calculate_draw_bounds(int *drawStart, int *drawEnd, int lineHeight)
+{
+	*drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
+	*drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+	if (*drawStart < 0)
+		*drawStart = 0;
+	if (*drawEnd >= SCREEN_HEIGHT)
+		*drawEnd = SCREEN_HEIGHT - 1;
+}
+
+void	calculate_wall_distance(t_mlx_helper *mlx_utils,
+			t_player *player, int side)
+{
+	if (side == 0)
+		mlx_utils->dist_to_wall = mlx_utils->dist_rayX - player->deltaX;
+	else
+		mlx_utils->dist_to_wall = mlx_utils->dist_rayY - player->deltaY;
+}
+
+void	process_single_ray(t_mlx_helper *mlx_utils, t_player *player, int x)
+{
+	int	side;
+	int	did_we_hit_a_door;
+
+	init_ray_direction(player, x);
+	calculate_delta_dist(player);
+	init_step_and_dist_x(mlx_utils, player);
+	init_step_and_dist_y(mlx_utils, player);
+	did_we_hit_a_door = 0;
+	side = check_hit(mlx_utils, &did_we_hit_a_door);
+	calculate_wall_distance(mlx_utils, player, side);
+	draw_vertical_line(mlx_utils, player, x, side, did_we_hit_a_door);
+}
