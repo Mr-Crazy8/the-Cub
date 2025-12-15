@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/10 02:48:01 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/15 22:27:26 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 	int			i;
 
 	sprit = malloc(sizeof(t_sprite));
+	if(!sprit)
+		return (NULL);
 	sprit->frame_delay = 10;
 	sprit->frame_counter = 0;
 	sprit->current_frame = 0;
