@@ -1,3 +1,0 @@
-drawing.c: Error!
-parsing.c: Error!
-parsing_utiles.c: Error!
