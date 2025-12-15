@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:58 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 16:14:05 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/14 16:58:29 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_utils	*parser(char *str)
 {
-	t_utils		*util;
-	int			fd;
-	doors_info	*dors;
-	char		**file;
+	t_utils			*util;
+	int				fd;
+	t_doors_info	*dors;
+	char			**file;
 
 	util = malloc(sizeof(t_utils));
 	util->c_color = malloc(3 * sizeof(int));

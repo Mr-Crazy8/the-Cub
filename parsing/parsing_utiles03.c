@@ -6,13 +6,13 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:37:45 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 16:38:52 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/14 16:57:44 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	init_door_info(doors_info *door, int x, int y)
+void	init_door_info(t_doors_info *door, int x, int y)
 {
 	door->map_x = x;
 	door->map_y = y;
@@ -21,7 +21,8 @@ void	init_door_info(doors_info *door, int x, int y)
 	door->animation_progress = 0.0;
 }
 
-int	fill_doors_in_row(char *row, int row_y, doors_info *doors, int start_index)
+int	fill_doors_in_row(char *row, int row_y,
+		t_doors_info *doors, int start_index)
 {
 	int	j;
 	int	door_index;
@@ -40,17 +41,17 @@ int	fill_doors_in_row(char *row, int row_y, doors_info *doors, int start_index)
 	return (door_index);
 }
 
-doors_info	*allocate_doors_array(int count)
+t_doors_info	*allocate_doors_array(int count)
 {
-	doors_info	*doors;
+	t_doors_info	*doors;
 
-	doors = malloc(sizeof(doors_info) * count);
+	doors = malloc(sizeof(t_doors_info) * count);
 	if (!doors)
 		return (NULL);
 	return (doors);
 }
 
-void	populate_doors_array(char **map, doors_info *doors)
+void	populate_doors_array(char **map, t_doors_info *doors)
 {
 	int	i;
 	int	door_index;
@@ -64,10 +65,10 @@ void	populate_doors_array(char **map, doors_info *doors)
 	}
 }
 
-doors_info	*extract_doors_info(t_utils *util)
+t_doors_info	*extract_doors_info(t_utils *util)
 {
-	doors_info	*doors;
-	int			total_doors;
+	t_doors_info	*doors;
+	int				total_doors;
 
 	total_doors = count_total_doors(util->map);
 	doors = allocate_doors_array(total_doors);

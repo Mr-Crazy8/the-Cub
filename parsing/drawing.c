@@ -5,27 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/10 02:47:31 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/10 19:23:34 by anel-men         ###   ########.fr       */
+/*   Created: 2025/12/14 15:15:02 by anel-men          #+#    #+#             */
+/*   Updated: 2025/12/14 16:59:12 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	draw_wall_slice(t_mlx_helper *mlx_utils, t_player *player, int x,
-			int side, int lineHeight, int drawStart, int drawEnd,
-			int real_drawStart, int real_drawEnd, int did_we_hit_a_door)
+void	draw_wall_slice(t_mlx_helper *mlx_utils, t_player *player,
+			t_wall_params *params)
 {
-	int	y;
+	int				y;
+	t_color_params	color_params;
 
-	y = drawStart;
-	while (y < drawEnd)
+	color_params.texture = mlx_utils->texture;
+	color_params.side = params->side;
+	color_params.raydir_y = player->raydir_y;
+	color_params.raydir_x = player->raydir_x;
+	color_params.x = params->x;
+	color_params.dist_to_wall = mlx_utils->dist_to_wall;
+	color_params.pos_x = player->pos_x;
+	color_params.pos_y = player->pos_y;
+	color_params.line_height = params->line_height;
+	color_params.draw_start = params->real_draw_start;
+	color_params.draw_end = params->real_draw_end;
+	color_params.did_we_hit_a_door = params->did_we_hit_a_door;
+	y = params->draw_start;
+	while (y < params->draw_end)
 	{
-		mlx_put_pixel(mlx_utils->img, x, y,
-			get_color(mlx_utils->texture, side,
-				player->raydir_y, player->raydir_x,
-				x, y, mlx_utils->dist_to_wall, player->pos_x, player->pos_y,
-				lineHeight, real_drawStart, real_drawEnd, did_we_hit_a_door));
+		color_params.y = y;
+		mlx_put_pixel(mlx_utils->img, params->x, y, get_color(&color_params));
 		y++;
 	}
 }
@@ -55,24 +64,24 @@ void	draw_ceiling(t_mlx_helper *mlx_utils, int x, int drawStart)
 }
 
 void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
-			int x, int side, int did_we_hit_a_door)
+			t_line_params *params)
 {
-	int	lineheight;
-	int	drawstart;
-	int	drawend;
-	int	real_drawstart;
-	int	real_drawend;
+	t_wall_params	wall_params;
 
-	lineheight = (int)(SCREEN_HEIGHT / mlx_utils->dist_to_wall);
-	real_drawstart = -lineheight / 2 + SCREEN_HEIGHT / 2;
-	real_drawend = lineheight / 2 + SCREEN_HEIGHT / 2;
-	drawstart = real_drawstart;
-	drawend = real_drawend;
-	calculate_draw_bounds(&drawstart, &drawend, lineheight);
-	draw_wall_slice(mlx_utils, player, x, side, lineheight, drawstart, drawend,
-		real_drawstart, real_drawend, did_we_hit_a_door);
-	draw_floor(mlx_utils, x, drawend);
-	draw_ceiling(mlx_utils, x, drawstart);
+	wall_params.line_height = (int)(SCREEN_HEIGHT / mlx_utils->dist_to_wall);
+	wall_params.real_draw_start = -wall_params.line_height
+		/ 2 + SCREEN_HEIGHT / 2;
+	wall_params.real_draw_end = wall_params.line_height / 2 + SCREEN_HEIGHT / 2;
+	wall_params.draw_start = wall_params.real_draw_start;
+	wall_params.draw_end = wall_params.real_draw_end;
+	calculate_draw_bounds(&wall_params.draw_start, &wall_params.draw_end,
+		wall_params.line_height);
+	wall_params.x = params->x;
+	wall_params.side = params->side;
+	wall_params.did_we_hit_a_door = params->did_we_hit_a_door;
+	draw_wall_slice(mlx_utils, player, &wall_params);
+	draw_floor(mlx_utils, params->x, wall_params. draw_end);
+	draw_ceiling(mlx_utils, params->x, wall_params.draw_start);
 }
 
 void	draw_pixel_if_in_bounds(t_mlx_helper *mlx_utils, int screen_x,

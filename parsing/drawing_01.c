@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:26:01 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 18:34:53 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/14 15:31:45 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,14 @@ void	draw_map_row(t_utils *util, t_mlx_helper *mlx_utils, int map_y)
 	}
 }
 
-void	draw_map_(t_utils *util, t_mlx_helper *mlx_utils)
+static void	draw_player_pixels(t_mlx_helper *mlx, float player_screen_x,
+				float player_screen_y, int player_size)
 {
-	int	map_height;
-	int	map_y;
+	int	py;
+	int	px;
+	int	screen_x;
+	int	screen_y;
 
-	map_height = lent(util->map);
-	map_y = 0;
-	while (map_y < map_height)
-	{
-		draw_map_row(util, mlx_utils, map_y);
-		map_y++;
-	}
-}
-
-void	draw_player(t_mlx_helper *mlx,
-			int player_x, int player_y, int min_x, int min_y)
-{
-	int		player_size;
-	float	player_screen_x;
-	float	player_screen_y;
-	int		py;
-	int		px;
-	int		screen_x;
-	int		screen_y;
-
-	player_size = 5;
-	player_screen_x = mlx->minimap_x
-		+ ((player_x - min_x) * mlx->minimap_scale);
-	player_screen_y = mlx->minimap_y
-		+ ((player_y - min_y) * mlx->minimap_scale);
 	py = 0;
 	while (py <= player_size)
 	{
@@ -97,6 +75,20 @@ void	draw_player(t_mlx_helper *mlx,
 		}
 		py++;
 	}
+}
+
+void	draw_player(t_mlx_helper *mlx, t_player_draw_params *params)
+{
+	int		player_size;
+	float	player_screen_x;
+	float	player_screen_y;
+
+	player_size = 5;
+	player_screen_x = mlx->minimap_x
+		+ ((params->player_x - params->min_x) * mlx->minimap_scale);
+	player_screen_y = mlx->minimap_y
+		+ ((params->player_y - params->min_y) * mlx->minimap_scale);
+	draw_player_pixels(mlx, player_screen_x, player_screen_y, player_size);
 }
 
 void	clear_img(t_mlx_helper *mlx)

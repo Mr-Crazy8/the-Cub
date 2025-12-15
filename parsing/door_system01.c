@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:03:34 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 18:05:33 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/15 02:06:35 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int	check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
 {
 	char	tile;
 
-	tile = mlx->utils->map[mlx->player->mapY][mlx->player->mapX];
+	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
 	if (tile == 'D')
 	{
-		if (is_door_blocking(mlx, mlx->player->mapX, mlx->player->mapY, 1))
+		if (is_door_blocking(mlx, mlx->player->mapx, mlx->player->mapy, 1))
 		{
 			*did_we_hit_a_door = 1;
 			return (1);

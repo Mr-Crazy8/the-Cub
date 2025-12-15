@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:25:09 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 17:27:13 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/15 01:58:48 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ void	calculate_wall_distance(t_mlx_helper *mlx_utils,
 			t_player *player, int side)
 {
 	if (side == 0)
-		mlx_utils->dist_to_wall = mlx_utils->dist_rayX - player->deltaX;
+		mlx_utils->dist_to_wall = mlx_utils->dist_rayx - player->deltax;
 	else
-		mlx_utils->dist_to_wall = mlx_utils->dist_rayY - player->deltaY;
+		mlx_utils->dist_to_wall = mlx_utils->dist_rayy - player->deltay;
 }
 
 void	process_single_ray(t_mlx_helper *mlx_utils, t_player *player, int x)
 {
-	int	side;
-	int	did_we_hit_a_door;
+	int				side;
+	int				did_we_hit_a_door;
+	t_line_params	params;
 
 	init_ray_direction(player, x);
 	calculate_delta_dist(player);
@@ -43,5 +44,29 @@ void	process_single_ray(t_mlx_helper *mlx_utils, t_player *player, int x)
 	did_we_hit_a_door = 0;
 	side = check_hit(mlx_utils, &did_we_hit_a_door);
 	calculate_wall_distance(mlx_utils, player, side);
-	draw_vertical_line(mlx_utils, player, x, side, did_we_hit_a_door);
+	params.x = x;
+	params.side = side;
+	params.did_we_hit_a_door = did_we_hit_a_door;
+	draw_vertical_line(mlx_utils, player, &params);
+}
+
+void	calculate_texture_coords(t_texture_coords_params *params,
+			t_texture_coord *coord)
+{
+	double	step_size;
+
+	coord->tx = (int)(params->wx * (double)params->tex->width);
+	step_size = (double)params->tex->height / (double)params->line_height;
+	coord->ty = (int)((params->y - params->draw_start) * step_size);
+	coord->tx = coord->tx % params->tex->width;
+	coord->ty = coord->ty % params->tex->height;
+}
+
+int	get_texture_index(int side, int did_we_hit_a_door,
+		double raydir_y, double raydir_x)
+{
+	if (side == 1)
+		return (get_texture_index_vertical(did_we_hit_a_door, raydir_y));
+	else
+		return (get_texture_index_horizontal(did_we_hit_a_door, raydir_x));
 }
