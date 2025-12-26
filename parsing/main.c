@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/15 22:27:26 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/15 22:50:26 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ int	main(int argc, char *argv[])
 	t_player		player;
 	char			helper;
 
+	if (argc != 2)
+	{
+		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);
+		return (1);
+	}
 	mlx_utils = init_mlx_helper();
 	mlx_utils->player = &player;
 	init_mlx_images(mlx_utils);
