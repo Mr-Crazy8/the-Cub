@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:22:29 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 17:24:12 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/31 18:40:11 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ void	draw_current_frame(t_mlx_helper *mlx, int x, int y)
 void	animation_loop(void *param)
 {
 	t_mlx_helper	*mlx;
-	static int		last_drawn;
+	static int		last_drawn = -1;
 	int				x;
 	int				y;
 
-	last_drawn = -1;
 	mlx = (t_mlx_helper *)param;
 	if (!validate_animation_params(mlx))
 		return ;

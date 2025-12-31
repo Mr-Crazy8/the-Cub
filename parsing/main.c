@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/26 15:19:24 by anel-men         ###   ########.fr       */
+/*   Updated: 2025/12/31 18:37:44 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	setup_mlx_hooks(t_mlx_helper *mlx_utils)
 	mlx_cursor_hook(mlx_utils->mlx_ptr, mouse_rotate_hook, mlx_utils);
 	mlx_set_cursor_mode(mlx_utils->mlx_ptr, MLX_MOUSE_DISABLED);
 	mlx_key_hook(mlx_utils->mlx_ptr, handel_key, mlx_utils);
+	mlx_loop_hook(mlx_utils->mlx_ptr, game_loop, mlx_utils);
 	mlx_loop_hook(mlx_utils->mlx_ptr, animation_loop, mlx_utils);
 }
 
