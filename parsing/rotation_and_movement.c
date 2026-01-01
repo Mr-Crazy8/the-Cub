@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:37 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 18:02:16 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/01 16:26:58 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	move_forward(t_player *player, char **map, t_mlx_helper *mlx)
 	double	new_x;
 	double	new_y;
 
-	player->move_speed = 0.5;
+	player->move_speed = 0.05;
 	new_x = player->pos_x + player->dir_x * player->move_speed;
 	new_y = player->pos_y + player->dir_y * player->move_speed;
 	if (map[(int)player->pos_y][(int)new_x] != '1'

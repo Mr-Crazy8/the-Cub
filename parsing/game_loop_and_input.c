@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/31 22:14:46 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/01 16:24:28 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,24 @@ void	game_loop(void *param)
 	t_mlx_helper	*mlx;
 
 	mlx = (t_mlx_helper *)param;
+	
+	// Check for continuous movement while keys are held down
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_W))
+		move_forward(mlx->player, mlx->utils->map, mlx);
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_S))
+		move_back(mlx->player, mlx->utils->map, mlx);
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_A))
+		move_right(mlx->player, mlx->utils->map, mlx);
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_D))
+		move_left(mlx->player, mlx->utils->map, mlx);
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_LEFT))
+		rotate_right(mlx->player, 0.1);
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_RIGHT))
+		rotate_left(mlx->player, 0.1);
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_ESCAPE))
+		exit(0);
+	
+	update_doors_info(mlx);
 	clear_img(mlx);
 	raycast(mlx, mlx->utils, mlx->player);
 	mini_map(mlx);
@@ -25,27 +43,10 @@ void	game_loop(void *param)
 
 void	handel_key(mlx_key_data_t keydata, void *param)
 {
-	t_mlx_helper	*mlx;
-
-	mlx = (t_mlx_helper *)param;
-	if (keydata.action == MLX_PRESS)
-	{
-		if (keydata.key == MLX_KEY_W)
-			move_forward(mlx->player, mlx->utils->map, mlx);
-		if (keydata.key == MLX_KEY_S)
-			move_back(mlx->player, mlx->utils->map, mlx);
-		if (keydata.key == MLX_KEY_A)
-			move_right(mlx->player, mlx->utils->map, mlx);
-		if (keydata.key == MLX_KEY_D)
-			move_left(mlx->player, mlx->utils->map, mlx);
-		if (keydata.key == MLX_KEY_LEFT)
-			rotate_right(mlx->player, 0.1);
-		if (keydata.key == MLX_KEY_RIGHT)
-			rotate_left(mlx->player, -0.1);
-		if (keydata.key == MLX_KEY_ESCAPE)
-			exit(0);
-		update_doors_info(mlx);
-	}
+	// You can remove this function or keep it for special one-time actions
+	// like opening doors, etc.
+	(void)keydata;
+	(void)param;
 }
 
 void	mouse_rotate_hook(double xpos, double ypos, void *param)

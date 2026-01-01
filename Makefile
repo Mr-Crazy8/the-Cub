@@ -23,7 +23,7 @@ OBJ = $(SRC:.c=.o)
 
 LIB_MLX = parsing/libmlx42_mac.a
 
-MLX_FLAG = -L/mnt/homes/anel-men/.brew/opt/glfw/lib -I/mnt/homes/anel-men/.brew/opt/glfw/include -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+MLX_FLAG = -L/mnt/homes/$(USER)/.brew/opt/glfw/lib -I/mnt/homes/$(USER)/.brew/opt/glfw/include -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 all: ${NAME}
 
