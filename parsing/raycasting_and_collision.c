@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:28:21 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/15 02:00:08 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/02 18:45:12 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ void	advance_ray(t_mlx_helper *mlx, int *side)
 	else
 		step_ray_y(mlx, side);
 }
+
+
+
 
 int	check_wall_hit(t_mlx_helper *mlx)
 {

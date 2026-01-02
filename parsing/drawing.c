@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:15:02 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/01 16:29:05 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/02 19:56:03 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	draw_ceiling(t_mlx_helper *mlx_utils, int x, int drawStart)
 {
 	int	y;
 
+
 	y = 0;
+
 	while (y < drawStart)
 	{
 		mlx_put_pixel(mlx_utils->img, x, y, 0xFFF0000);
@@ -67,7 +69,6 @@ void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 			t_line_params *params)
 {
 	t_wall_params	wall_params;
-
 	wall_params.line_height = (int)(SCREEN_HEIGHT / mlx_utils->dist_to_wall);
 	wall_params.real_draw_start = -wall_params.line_height
 		/ 2 + SCREEN_HEIGHT / 2;
@@ -80,7 +81,8 @@ void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 	wall_params.side = params->side;
 	wall_params.did_we_hit_a_door = params->did_we_hit_a_door;
 	draw_wall_slice(mlx_utils, player, &wall_params);
-	draw_floor(mlx_utils, params->x, wall_params. draw_end);
+
+	draw_floor(mlx_utils, params->x, wall_params.draw_end);
 	draw_ceiling(mlx_utils, params->x, wall_params.draw_start);
 }
 

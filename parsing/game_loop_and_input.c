@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/01 16:24:28 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/02 19:31:19 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ void	game_loop(void *param)
 	mlx = (t_mlx_helper *)param;
 	
 	// Check for continuous movement while keys are held down
-	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_W))
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_W) )
 		move_forward(mlx->player, mlx->utils->map, mlx);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_S))
 		move_back(mlx->player, mlx->utils->map, mlx);
-	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_A))
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_A) && mlx->dist_to_wall > 0.05)
+	{
 		move_right(mlx->player, mlx->utils->map, mlx);
-	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_D))
+	}
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_D) && mlx->dist_to_wall > 0.05)
+	{
 		move_left(mlx->player, mlx->utils->map, mlx);
+	}
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_LEFT))
 		rotate_right(mlx->player, 0.1);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_RIGHT))

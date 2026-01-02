@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/15 02:03:47 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/02 18:13:21 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
 # define PI 3.14
+#define MAX_LINE_HEIGHT 10000
 
 typedef struct s_texture_coord
 {
