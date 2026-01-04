@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/02 18:13:21 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 17:34:18 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,9 @@ typedef struct s_mlx_helper
 	float			minimap_scale;
 }	t_mlx_helper;
 
+void free_string_array(char **array);
+void clean_up_utils(t_utils *util);
+void free_string_array(char **array);
 void				print_error(int fd);
 void				check_if_it_texture(char *line);
 void				check_floor_and_ceiling_color(char *line);

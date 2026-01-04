@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/03 20:11:58 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 17:42:06 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,22 @@ void	init_mlx_images(t_mlx_helper *mlx_utils)
 void	init_mlx_allocations(t_mlx_helper *mlx_utils)
 {
 	if (!mlx_utils)
-		exit(1);
+		return ;
 	mlx_utils->tail = 32;
 	mlx_utils->player_place = malloc(2 * sizeof(int));
 	if (!mlx_utils->player_place)
-		(free(mlx_utils), exit(1));
+		{
+			write(2, "Error\nMemory allocation failed\n", 31);
+			return;
+		}
 	mlx_utils->map_h_w = malloc(2 * sizeof(int));
 	if (!mlx_utils->map_h_w)
-		(free(mlx_utils->player_place), free(mlx_utils), exit(1));
+	{
+		free(mlx_utils->player_place);
+		mlx_utils->player_place = NULL;
+		write(2, "Error\nMemory allocation failed\n", 31);
+		return;
+	}
 }
 
 void	setup_minimap_config(t_mlx_helper *mlx_utils)
