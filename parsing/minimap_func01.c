@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:50:53 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 16:52:10 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/03 20:14:29 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	find_h_w_for_map(char **map, int *map_h_w)
 	int	j;
 	int	r;
 
+	if (!map || !*map)
+		exit(1);
 	j = 0;
 	r = 0;
 	i = lent(map) - 1;

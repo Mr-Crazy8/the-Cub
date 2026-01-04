@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/02 19:31:19 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 15:36:01 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	game_loop(void *param)
 	t_mlx_helper	*mlx;
 
 	mlx = (t_mlx_helper *)param;
-	
-	// Check for continuous movement while keys are held down
+	if (!mlx)
+		exit(1);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_W) )
 		move_forward(mlx->player, mlx->utils->map, mlx);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_S))
@@ -45,14 +45,6 @@ void	game_loop(void *param)
 	mini_map(mlx);
 }
 
-void	handel_key(mlx_key_data_t keydata, void *param)
-{
-	// You can remove this function or keep it for special one-time actions
-	// like opening doors, etc.
-	(void)keydata;
-	(void)param;
-}
-
 void	mouse_rotate_hook(double xpos, double ypos, void *param)
 {
 	t_mlx_helper	*mlx;
@@ -61,25 +53,17 @@ void	mouse_rotate_hook(double xpos, double ypos, void *param)
 
 	(void)ypos;
 	mlx = (t_mlx_helper *)param;
-	
-	// Calculate movement from window CENTER
+	if (!mlx)
+		exit(1);
 	diff = xpos - (SCREEN_WIDTH / 2.0);
-	
-	// Ignore tiny movements (reduces jitter)
 	if (fabs(diff) < 2.0)
 		return;
-	
-	// Apply rotation with good sensitivity
-	rot = diff * 0.002;  // Adjust 0.002 to taste (0.0015 slower, 0.003 faster)
-	
+	rot = diff * 0.002;
 	if (rot > 0)
 		rotate_left(mlx->player, rot);
 	else if (rot < 0)
 		rotate_right(mlx->player, (rot*-1));
 	
-	// ⚠️ CRITICAL: Recenter cursor so it never hits screen edge
 	mlx_set_mouse_pos(mlx->mlx_ptr, SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0);
-	
-	// ❌ REMOVE THIS LINE (you already render in game_loop!)
-	// raycast(mlx, mlx->utils, mlx->player);
+
 }

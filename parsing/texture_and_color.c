@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:42:05 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/14 15:55:18 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 15:02:37 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	get_texture_index_horizontal(int did_we_hit_a_door, double raydir_x)
 
 static void	setup_wall_params(t_color_params *params, t_wall_x_params *wall)
 {
+	if (!params || !wall)
+		exit(1);
 	wall->side = params->side;
 	wall->pos_x = params->pos_x;
 	wall->pos_y = params->pos_y;
@@ -45,6 +47,8 @@ static void	setup_wall_params(t_color_params *params, t_wall_x_params *wall)
 static void	setup_tex_params(t_color_params *params, int tex_idx,
 				double wx, t_texture_coords_params *tex)
 {
+	if (!params || !tex)
+		exit(1);
 	tex->tex = params->texture[tex_idx];
 	tex->wx = wx;
 	tex->y = params->y;
@@ -58,6 +62,9 @@ int	get_color(t_color_params *params)
 	t_wall_x_params			wall;
 	t_texture_coords_params	tex;
 	t_texture_coord			coord;
+
+	if (!params)
+		exit(1);
 
 	tex_idx = get_texture_index(params->side, params->did_we_hit_a_door,
 			params->raydir_y, params->raydir_x);

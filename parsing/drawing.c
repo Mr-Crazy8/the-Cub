@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:15:02 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/02 19:56:03 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/03 19:44:04 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	draw_wall_slice(t_mlx_helper *mlx_utils, t_player *player,
 	int				y;
 	t_color_params	color_params;
 
+	if (!mlx_utils || !player || !params)
+		exit(1);
 	color_params.texture = mlx_utils->texture;
 	color_params.side = params->side;
 	color_params.raydir_y = player->raydir_y;
@@ -44,6 +46,8 @@ void	draw_floor(t_mlx_helper *mlx_utils, int x, int drawEnd)
 	int	y;
 
 	y = drawEnd;
+	if (!mlx_utils)
+		exit(1);
 	while (y < SCREEN_HEIGHT)
 	{
 		mlx_put_pixel(mlx_utils->img, x, y, 0xFF000080);
@@ -57,7 +61,8 @@ void	draw_ceiling(t_mlx_helper *mlx_utils, int x, int drawStart)
 
 
 	y = 0;
-
+	if (!mlx_utils)
+		exit(1);
 	while (y < drawStart)
 	{
 		mlx_put_pixel(mlx_utils->img, x, y, 0xFFF0000);
@@ -69,6 +74,9 @@ void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 			t_line_params *params)
 {
 	t_wall_params	wall_params;
+
+	if (!mlx_utils || !player || !params)
+		exit(1);
 	wall_params.line_height = (int)(SCREEN_HEIGHT / mlx_utils->dist_to_wall);
 	wall_params.real_draw_start = -wall_params.line_height
 		/ 2 + SCREEN_HEIGHT / 2;
@@ -89,6 +97,8 @@ void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 void	draw_pixel_if_in_bounds(t_mlx_helper *mlx_utils, int screen_x,
 			int screen_y, int color)
 {
+	if (!mlx_utils)
+		exit(1);
 	if (screen_x < SCREEN_WIDTH && screen_y < SCREEN_HEIGHT)
 		mlx_put_pixel(mlx_utils->mini_map_img, screen_x, screen_y, color);
 }

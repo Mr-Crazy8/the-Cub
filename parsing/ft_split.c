@@ -6,12 +6,12 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:43 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/10 02:47:44 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 16:45:30 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+#include <stdio.h>
 static char	**free_split(char **split, size_t j)
 {
 	while (j > 0)
@@ -27,6 +27,9 @@ static size_t	count_words(char const *s, char c)
 
 	i = 0;
 	n = 0;
+	// if (!s || !c)
+	// 	exit(1);
+	// printf("ppppppp\n");
 	while (s[i])
 	{
 		if (s[i] != c && (i == 0 || s[i - 1] == c))
@@ -45,6 +48,9 @@ static char	**split_string(char const *s, char c, char **split, size_t n)
 
 	i = 0;
 	j = 0;
+
+	if (!s || !c || !split || !*split)
+		exit(1);
 	while (s[i] && j < n)
 	{
 		while (s[i] == c)
@@ -54,7 +60,7 @@ static char	**split_string(char const *s, char c, char **split, size_t n)
 			i++;
 		len = i - start;
 		split[j] = (char *)malloc(len + 1);
-		if (!split[j])
+		if (!split[j]) // segmentation fault if s is NULL
 			return (free_split(split, j));
 		ft_memcpy(split[j], &s[start], len);
 		split[j][len] = '\0';
@@ -69,11 +75,11 @@ char	**ft_split(char const *s, char c)
 	size_t	n;
 	char	**split;
 
-	if (s == NULL)
+	if (s == NULL) // segmentation fault if s is NULL
 		return (NULL);
 	n = count_words(s, c);
 	split = (char **)malloc((n + 1) * sizeof(char *));
-	if (split == NULL)
+	if (split == NULL) // segmentation fault if split is NULL
 		return (NULL);
 	return (split_string(s, c, split, n));
 }

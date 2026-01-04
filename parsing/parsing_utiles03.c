@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:37:45 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/14 16:57:44 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/03 18:35:46 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_doors_info	*allocate_doors_array(int count)
 	t_doors_info	*doors;
 
 	doors = malloc(sizeof(t_doors_info) * count);
-	if (!doors)
+	if (!doors)  // segmentation fault if doors is null
 		return (NULL);
 	return (doors);
 }
@@ -70,11 +70,11 @@ t_doors_info	*extract_doors_info(t_utils *util)
 	t_doors_info	*doors;
 	int				total_doors;
 
-	total_doors = count_total_doors(util->map);
-	doors = allocate_doors_array(total_doors);
-	if (!doors)
-		return (NULL);
-	populate_doors_array(util->map, doors);
+	total_doors = count_total_doors(util->map);  // segmentation fault if util->map is NULL
+	doors = allocate_doors_array(total_doors); 
+	if (!doors) // segmentation fault is doors is null
+		return (NULL); 
+	populate_doors_array(util->map, doors);  // segmentation fault if util->map is null
 	util->total_doors = total_doors;
 	return (doors);
 }

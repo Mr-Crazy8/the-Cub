@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:35:20 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 17:38:29 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 16:16:39 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	validate_animation_params(t_mlx_helper *mlx)
 
 void	delete_previous_frame(t_mlx_helper *mlx, int last_drawn)
 {
+	if (!mlx)
+	{
+		printf("delete_previous_frame\n");
+		exit(1);
+	}
 	if (last_drawn != -1 && last_drawn != mlx->sprit->current_frame)
 	{
 		if (mlx->sprit->images[last_drawn])
@@ -50,7 +55,11 @@ void	delete_previous_frame(t_mlx_helper *mlx, int last_drawn)
 void	ensure_current_frame_exists(t_mlx_helper *mlx)
 {
 	int	current;
-
+	if (!mlx)
+	{
+		printf("ensure_current_frame_exists\n");
+		exit(1);
+	}
 	current = mlx->sprit->current_frame;
 	if (!mlx->sprit->images[current])
 	{
@@ -66,6 +75,11 @@ void	calculate_sprite_position(t_mlx_helper *mlx, int *x, int *y)
 	int	sprite_h;
 	int	current;
 
+	if (!mlx)
+	{
+		printf("calculate_sprite_position\n");
+		exit(1);
+	}
 	current = mlx->sprit->current_frame;
 	sprite_w = mlx->sprit->frames[current]->texture.width;
 	sprite_h = mlx->sprit->frames[current]->texture.height;

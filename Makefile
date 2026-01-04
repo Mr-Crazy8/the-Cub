@@ -1,7 +1,7 @@
 
 NAME = cub3d
 
-FLAGS = -Wall #-Werror -Wextra
+FLAGS = -Wall  #-Werror -Wextra
 
 SRC = 	parsing/animation_system.c                              parsing/minimap_func01.c                                parsing/parsing_utiles01.c   			\
 		parsing/animation_system01.c                            parsing/parsing.c                                       parsing/parsing_utiles02.c	 			\
@@ -28,10 +28,10 @@ MLX_FLAG = -L/mnt/homes/$(USER)/.brew/opt/glfw/lib -I/mnt/homes/$(USER)/.brew/op
 all: ${NAME}
 
 ${NAME}: ${OBJ} ${LIB_MLX}
-	cc ${FLAGS} ${MLX_FLAG} -g3 -fsanitize=address  ${OBJ} ${LIB_MLX} -o $@
+	cc ${FLAGS}  ${MLX_FLAG}  ${OBJ} ${LIB_MLX} -o $@
 
 %.o: %.c parsing.h
-	cc ${FLAGS} -g3 -fsanitize=address -c $< -o $@
+	cc ${FLAGS}  -c $< -o $@
 
 clean:
 	rm -rf ${OBJ}

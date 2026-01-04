@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/10 02:48:29 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 15:50:05 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	extract_and_pars_the_map(t_utils *util, char **file)
 	long long	map_start;
 	int			total_lines;
 
-	map_start = start_of_map(file);
+	if (!util || !file || !*file)
+		exit(1);
+	map_start = start_of_map(file); // segmentation fault if file is NULL
 	validate_map_start(map_start);
-	total_lines = count_map_lines(file, map_start);
-	util->map = extract_map_lines(file, map_start, total_lines);
-	pars_the_map(util);
+	total_lines = count_map_lines(file, map_start); // segmentation fault if file is NULL
+	util->map = extract_map_lines(file, map_start, total_lines); // segmentation fault if file is NULL
+	pars_the_map(util); // segmentation fault if util is NULL
 }
 
 void	check_for_valid_character_in_map(char str)
@@ -42,6 +44,8 @@ void	check_first_line(char **str)
 
 	i = 0;
 	j = 0;
+	if (!str || !*str)
+		exit(1);
 	while (str && str[i][j])
 	{
 		if (str[i][j] == '0' || str[i][j] == 'N'
@@ -65,6 +69,8 @@ int	lent(char **str)
 	int	i;
 
 	i = 0;
+	if (!str || !*str)
+		exit(1);
 	while (str && str[i])
 		i++;
 	return (i);
@@ -75,6 +81,8 @@ void	check_the_last_line(char **str)
 	int	i;
 	int	j;
 
+	if (!str || !*str)
+		exit(1);
 	i = lent(str) - 1;
 	j = 0;
 	while (str && str[i] && str[i][j])

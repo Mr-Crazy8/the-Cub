@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:58 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/14 16:58:29 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 16:38:17 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_utils	*parser(char *str)
 	char			**file;
 
 	util = malloc(sizeof(t_utils));
-	util->c_color = malloc(3 * sizeof(int));
+	util->c_color = malloc(3 * sizeof(int));//check if its failed
 	util->f_color = malloc(3 * sizeof(int));
 	util->no_path = NULL;
 	util->so_path = NULL;
@@ -30,10 +30,11 @@ t_utils	*parser(char *str)
 	util->map = NULL;
 	fd = check_file(str);
 	file = read_file(fd, str);
-	extract_and_pars_the_texture(util, file);
-	extract_and_pars_the_floor_and_ceiling_color(util, file);
-	extract_and_pars_the_map(util, file);
-	util->doors = extract_doors_info(util);
+
+	extract_and_pars_the_texture(util, file); // segmentation fault if util or file is NULL
+	extract_and_pars_the_floor_and_ceiling_color(util, file); // segmentation fault if util or file is NULL
+	extract_and_pars_the_map(util, file); // segmentation fault if util or file is NULL
+	util->doors = extract_doors_info(util); // segmentation fault if util  is NULL
 	return (util);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:37 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/02 21:39:25 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 15:05:01 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	rotate_right(t_player *player, double rot)
 	double	old_dirx;
 	double	old_planex;
 
+	if (!player)
+		exit(1);
 	old_dirx = player->dir_x;
 	old_planex = player->plane_x;
 	player->dir_x = player->dir_x * cos(-rot) - player->dir_y * sin(-rot);
@@ -30,6 +32,8 @@ void	rotate_left(t_player *player, double rot)
 	double	old_dirx;
 	double	old_planex;
 
+	if (!player)
+		exit(1);
 	old_dirx = player->dir_x;
 	old_planex = player->plane_x;
 	player->dir_x = player->dir_x * cos(rot) - player->dir_y * sin(rot);
@@ -43,16 +47,16 @@ int	check_collision_at(char **map, double x, double y, t_mlx_helper *mlx)
 {
 	double	margin;
 	
-	margin = 0.2;  // Collision radius/buffer
+	margin = 0.1;
 	
-	// Check all four corners of the player's collision box
+	if (!mlx || !map || !*map)
+		exit(1);
 	if (map[(int)(y - margin)][(int)(x - margin)] == '1' ||
 		map[(int)(y - margin)][(int)(x + margin)] == '1' ||
 		map[(int)(y + margin)][(int)(x - margin)] == '1' ||
 		map[(int)(y + margin)][(int)(x + margin)] == '1')
 		return (1);
 	
-	// Check door blocking
 	if (is_door_blocking(mlx, (int)x, (int)y, 0))
 		return (1);
 	

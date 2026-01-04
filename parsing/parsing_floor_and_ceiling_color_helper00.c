@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:06 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/10 02:48:07 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/03 20:16:04 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	skip_whitespace(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		exit(1);
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	return (i);
@@ -41,6 +43,8 @@ int	count_commas(char *file)
 	int	i;
 	int	counter;
 
+	if (!file)
+		exit(1);
 	counter = 0;
 	i = 1;
 	i += skip_whitespace(&file[i]);

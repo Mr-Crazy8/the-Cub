@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:25:09 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/02 19:27:03 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 16:48:07 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	calculate_draw_bounds(int *drawStart, int *drawEnd, int lineHeight)
 {
-	//*drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
-	//*drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
 	if (*drawStart < 0)
 		*drawStart = 0;
 	if (*drawEnd >= SCREEN_HEIGHT)
@@ -25,6 +23,8 @@ void	calculate_draw_bounds(int *drawStart, int *drawEnd, int lineHeight)
 void	calculate_wall_distance(t_mlx_helper *mlx_utils,
 			t_player *player, int side)
 {
+	if (!mlx_utils || !player)
+		exit(1);
 	if (side == 0)
 		mlx_utils->dist_to_wall = mlx_utils->dist_rayx - player->deltax;
 	else
@@ -37,6 +37,8 @@ void	process_single_ray(t_mlx_helper *mlx_utils, t_player *player, int x)
 	int				did_we_hit_a_door;
 	t_line_params	params;
 
+	if (!mlx_utils || !player)
+		exit(1);
 	init_ray_direction(player, x);
 	calculate_delta_dist(player);
 	init_step_and_dist_x(mlx_utils, player);
@@ -56,6 +58,8 @@ void	calculate_texture_coords(t_texture_coords_params *params,
 {
 	double	step_size;
 
+	if (!params || !coord)
+		exit(1);
 	coord->tx = (int)(params->wx * (double)params->tex->width);
 	step_size = (double)params->tex->height / (double)params->line_height;
 	coord->ty = (int)((params->y - params->draw_start) * step_size);

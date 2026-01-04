@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/11 16:49:07 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/03 18:24:33 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**read_file(int fd, char *str)
 	lent = count_lines(str);
 	file = malloc(sizeof(char *) * (lent + 1));
 	if (!file)
-		return (NULL);
+		return (NULL); // it segfaults if it returns null
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
