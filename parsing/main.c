@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 18:16:13 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 21:01:30 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "parsing.h"
 #include "raycasting.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 
 void clean_mlx_helper(t_mlx_helper *mlx_utils)
@@ -75,13 +76,53 @@ void	load_sprite_frames(t_sprite *sprit)
 	if (!sprit)
 		exit(1);
 	sprit->frames[0] = mlx_load_xpm42("parsing/1.xpm42");
+	if (!sprit->frames[0])
+	{
+		write(2, "Error:\nFailed to load parsing/1.xpm42", 38);
+		exit(1);
+	}
 	sprit->frames[1] = mlx_load_xpm42("parsing/2.xpm42");
+	if (!sprit->frames[1])
+	{
+		write(2, "Error:\nFailed to load parsing/2.xpm42", 38);
+		exit(1);
+	}
 	sprit->frames[2] = mlx_load_xpm42("parsing/3.xpm42");
+	if (!sprit->frames[2])
+	{
+		write(2, "Error:\nFailed to load parsing/3.xpm42", 38);
+		exit(1);
+	}
 	sprit->frames[3] = mlx_load_xpm42("parsing/4.xpm42");
+	if (!sprit->frames[3])
+	{
+		write(2, "Error:\nFailed to load parsing/4.xpm42", 38);
+		exit(1);
+	}
 	sprit->frames[4] = mlx_load_xpm42("parsing/5.xpm42");
+	if (!sprit->frames[4])
+	{
+		write(2, "Error:\nFailed to load parsing/5.xpm42", 38);
+		exit(1);
+	}
 	sprit->frames[5] = mlx_load_xpm42("parsing/6.xpm42");
+	if (!sprit->frames[5])
+	{
+		write(2, "Error:\nFailed to load parsing/6.xpm42", 38);
+		exit(1);	
+	}
 	sprit->frames[6] = mlx_load_xpm42("parsing/7.xpm42");
+	if (!sprit->frames[6])
+	{
+		write(2, "Error:\nFailed to load parsing/7.xpm42", 38);
+		exit(1);
+	}
 	sprit->frames[7] = mlx_load_xpm42("parsing/8.xpm42");
+	if (!sprit->frames[7])
+	{
+		write(2, "Error:\nFailed to load parsing/8.xpm42", 38);
+		exit(1);
+	}
 }
 
 t_sprite	*init_animation(t_mlx_helper *mlx_utils)
@@ -137,8 +178,7 @@ int	main(int argc, char *argv[])
 
 	
 	
-	//atexit(FUCK_YOU);
-	
+	atexit(FUCK_YOU);
 	if (argc != 2)
 	{
 		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);

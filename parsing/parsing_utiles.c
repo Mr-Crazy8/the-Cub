@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:58 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 17:31:35 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 18:20:49 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_utils	*parser(char *str)
 	int				fd;
 	t_doors_info	*dors;
 	char			**file;
-
+	
 	util = malloc(sizeof(t_utils));
 	if (!util)
 		return (NULL);

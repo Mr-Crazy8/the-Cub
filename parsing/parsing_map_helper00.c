@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:20 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:43:24 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 18:46:22 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	count_map_lines(char **file, long long map_start)
 {
 	int	total_lines;
 	int	i;
-
+	
 	if (!file || !*file)
 		exit(1);
 	total_lines = 0;

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 17:42:06 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 19:01:35 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_mlx_helper	*init_mlx_helper(void)
 	if (mlx_utils == NULL)
 	{
 		write(1, "malloc failed\n", 15);
-		exit(1);
 	}
 	return (mlx_utils);
 }

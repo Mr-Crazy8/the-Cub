@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:50:05 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/04 18:24:14 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	extract_and_pars_the_map(t_utils *util, char **file)
 {
 	long long	map_start;
 	int			total_lines;
-
+	
+	
 	if (!util || !file || !*file)
 		exit(1);
 	map_start = start_of_map(file); // segmentation fault if file is NULL
