@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:51:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 16:51:56 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:55:45 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_ray_direction(t_player *player, int x)
 {
-	// if (!player)
-	// 	exit(1);
+	if (!player)
+		return ;
 	player->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
 	player->raydir_x = player->dir_x + player->plane_x * player->camera_x;
 	player->raydir_y = player->dir_y + player->plane_y * player->camera_x;
@@ -25,8 +25,6 @@ void	init_ray_direction(t_player *player, int x)
 
 void	calculate_delta_dist(t_player *player)
 {
-	if (!player)
-		exit(1);
 	if (player->raydir_x == 0)
 		player->deltax = 999999999999999999;
 	else
@@ -40,7 +38,7 @@ void	calculate_delta_dist(t_player *player)
 void	init_step_and_dist_x(t_mlx_helper *mlx_utils, t_player *player)
 {
 	if (!mlx_utils || !player)
-		exit(1);
+		return ;
 	if (player->raydir_x < 0)
 	{
 		mlx_utils->stepx = -1;

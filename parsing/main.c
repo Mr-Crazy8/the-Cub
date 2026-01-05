@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 16:16:55 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:07:58 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,66 +71,58 @@ void clean_mlx_helper(t_mlx_helper *mlx_utils)
 	free(mlx_utils);
 }
 
-void	load_sprite_frames(t_sprite *sprit)
+int	load_sprite_frames(t_sprite *sprit)
 {
-	if (!sprit)
-		exit(1);
+
 	sprit->frames[0] = mlx_load_xpm42("parsing/1.xpm42");
 	if (!sprit->frames[0])
 	{
 		write(2, "Error:\nFailed to load parsing/1.xpm42", 38);
-		free(sprit);
-		exit(1);
+		return(1);
 	}
 	sprit->frames[1] = mlx_load_xpm42("parsing/2.xpm42");
 	if (!sprit->frames[1])
 	{
-		free(sprit);
 		write(2, "Error:\nFailed to load parsing/2.xpm42", 38);
-		exit(1);
+		return(1);
 	}
 	sprit->frames[2] = mlx_load_xpm42("parsing/3.xpm42");
 	if (!sprit->frames[2])
 	{
-		free(sprit);
 		write(2, "Error:\nFailed to load parsing/3.xpm42", 38);
-		exit(1);
+		return(1);
 	}
 	sprit->frames[3] = mlx_load_xpm42("parsing/4.xpm42");
 	if (!sprit->frames[3])
 	{
-		free(sprit);
 		write(2, "Error:\nFailed to load parsing/4.xpm42", 38);
-		exit(1);
+		return(1);
 	}
 	sprit->frames[4] = mlx_load_xpm42("parsing/5.xpm42");
 	if (!sprit->frames[4])
 	{
-		free(sprit);
 		write(2, "Error:\nFailed to load parsing/5.xpm42", 38);
-		exit(1);
+		return(1);
 	}
 	sprit->frames[5] = mlx_load_xpm42("parsing/6.xpm42");
 	if (!sprit->frames[5])
 	{
-		free(sprit);
 		write(2, "Error:\nFailed to load parsing/6.xpm42", 38);
-		exit(1);
+		return(1);
 	}
 	sprit->frames[6] = mlx_load_xpm42("parsing/7.xpm42");
 	if (!sprit->frames[6])
 	{
 		write(2, "Error:\nFailed to load parsing/7.xpm42", 38);
-		free(sprit);
-		exit(1);
+		return(1);
 	}
 	sprit->frames[7] = mlx_load_xpm42("parsing/8.xpm42");
 	if (!sprit->frames[7])
 	{
 		write(2, "Error:\nFailed to load parsing/8.xpm42", 38);
-		free(sprit);
-		exit(1);
+		return(1);
 	}
+	return (0);
 }
 
 t_sprite	*init_animation(t_mlx_helper *mlx_utils)
@@ -138,8 +130,7 @@ t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 	t_sprite	*sprit;
 	int			i;
 
-	if (!mlx_utils)
-		exit(1);
+
 	sprit = malloc(sizeof(t_sprite));
 	if (!sprit)
 		return (NULL);
@@ -147,7 +138,11 @@ t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 	sprit->frame_counter = 0;
 	sprit->current_frame = 0;
 	sprit->last_frame_time = mlx_get_time();
-	load_sprite_frames(sprit);
+	if(load_sprite_frames(sprit) == 1)
+	{
+		clean_up_utils(mlx_utils->utils);
+		return (NULL);
+	}
 	i = 0;
 	while (i < FIRE_FRAMES)
 	{
@@ -157,7 +152,7 @@ t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 		{
 			mlx_delete_xpm42(sprit->frames[i]);
 			free(sprit);
-			exit(1);
+			return NULL;
 		}
 		i++;
 	}
@@ -167,7 +162,7 @@ t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 void	setup_mlx_hooks(t_mlx_helper *mlx_utils)
 {
 	if (!mlx_utils)
-		exit(1);
+		return ;
 	mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->mini_map_img, 0, 0);
 	mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->img, 0, 0);
 	mini_map(mlx_utils);
@@ -186,6 +181,7 @@ void FUCK_YOU()
 
 int	main(int argc, char *argv[])
 {
+
 	t_utils			*util;
 	t_mlx_helper	*mlx_utils;
 	t_player		player;
@@ -193,7 +189,7 @@ int	main(int argc, char *argv[])
 
 	
 	
-	// atexit(FUCK_YOU);
+	atexit(FUCK_YOU);
 	if (argc != 2)
 	{
 		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);
@@ -225,7 +221,7 @@ int	main(int argc, char *argv[])
 	}
 
 	init_mlx_allocations(mlx_utils);
-	if (!mlx_utils->player_place || !mlx_utils->map_h_w)
+	if (!mlx_utils || !mlx_utils->player_place || !mlx_utils->map_h_w)
 	{
 		if (mlx_utils->player_place)
 			free(mlx_utils->player_place);
@@ -234,6 +230,7 @@ int	main(int argc, char *argv[])
 		mlx_terminate(mlx_utils->mlx_ptr);
 		free(mlx_utils);
 		clean_up_utils(util);
+		clean_mlx_helper(mlx_utils);
 		return (1);
 	}
 	

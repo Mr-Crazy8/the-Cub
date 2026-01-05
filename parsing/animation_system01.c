@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:22:29 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 16:18:11 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 17:58:01 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 void	draw_current_frame(t_mlx_helper *mlx, int x, int y)
 {
 	if (!mlx)
-	{
-		printf("draw_current_frame\n");
-		exit(1);
-	}
+		return;
 	mlx_image_to_window(mlx->mlx_ptr,
 		mlx->sprit->images[mlx->sprit->current_frame],
 		x,
@@ -34,10 +31,7 @@ void	animation_loop(void *param)
 
 	mlx = (t_mlx_helper *)param;
 	if (!mlx)
-	{
-		printf("animation_loop\n");
-		exit(1);
-	}
+		return;
 	if (!validate_animation_params(mlx))
 		return ;
 	update_animation(mlx->sprit);

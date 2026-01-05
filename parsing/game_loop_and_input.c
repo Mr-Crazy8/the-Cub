@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:36:01 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:04:37 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	game_loop(void *param)
 
 	mlx = (t_mlx_helper *)param;
 	if (!mlx)
-		exit(1);
+		return ;
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_W) )
 		move_forward(mlx->player, mlx->utils->map, mlx);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_S))
@@ -54,7 +54,7 @@ void	mouse_rotate_hook(double xpos, double ypos, void *param)
 	(void)ypos;
 	mlx = (t_mlx_helper *)param;
 	if (!mlx)
-		exit(1);
+		return;
 	diff = xpos - (SCREEN_WIDTH / 2.0);
 	if (fabs(diff) < 2.0)
 		return;

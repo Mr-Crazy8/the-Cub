@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:20:19 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/03 20:13:58 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:39:12 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	calculate_minimap_bounds(t_mlx_helper *mlx, t_minimap_bounds *bounds)
 	int	total_rows;
 
 	if (!mlx || !bounds)
-		exit(1);
+		return ;
 	map_player_x = (int)mlx->player->pos_x;
 	map_player_y = (int)mlx->player->pos_y;
 	bounds->min_x = map_player_x - mlx->minimap_zone;
@@ -41,8 +41,6 @@ int	get_row_length(char *row)
 {
 	int	length;
 	
-	if (!row)
-		exit(1);
 	length = 0;
 	while (row[length])
 		length++;
@@ -58,7 +56,7 @@ void	draw_minimap_row(t_mlx_helper *mlx, int map_y,
 	t_minimap_tile_params	params;
 
 	if (!mlx || !bounds)
-		exit(1);
+		return ;
 	row_length = get_row_length(mlx->utils->map[map_y]);
 	current_max_x = bounds->max_x;
 	if (current_max_x > row_length)
@@ -80,7 +78,7 @@ void	draw_minimap_grid(t_mlx_helper *mlx, t_minimap_bounds *bounds)
 	int	map_y;
 
 	if (!mlx || !bounds)
-		exit(1);
+		return ;
 	map_y = bounds->min_y;
 	while (map_y < bounds->max_y)
 	{
@@ -97,7 +95,7 @@ void	mini_map(t_mlx_helper *mlx)
 	t_player_draw_params	params;
 
 	if (!mlx)
-		exit(1);
+		return ;
 	clear_img_mini_map(mlx);
 	calculate_minimap_bounds(mlx, &bounds);
 	draw_minimap_grid(mlx, &bounds);

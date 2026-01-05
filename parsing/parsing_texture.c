@@ -6,16 +6,17 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:54 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 16:39:55 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:43:35 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	handle_invalid_identifier(char **texture)
+void	handle_invalid_identifier(char **texture, t_utils *util)
 {
 	write(2, "not valide identifier\n", 23);
 	free_split(texture);
+	clean_up_utils(util);
 	exit(2);
 }
 
@@ -31,7 +32,7 @@ void	process_texture_identifier(t_utils *util, char **texture,
 	else if (strcmp(texture[0], "WE") == 0)
 		handle_we_texture(util, texture, flags);
 	else
-		handle_invalid_identifier(texture);
+		handle_invalid_identifier(texture, util);
 }
 
 void	process_texture_line(t_utils *util, char *line, t_texture_flags *flags)
@@ -41,6 +42,11 @@ void	process_texture_line(t_utils *util, char *line, t_texture_flags *flags)
 	if (!is_texture_line(line))
 		return ;
 	texture = parse_texture_line(line);
+	if (!texture)
+	{
+		clean_up_utils(util);
+		exit(1);
+	}
 	process_texture_identifier(util, texture, flags);
 }
 

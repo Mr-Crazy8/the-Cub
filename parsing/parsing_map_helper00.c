@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:20 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 18:46:22 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 21:23:13 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ long long	start_of_map(char **file)
 	i = 0;
 	j = 0;
 	found_config = 0;
-	if (!file || !*file)
-		exit(1);
+
 	while (file[i])
 	{
 		j = 0;
@@ -93,8 +92,6 @@ int	count_map_lines(char **file, long long map_start)
 	int	total_lines;
 	int	i;
 	
-	if (!file || !*file)
-		exit(1);
 	total_lines = 0;
 	i = map_start;
 	while (file[i])
@@ -113,7 +110,7 @@ char	**allocate_map_array(int total_lines)
 	if (!map)
 	{
 		write(2, "Memory allocation failed\n", 25);
-		exit(2);
+		return NULL;
 	}
 	return (map);
 }

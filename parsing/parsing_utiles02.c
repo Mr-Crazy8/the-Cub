@@ -6,16 +6,16 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/03 18:24:33 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:19:09 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	print_failed(void)
+int	print_failed(void)
 {
 	write(2, "File doesn't exist or can't be opened\n", 39);
-	exit(2);
+	return -1;
 }
 
 int	count_lines(char *str)
@@ -27,7 +27,7 @@ int	count_lines(char *str)
 	count = 0;
 	fd_2 = open(str, O_RDONLY);
 	if (fd_2 == -1)
-		print_failed();
+		return (print_failed());
 	tmp = get_next_line(fd_2);
 	while (tmp != NULL)
 	{
@@ -48,9 +48,11 @@ char	**read_file(int fd, char *str)
 
 	i = 0;
 	lent = count_lines(str);
+	if (lent < 0)
+		return NULL;
 	file = malloc(sizeof(char *) * (lent + 1));
 	if (!file)
-		return (NULL); // it segfaults if it returns null
+		return (NULL);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

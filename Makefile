@@ -1,7 +1,7 @@
 
 NAME = cub3d
 
-FLAGS = -Wall  #-Werror -Wextra
+FLAGS = -Wall -g3 -fsanitize=address#-Werror -Wextra
 
 SRC = 	parsing/animation_system.c                              parsing/minimap_func01.c                                parsing/parsing_utiles01.c   			\
 		parsing/animation_system01.c                            parsing/parsing.c                                       parsing/parsing_utiles02.c	 			\

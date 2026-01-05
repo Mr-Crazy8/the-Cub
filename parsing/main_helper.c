@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 19:01:35 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:36:27 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ t_mlx_helper	*init_mlx_helper(void)
 void	init_mlx_images(t_mlx_helper *mlx_utils)
 {
 	if (!mlx_utils)
-		exit(1);
+		return;
 	mlx_utils->mlx_ptr = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "ayoub", true);
 	if (!mlx_utils->mlx_ptr)
-		exit(1);
+		return;
 	mlx_utils->mini_map_img = mlx_new_image(mlx_utils->mlx_ptr, 250, 250);
 	mlx_utils->img = mlx_new_image(mlx_utils->mlx_ptr,
 			SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -61,7 +61,7 @@ void	init_mlx_allocations(t_mlx_helper *mlx_utils)
 void	setup_minimap_config(t_mlx_helper *mlx_utils)
 {
 	if (!mlx_utils)
-		exit(1);
+		return;
 	mlx_utils->minimap_size = 250;
 	mlx_utils->minimap_x = 10;
 	mlx_utils->minimap_y = 10;
@@ -73,12 +73,11 @@ void	setup_minimap_config(t_mlx_helper *mlx_utils)
 void	setup_player(t_mlx_helper *mlx_utils, t_player *player, char helper)
 {
 	if (!mlx_utils || !player || !helper)
-		exit(1);
-	find_h_w_for_map(mlx_utils->utils->map, mlx_utils->map_h_w); // segmentation fault if mlx_utils->utils->map or mlx_utils->map_h_w is NULL
-	player->pos_x = mlx_utils->player_place[0] + 0.5;
+		return;
+	find_h_w_for_map(mlx_utils->utils->map, mlx_utils->map_h_w);
 	player->pos_y = mlx_utils->player_place[1] + 0.5;
 	mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->mlx_img,
 		(int)player->pos_x * mlx_utils->tail,
 		(int)player->pos_y * mlx_utils->tail);
-	check_derction_player(player, helper);// segmentation fault if player or helper is NULL
+	check_derction_player(player, helper);
 }

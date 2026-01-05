@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 18:24:14 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:03:27 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,21 @@ void	extract_and_pars_the_map(t_utils *util, char **file)
 	long long	map_start;
 	int			total_lines;
 	
-	
-	if (!util || !file || !*file)
-		exit(1);
-	map_start = start_of_map(file); // segmentation fault if file is NULL
-	validate_map_start(map_start);
-	total_lines = count_map_lines(file, map_start); // segmentation fault if file is NULL
-	util->map = extract_map_lines(file, map_start, total_lines); // segmentation fault if file is NULL
-	pars_the_map(util); // segmentation fault if util is NULL
+	map_start = start_of_map(file);
+	validate_map_start(map_start, util);
+	total_lines = count_map_lines(file, map_start);
+	util->map = extract_map_lines(file, map_start, total_lines, util);
+	pars_the_map(util);
 }
 
-void	check_for_valid_character_in_map(char str)
+void	check_for_valid_character_in_map(char str, t_utils *util)
 {
 	if (str != '0' && str != '1'
 		&& str != 'N' && str != 'S' && str != 'D'
 		&& str != 'E' && str != 'W' && str != ' ' && str != '\n')
 	{
 		write(2, "Error\nNon valid character in the map\n", 38);
+		clean_up_utils(util);
 		exit(2);
 	}
 }
@@ -45,8 +43,7 @@ void	check_first_line(char **str)
 
 	i = 0;
 	j = 0;
-	if (!str || !*str)
-		exit(1);
+
 	while (str && str[i][j])
 	{
 		if (str[i][j] == '0' || str[i][j] == 'N'
@@ -54,12 +51,12 @@ void	check_first_line(char **str)
 			|| str[i][j] == 'W' || str[i][j] == 'D')
 		{
 			write(2, "Error\nthe Map is open\n", 23);
-			exit(2);
+			return ;
 		}
 		if (str[i][j] == ' ' && str[i + 1][j] == '0')
 		{
 			write(2, "Error\nthe Map is open\n", 23);
-			exit(2);
+			return ;
 		}
 		j++;
 	}
@@ -70,8 +67,7 @@ int	lent(char **str)
 	int	i;
 
 	i = 0;
-	if (!str || !*str)
-		exit(1);
+
 	while (str && str[i])
 		i++;
 	return (i);

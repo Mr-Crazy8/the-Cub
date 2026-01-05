@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:52:39 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 21:59:20 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	skip_leading_whitespace(char *line, int *j)
 {
-	if (!line)
-		exit(1);
 	while (line[*j] == ' ' || (line[*j] >= 9 && line[*j] <= 13))
 		(*j)++;
 }
@@ -24,8 +22,6 @@ int	trim_trailing_whitespace(char *line, int len)
 {
 	int	last_char;
 
-	if (!line)
-		exit(1);
 	last_char = len - 1;
 	if (last_char >= 0 && line[last_char] == '\n')
 		last_char--;
@@ -37,12 +33,10 @@ int	trim_trailing_whitespace(char *line, int len)
 
 void	validate_map_boundaries(char *line, int j, int last_char)
 {
-	if (!line)
-		exit(1);
 	if (line[j] != '1' || (last_char >= 0 && line[last_char] != '1'))
 	{
 		write(2, "Error\nthe Map is open\n", 23);
-		exit(2);
+		return ;
 	}
 }
 
@@ -56,8 +50,6 @@ void	pars_the_map_helper(t_utils *util)
 	i = 1;
 	j = 0;
 
-	if (!util)
-		exit(1);
 	while (util->map[i])
 	{
 		if (strcmp(util->map[i], "\n") == 0)
@@ -65,6 +57,7 @@ void	pars_the_map_helper(t_utils *util)
 			i++;
 			continue ;
 		}
+		j = 0;
 		len = strlen(util->map[i]);
 		skip_leading_whitespace(util->map[i], &j);
 		last_char = trim_trailing_whitespace(util->map[i], len);

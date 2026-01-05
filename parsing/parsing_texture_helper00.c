@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:46 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 16:40:54 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:33:56 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	free_split(char **split)
 
 void	init_texture_flags(t_texture_flags *flags)
 {
-	if (!flags)
-		exit(1);
 	flags->done_no = 0;
 	flags->done_so = 0;
 	flags->done_we = 0;
@@ -56,8 +54,6 @@ void	init_texture_flags(t_texture_flags *flags)
 
 int	is_texture_line(char *line)
 {
-	if (!line)
-		exit(1);
 	if (strnstr(line, "./", strlen(line)) == NULL)
 		return (0);
 	if (ft_strncmp(line, "NO", 2) == 0
@@ -72,13 +68,9 @@ char	**parse_texture_line(char *line)
 {
 	char	**texture;
 
-	if (!line)
-		exit(1);
 	texture = ft_split(line, ' ');
 	if (!texture)
-	{
-		exit(1);
-	}
+		return NULL;
 	if (texture[1][strlen(texture[1]) - 1] == '\n')
 		texture[1][strlen(texture[1]) - 1] = '\0';
 	return (texture);

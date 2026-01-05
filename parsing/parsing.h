@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 17:34:18 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 21:42:23 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,10 +238,10 @@ void				check_line(char *line);
 void				read_map(int fd);
 t_utils				*parser(char *str);
 int					check_file(char *str);
-void				print_failed(void);
+int	print_failed(void);
 int					count_lines(char *str);
 char				**read_file(int fd, char *str);
-void				check_if_in_range(int color);
+void	check_if_in_range(int color, t_utils *util);
 int					f_c_color_helpr(t_utils *util, char *file);
 void				extract_and_pars_the_floor_and_ceiling_color(t_utils *util,
 						char **file);
@@ -249,7 +249,7 @@ long long			start_of_map(char **file);
 char				**ft_split(char const *s, char c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 void				extract_and_pars_the_map(t_utils *util, char **file);
-void				check_for_valid_character_in_map(char str);
+void				check_for_valid_character_in_map(char str, t_utils *util);
 void				check_first_line(char **str);
 int					lent(char **str);
 void				check_the_last_line(char **str);
@@ -268,12 +268,10 @@ long long			start_of_map(char **file);
 char				*ft_strtrim(char const *s1, char const *set);
 void				free_partial_map(char **map, int lines_allocated);
 void				handle_strdup_error(char **map, int map_line);
-void				copy_map_line(char **map, char *source, int map_line);
-char				**extract_map_lines(char **file,
-						long long map_start, int total_lines);
-void				validate_map_start(long long map_start);
+void	copy_map_line(char **map, char *source, int map_line, t_utils *util);
+char	**extract_map_lines(char **file, long long map_start, int total_lines, t_utils *util);
+void	validate_map_start(long long map_start, t_utils *util);
 void				extract_and_pars_the_map(t_utils *util, char **file);
-void				check_for_valid_character_in_map(char str);
 void				check_first_line(char **str);
 int					lent(char **str);
 void				check_the_last_line(char **str);
@@ -289,7 +287,7 @@ void				free_split(char **split);
 void				init_texture_flags(t_texture_flags *flags);
 int					is_texture_line(char *line);
 char				**parse_texture_line(char *line);
-void				check_duplicate(char *id, int done, char **texture);
+void	check_duplicate(char *id, int done, char **texture, t_utils *util);
 void				handle_no_texture(t_utils *util,
 						char **texture, t_texture_flags *flags);
 void				handle_so_texture(t_utils *util,
@@ -299,14 +297,13 @@ void				handle_ea_texture(t_utils *util,
 void				handle_we_texture(t_utils *util,
 						char **texture, t_texture_flags *flags);
 bool				is_door_blocking(t_mlx_helper *mlx, int x, int y, int type);
-void				check_if_in_range(int color);
 int					is_valid_color_prefix(char c);
 int					skip_whitespace(char *str);
 int					count_commas(char *file);
-void				validate_comma_count(int counter);
-char				**parse_and_validate_split(char *file);
-char				**parse_color_components(char **split);
-void				set_color_values(int *color, char **split1);
+void	validate_comma_count(int counter, t_utils *util);
+char	**parse_and_validate_split(char *file, t_utils *util);
+char	**parse_color_components(char **split, t_utils *util);
+void	set_color_values(int *color, char **split1, t_utils *util);
 void				assign_color_to_util(t_utils *util,
 						char type, char **split1);
 int					f_c_color_helpr(t_utils *util, char *file);
@@ -402,7 +399,6 @@ void				set_direction_south(t_player *player);
 void				set_direction_west(t_player *player);
 void				calculate_ray_direction(t_player *player, int screen_column,
 						float *ray_dir_x, float *ray_dir_y);
-void				print_failed(void);
 int					count_lines(char *str);
 char				**read_file(int fd, char *str);
 int					count_doors_in_row(char *row);

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:28:21 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:08:55 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:12:11 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	check_wall_hit(t_mlx_helper *mlx)
 {
 	char	tile;
 
-	if (!mlx)
-		exit(1);
+	if (!mlx || !mlx->utils || !mlx->utils->map)
+		printf("---------- 1 \n");
 	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
 	if (tile == '1')
 		return (1);

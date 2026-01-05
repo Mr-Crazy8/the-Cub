@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:43 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 16:45:30 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:04:11 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static char	**split_string(char const *s, char c, char **split, size_t n)
 	i = 0;
 	j = 0;
 
-	if (!s || !c || !split || !*split)
-		exit(1);
 	while (s[i] && j < n)
 	{
 		while (s[i] == c)

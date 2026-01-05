@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:26:01 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 16:30:17 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:03:03 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	draw_tile_pixels(t_mlx_helper *mlx_utils,
 	py = 0;
 
 	if (!mlx_utils)
-	{
-		printf("draw_tile_pixels\n");
-		exit(1);
-	}
+		return ;
 	while (py < mlx_utils->tail - 1)
 	{
 		px = 0;
@@ -48,10 +45,7 @@ void	draw_map_row(t_utils *util, t_mlx_helper *mlx_utils, int map_y)
 	int	color;
 
 	if (!mlx_utils || !util)
-	{
-		printf("draw_map_row\n");
-		exit(1);
-	}
+		return;
 	map_width = strlen(util->map[map_y]);
 	map_x = 0;
 	while (map_x < map_width)
@@ -72,10 +66,7 @@ static void	draw_player_pixels(t_mlx_helper *mlx, float player_screen_x,
 
 	py = 0;
 	if (!mlx)
-	{
-		printf("draw_player_pixels\n");
-		exit(1);
-	}
+		return ;
 	while (py <= player_size)
 	{
 		px = 0;
@@ -100,10 +91,7 @@ void	draw_player(t_mlx_helper *mlx, t_player_draw_params *params)
 	float	player_screen_y;
 
 	if (!mlx || !params)
-	{
-		printf("draw_player\n");
-		exit(1);
-	}
+		return ;
 	player_size = 5;
 	player_screen_x = mlx->minimap_x
 		+ ((params->player_x - params->min_x) * mlx->minimap_scale);
@@ -120,10 +108,7 @@ void	clear_img(t_mlx_helper *mlx)
 	x = 0;
 	y = 0;
 	if (!mlx)
-	{
-		printf("clear_img\n");
-		exit(1);
-	}
+		return ;
 	while (y < SCREEN_HEIGHT)
 	{
 		x = 0;

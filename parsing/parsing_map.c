@@ -6,19 +6,17 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:41 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:55:08 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:00:54 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stdlib.h>
 
 void	validate_space_neighbors(t_utils *util, unsigned long i,
 			unsigned long j)
 {
-	
-	if (!util)
-		exit(1);
-	if (! check_boundaries_exist(util, i, j))
+	if (!check_boundaries_exist(util, i, j))
 		return ;
 	if ((util->map[i][j + 1] != '1' && util->map[i][j + 1] != ' ') ||
 		(util->map[i][j - 1] != '1' && util->map[i][j - 1] != ' ') ||
@@ -26,30 +24,29 @@ void	validate_space_neighbors(t_utils *util, unsigned long i,
 		(util->map[i + 1][j] != '1' && util->map[i + 1][j] != ' '))
 	{
 		write(2, "Error\nthe Map is open\n", 23);
-		exit(2);
+		clean_up_utils(util);
+		exit(1);
 	}
 }
 
 void	validate_zero_neighbors(t_utils *util, unsigned long i, unsigned long j)
 {
-	if (!util)
-		exit(1);
 	if (!check_boundaries_exist(util, i, j))
 		return ;
 	if (util->map[i][j + 1] == ' ' || util->map[i][j - 1] == ' ' ||
 		util->map[i - 1][j] == ' ' || util->map[i + 1][j] == ' ')
 	{
 		write(2, "Error\nthe Map is open\n", 23);
-		exit(2);
+		//clean_up_utils(util);
+		//exit(1);
 	}
+	
 }
 
 void	process_map_character(t_utils *util, unsigned long i,
 			unsigned long j, int *player)
 {
-	if (!util)
-		exit(1);
-	check_for_valid_character_in_map(util->map[i][j]);
+	check_for_valid_character_in_map(util->map[i][j], util);
 	if (is_player_char(util->map[i][j]))
 		(*player)++;
 	if (util->map[i][j] == ' ')
@@ -62,8 +59,6 @@ void	trim_newline(char *line)
 {
 	int	len;
 
-	if (!line)
-		exit(1);
 	len = strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
@@ -78,8 +73,6 @@ void	pars_the_map(t_utils *util)
 	i = 0;
 	player = 0;
 
-	if (!util)
-		exit(1);
 	while (util->map[i])
 	{
 		j = 0;
@@ -96,7 +89,8 @@ void	pars_the_map(t_utils *util)
 	if (player != 1)
 	{
 		write(2, "Error\nThere more the one player\n", 33);
-		exit(2);
+		clean_up_utils(util);
+		exit(1);
 	}
 	pars_the_map_helper(util);
 }
