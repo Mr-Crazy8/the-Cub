@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:14:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 16:52:18 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 16:04:47 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ int	check_file(char *str)
 		write(2, "File doesn't exist or can't be opened\n", 39);
 		exit(2);
 	}
-	len = strlen(str); //  segmentation fault is str is NULL
+	len = strlen(str);
 	if (len < 4 || strcmp(str + len - 4, ".cub") != 0)
 	{
+		close(fd);
 		write(2, "Not valid extension\n", 21);
 		exit(2);
 	}
