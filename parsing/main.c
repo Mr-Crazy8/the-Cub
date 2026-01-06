@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 23:17:24 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:07:59 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void clean_mlx_helper(t_mlx_helper *mlx_utils)
 
 		while (i < FIRE_FRAMES)
 		{
+			if (mlx_utils->mlx_ptr && mlx_utils->sprit->images[i])
+				mlx_delete_image(mlx_utils->mlx_ptr, mlx_utils->sprit->images[i]);
 			if (mlx_utils->sprit->frames[i])
 				mlx_delete_xpm42(mlx_utils->sprit->frames[i]);
 			i++;
@@ -163,8 +165,10 @@ void	setup_mlx_hooks(t_mlx_helper *mlx_utils)
 {
 	if (!mlx_utils)
 		return ;
-	mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->mini_map_img, 0, 0);
-	mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->img, 0, 0);
+	if(mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->mini_map_img, 0, 0) == -1)
+		return ;
+	if(mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->img, 0, 0) == -1)
+		return ;
 	mini_map(mlx_utils);
 	
 	mlx_cursor_hook(mlx_utils->mlx_ptr, mouse_rotate_hook, mlx_utils);
@@ -209,26 +213,8 @@ int	main(int argc, char *argv[])
 	}
 	mlx_utils->player = &player;
 	mlx_utils->utils = util;
-	init_mlx_images(mlx_utils); 
-	if (!mlx_utils->mlx_ptr)
-	{
-		free(mlx_utils);
-		clean_up_utils(util);
-		return (1);
-	}
-	init_mlx_allocations(mlx_utils);
-	if (!mlx_utils || !mlx_utils->player_place || !mlx_utils->map_h_w)
-	{
-		if (mlx_utils->player_place)
-			free(mlx_utils->player_place);
-		if (mlx_utils->map_h_w)
-			free(mlx_utils->map_h_w);
-		mlx_terminate(mlx_utils->mlx_ptr);
-		free(mlx_utils);
-		clean_up_utils(util);
-		clean_mlx_helper(mlx_utils);
-		return (1);
-	}
+	init_mlx_images(mlx_utils, util);
+	init_mlx_allocations(mlx_utils, util);
 	setup_minimap_config(mlx_utils);
 	helper = find_player(util->map, mlx_utils->player_place); 
 	setup_player(mlx_utils, &player, helper);

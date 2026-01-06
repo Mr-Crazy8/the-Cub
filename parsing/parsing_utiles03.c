@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:37:45 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 12:09:06 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:26:26 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_doors_info	*allocate_doors_array(int count)
 	t_doors_info	*doors;
 
 	doors = malloc(sizeof(t_doors_info) * count);
-	if (!doors)  // segmentation fault if doors is null
+	if (!doors)
 		return (NULL);
 	return (doors);
 }

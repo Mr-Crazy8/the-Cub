@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:03:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 23:04:10 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:23:02 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void	start_opening_door(t_mlx_helper *mlx, int i, float distance)
 {
-	if (!mlx)
-		return;
 	if (distance < mlx->utils->doors[i].activation_distance
 		&& mlx->utils->doors[i].state == 0)
 	{
@@ -27,8 +25,6 @@ void	start_opening_door(t_mlx_helper *mlx, int i, float distance)
 
 void	animate_door_opening(t_mlx_helper *mlx, int i)
 {
-	if (!mlx)
-		return;
 	if (mlx->utils->doors[i].state == 1)
 	{
 		mlx->utils->doors[i].animation_progress += 0.5;
@@ -46,8 +42,6 @@ void	update_single_door(t_mlx_helper *mlx, int i)
 	float	door_y;
 	float	distance;
 
-	if (!mlx)
-		return;
 	calculate_door_position(mlx, i, &door_x, &door_y);
 	distance = calculate_distance_to_door(mlx, door_x, door_y);
 	reset_door_if_far(mlx, i, distance);
@@ -62,8 +56,7 @@ void	update_doors_info(t_mlx_helper *mlx)
 	int	i;
 
 	i = 0;
-	if (!mlx)
-		return ;
+
 	while (i < mlx->utils->total_doors)
 	{
 		update_single_door(mlx, i);
@@ -96,7 +89,7 @@ int	check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
 	int		map_height;
 	int		map_width;
 
-	if (!mlx || !mlx->utils || !mlx->utils->map)
+	if (!mlx || !mlx->utils || !mlx->utils->map || !mlx->player)
 		exit(1);
 	
 	// Get map dimensions

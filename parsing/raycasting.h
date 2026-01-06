@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 16:11:13 by anel-men          #+#    #+#             */
-/*   Updated: 2025/12/14 16:15:41 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:05:23 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void			move_left(t_player *player, char **map, t_mlx_helper *mlx);
 void			move_right(t_player *player, char **map, t_mlx_helper *mlx);
 void			rotate_right(t_player *player, double rot);
 t_mlx_helper	*init_mlx_helper(void);
-void			init_mlx_images(t_mlx_helper *mlx_utils);
-void			init_mlx_allocations(t_mlx_helper *mlx_utils);
+void	init_mlx_images(t_mlx_helper *mlx_utils, t_utils *util);
+void	init_mlx_allocations(t_mlx_helper *mlx_utils, t_utils *util);
 void			setup_minimap_config(t_mlx_helper *mlx_utils);
 void			setup_player(t_mlx_helper *mlx_utils,
 					t_player *player, char helper);

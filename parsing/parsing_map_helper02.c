@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 13:37:06 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 14:37:54 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	check_first_line(char **str)
 			write(2, "Error\nthe Map is open 2\n", 25);
 			return ;
 		}
-		if (str[i][j] == ' ' && str[i + 1][j] == '0')
+		if (str[i][j] == ' ' && str[i + 1] && str[i + 1][j] == '0')
 		{
 			write(2, "Error\nthe Map is open 3\n", 25);
 			return ;

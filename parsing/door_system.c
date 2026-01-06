@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:06:25 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 18:00:22 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:22:32 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ bool	is_door_blocking(t_mlx_helper *mlx, int x, int y, int type)
 void	calculate_door_position(t_mlx_helper *mlx, int i,
 			float *door_x, float *door_y)
 {
-	if (!mlx)
-		return;
 	*door_x = mlx->utils->doors[i].map_x + 0.5;
 	*door_y = mlx->utils->doors[i].map_y + 0.5;
 }
@@ -73,8 +71,6 @@ float	calculate_distance_to_door(t_mlx_helper *mlx,
 
 void	reset_door_if_far(t_mlx_helper *mlx, int i, float distance)
 {
-	if (!mlx)
-		return;
 	if (distance > mlx->utils->doors[i].activation_distance
 		&& mlx->utils->doors[i].state == 2)
 	{

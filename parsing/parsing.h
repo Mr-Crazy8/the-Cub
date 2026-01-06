@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 21:42:23 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:14:31 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ typedef struct s_mlx_helper
 	int				bpp;
 	int				line_len;
 	int				endian;
-	int				tail;
+	int				tile;
 	int				*player_place;
 	int				*map_h_w;
 	int				doors_count;

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:51:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 18:55:45 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:30:12 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	init_step_and_dist_x(t_mlx_helper *mlx_utils, t_player *player)
 void	init_step_and_dist_y(t_mlx_helper *mlx_utils, t_player *player)
 {
 	if (!mlx_utils || !player)
-		exit(1);
+		return ;
 	if (player->raydir_y < 0)
 	{
 		mlx_utils->stepy = -1;
@@ -74,7 +74,7 @@ double	calculate_wall_x(t_wall_x_params *params)
 	double	wx;
 
 	if (!params)
-		exit(1);
+		return 1;
 	if (params->side == 1)
 		wx = params->pos_x + params->dist_to_wall * params->raydir_x;
 	else

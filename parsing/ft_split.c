@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:43 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 18:04:11 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 14:22:25 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	**split_string(char const *s, char c, char **split, size_t n)
 			i++;
 		len = i - start;
 		split[j] = (char *)malloc(len + 1);
-		if (!split[j]) // segmentation fault if s is NULL
+		if (!split[j])
 			return (free_split(split, j));
 		ft_memcpy(split[j], &s[start], len);
 		split[j][len] = '\0';
@@ -73,11 +73,11 @@ char	**ft_split(char const *s, char c)
 	size_t	n;
 	char	**split;
 
-	if (s == NULL) // segmentation fault if s is NULL
+	if (s == NULL)
 		return (NULL);
 	n = count_words(s, c);
 	split = (char **)malloc((n + 1) * sizeof(char *));
-	if (split == NULL) // segmentation fault if split is NULL
+	if (split == NULL)
 		return (NULL);
 	return (split_string(s, c, split, n));
 }

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:26:01 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 18:03:03 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:14:13 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	draw_tile_pixels(t_mlx_helper *mlx_utils,
 
 	if (!mlx_utils)
 		return ;
-	while (py < mlx_utils->tail - 1)
+	while (py < mlx_utils->tile - 1)
 	{
 		px = 0;
-		while (px < mlx_utils->tail - 1)
+		while (px < mlx_utils->tile - 1)
 		{
-			screen_x = map_x * mlx_utils->tail + px;
-			screen_y = map_y * mlx_utils->tail + py;
+			screen_x = map_x * mlx_utils->tile + px;
+			screen_y = map_y * mlx_utils->tile + py;
 			draw_pixel_if_in_bounds(mlx_utils, screen_x, screen_y, color);
 			px++;
 		}
