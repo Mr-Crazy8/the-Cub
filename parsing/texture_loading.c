@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:08 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 23:22:32 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 12:37:35 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ mlx_texture_t	**allocate_texture_array(void)
 
 void	load_wall_textures(mlx_texture_t **texture, t_utils *utils)
 {
-	if (!texture || !*texture || !utils)
+	if (!texture || !utils)
 	{
+		printf("%p\n", utils);
+		printf("%p\n", texture);
+		printf("%p\n", *texture);
 		printf("load_wall_textures\n");
 		exit(1);
 	}

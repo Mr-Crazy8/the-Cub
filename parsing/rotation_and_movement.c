@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:37 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:05:01 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 12:24:17 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rotate_right(t_player *player, double rot)
 	double	old_planex;
 
 	if (!player)
-		exit(1);
+		return ;
 	old_dirx = player->dir_x;
 	old_planex = player->plane_x;
 	player->dir_x = player->dir_x * cos(-rot) - player->dir_y * sin(-rot);
@@ -33,7 +33,7 @@ void	rotate_left(t_player *player, double rot)
 	double	old_planex;
 
 	if (!player)
-		exit(1);
+		return ;
 	old_dirx = player->dir_x;
 	old_planex = player->plane_x;
 	player->dir_x = player->dir_x * cos(rot) - player->dir_y * sin(rot);
@@ -50,7 +50,8 @@ int	check_collision_at(char **map, double x, double y, t_mlx_helper *mlx)
 	margin = 0.1;
 	
 	if (!mlx || !map || !*map)
-		exit(1);
+		return 1;
+	
 	if (map[(int)(y - margin)][(int)(x - margin)] == '1' ||
 		map[(int)(y - margin)][(int)(x + margin)] == '1' ||
 		map[(int)(y + margin)][(int)(x - margin)] == '1' ||
@@ -69,6 +70,8 @@ void	move_forward(t_player *player, char **map, t_mlx_helper *mlx)
 	double	new_x;
 	double	new_y;
 
+	if (!mlx || !player || !map)
+		return ;
 	player->move_speed = 0.05;
 	new_x = player->pos_x + player->dir_x * player->move_speed;
 	new_y = player->pos_y + player->dir_y * player->move_speed;
@@ -86,6 +89,8 @@ void	move_back(t_player *player, char **map, t_mlx_helper *mlx)
 	double	new_x;
 	double	new_y;
 
+	if (!mlx || !player || !map)
+		return ;
 	player->move_speed = 0.05;
 	new_x = player->pos_x - player->dir_x * player->move_speed;
 	new_y = player->pos_y - player->dir_y * player->move_speed;
@@ -103,6 +108,8 @@ void	move_left(t_player *player, char **map, t_mlx_helper *mlx)
 	double	new_x;
 	double	new_y;
 
+	if (!mlx || !player || !map)
+		return ;
 	player->move_speed = 0.05;
 	new_x = player->pos_x - player->dir_y * player->move_speed;
 	new_y = player->pos_y + player->dir_x * player->move_speed;
