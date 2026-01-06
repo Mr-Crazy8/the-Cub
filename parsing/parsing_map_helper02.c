@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 22:03:27 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:24:01 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	check_first_line(char **str)
 			|| str[i][j] == 'S' || str[i][j] == 'E'
 			|| str[i][j] == 'W' || str[i][j] == 'D')
 		{
-			write(2, "Error\nthe Map is open\n", 23);
+			write(2, "Error\nthe Map is open 2\n", 25);
 			return ;
 		}
 		if (str[i][j] == ' ' && str[i + 1][j] == '0')
 		{
-			write(2, "Error\nthe Map is open\n", 23);
+			write(2, "Error\nthe Map is open 3\n", 25);
 			return ;
 		}
 		j++;
@@ -88,12 +88,12 @@ void	check_the_last_line(char **str)
 			|| str[i][j] == 'S' || str[i][j] == 'E'
 			|| str[i][j] == 'W' || str[i][j] == 'D')
 		{
-			write(2, "Error\nthe Map is open\n", 23);
+			write(2, "Error\nthe Map is open 66\n", 26);
 			exit(2);
 		}
 		if (str[i][j] == ' ' && str[i - 1][j] == '0')
 		{
-			write(2, "Error\nthe Map is open\n", 23);
+			write(2, "Error\nthe Map is open 89\n", 26);
 			exit(2);
 		}
 		j++;

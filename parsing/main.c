@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 20:07:58 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:17:24 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,23 +195,20 @@ int	main(int argc, char *argv[])
 		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);
 		return (1);
 	}
-	
 	util = parser(argv[1]);
 	if (!util)
 	{
 		write(2, "Error\nParsing failed\n", 21);
 		return 1;
 	}
-	
 	mlx_utils = init_mlx_helper();
 	if (!mlx_utils)
 	{
 		clean_up_utils(util);
 		return 1;
 	}
-	
 	mlx_utils->player = &player;
-	mlx_utils->utils = util; 
+	mlx_utils->utils = util;
 	init_mlx_images(mlx_utils); 
 	if (!mlx_utils->mlx_ptr)
 	{
@@ -219,7 +216,6 @@ int	main(int argc, char *argv[])
 		clean_up_utils(util);
 		return (1);
 	}
-
 	init_mlx_allocations(mlx_utils);
 	if (!mlx_utils || !mlx_utils->player_place || !mlx_utils->map_h_w)
 	{
@@ -233,7 +229,6 @@ int	main(int argc, char *argv[])
 		clean_mlx_helper(mlx_utils);
 		return (1);
 	}
-	
 	setup_minimap_config(mlx_utils);
 	helper = find_player(util->map, mlx_utils->player_place); 
 	setup_player(mlx_utils, &player, helper);
@@ -243,7 +238,7 @@ int	main(int argc, char *argv[])
 	mlx_utils->sprit = init_animation(mlx_utils);
 	setup_mlx_hooks(mlx_utils);
 	mlx_loop(mlx_utils->mlx_ptr);
-
+	
 	clean_mlx_helper(mlx_utils);
 	clean_up_utils(util);
 	return (0);

@@ -6,12 +6,11 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:25 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 21:36:42 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:10:38 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <stdio.h>
 
 void	free_partial_map(char **map, int lines_allocated)
 {

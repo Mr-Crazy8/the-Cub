@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:15:02 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 18:04:02 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:43:35 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ void	draw_wall_slice(t_mlx_helper *mlx_utils, t_player *player,
 	}
 }
 
+// void	draw_floor(t_mlx_helper *mlx_utils, int x, int drawEnd)
+// {
+// 	int	y;
+
+// 	y = drawEnd;
+// 	if (!mlx_utils)
+// 		return;
+// 	while (y < SCREEN_HEIGHT)
+// 	{
+// 		mlx_put_pixel(mlx_utils->img, x, y, 0xFF000080);
+// 		y++;
+// 	}
+// }
+
 void	draw_floor(t_mlx_helper *mlx_utils, int x, int drawEnd)
 {
 	int	y;
@@ -48,6 +62,17 @@ void	draw_floor(t_mlx_helper *mlx_utils, int x, int drawEnd)
 	y = drawEnd;
 	if (!mlx_utils)
 		return;
+	
+	// Ensure x is within bounds
+	if (x < 0 || x >= SCREEN_WIDTH)
+		return;
+	
+	// Ensure y starts within valid range
+	if (y < 0)
+		y = 0;
+	if (y >= SCREEN_HEIGHT)
+		return;
+	
 	while (y < SCREEN_HEIGHT)
 	{
 		mlx_put_pixel(mlx_utils->img, x, y, 0xFF000080);
@@ -55,20 +80,71 @@ void	draw_floor(t_mlx_helper *mlx_utils, int x, int drawEnd)
 	}
 }
 
+// void	draw_ceiling(t_mlx_helper *mlx_utils, int x, int drawStart)
+// {
+// 	int	y;
+
+
+// 	y = 0;
+// 	if (!mlx_utils)
+// 		return;
+// 	while (y < drawStart)
+// 	{
+// 		mlx_put_pixel(mlx_utils->img, x, y, 0xFFF0000);
+// 		y++;
+// 	}
+// }
+
+
 void	draw_ceiling(t_mlx_helper *mlx_utils, int x, int drawStart)
 {
 	int	y;
 
-
 	y = 0;
 	if (!mlx_utils)
 		return;
+	
+	// Ensure x is within bounds
+	if (x < 0 || x >= SCREEN_WIDTH)
+		return;
+	
+	// Ensure drawStart is within valid range
+	if (drawStart < 0)
+		return;
+	if (drawStart >= SCREEN_HEIGHT)
+		drawStart = SCREEN_HEIGHT;
+	
 	while (y < drawStart)
 	{
 		mlx_put_pixel(mlx_utils->img, x, y, 0xFFF0000);
 		y++;
 	}
 }
+
+// void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
+// 			t_line_params *params)
+// {
+// 	t_wall_params	wall_params;
+
+// 	if (!mlx_utils || !player || !params)
+// 		return;
+// 	wall_params.line_height = (int)(SCREEN_HEIGHT / mlx_utils->dist_to_wall);
+// 	wall_params.real_draw_start = -wall_params.line_height
+// 		/ 2 + SCREEN_HEIGHT / 2;
+// 	wall_params.real_draw_end = wall_params.line_height / 2 + SCREEN_HEIGHT / 2;
+// 	wall_params.draw_start = wall_params.real_draw_start;
+// 	wall_params.draw_end = wall_params.real_draw_end;
+// 	calculate_draw_bounds(&wall_params.draw_start, &wall_params.draw_end,
+// 		wall_params.line_height);
+// 	wall_params.x = params->x;
+// 	wall_params.side = params->side;
+// 	wall_params.did_we_hit_a_door = params->did_we_hit_a_door;
+// 	draw_wall_slice(mlx_utils, player, &wall_params);
+
+// 	draw_floor(mlx_utils, params->x, wall_params.draw_end);
+// 	draw_ceiling(mlx_utils, params->x, wall_params.draw_start);
+// }
+
 
 void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 			t_line_params *params)
@@ -77,10 +153,15 @@ void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 
 	if (!mlx_utils || !player || !params)
 		return;
+	
+	// Protect against division by zero or very small distances
+	if (mlx_utils->dist_to_wall < 0.001)
+		mlx_utils->dist_to_wall = 0.001;
+	
 	wall_params.line_height = (int)(SCREEN_HEIGHT / mlx_utils->dist_to_wall);
 	wall_params.real_draw_start = -wall_params.line_height
 		/ 2 + SCREEN_HEIGHT / 2;
-	wall_params.real_draw_end = wall_params.line_height / 2 + SCREEN_HEIGHT / 2;
+	wall_params. real_draw_end = wall_params.line_height / 2 + SCREEN_HEIGHT / 2;
 	wall_params.draw_start = wall_params.real_draw_start;
 	wall_params.draw_end = wall_params.real_draw_end;
 	calculate_draw_bounds(&wall_params.draw_start, &wall_params.draw_end,

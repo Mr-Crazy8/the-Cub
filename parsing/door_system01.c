@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:03:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 22:11:07 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:04:10 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,50 @@ void	update_doors_info(t_mlx_helper *mlx)
 	}
 }
 
+// int	check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
+// {
+// 	char	tile;
+
+// 	if (!mlx || !mlx->utils || !mlx->utils->map)
+// 		exit(1);
+// 	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
+// 	if (tile == 'D')
+// 	{
+// 		if (is_door_blocking(mlx, mlx->player->mapx, mlx->player->mapy, 1))
+// 		{
+// 			*did_we_hit_a_door = 1;
+// 			return (1);
+// 		}
+// 	}
+// 	return (0);
+// }
+
+
 int	check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
 {
 	char	tile;
+	int		map_height;
+	int		map_width;
 
 	if (!mlx || !mlx->utils || !mlx->utils->map)
-		printf("----------\n");
+		exit(1);
+	
+	// Get map dimensions
+	map_height = 0;
+	while (mlx->utils->map[map_height])
+		map_height++;
+	
+	// Check if ray is out of bounds
+	if (mlx->player->mapy < 0 || mlx->player->mapy >= map_height)
+		return (0);  // No door out of bounds
+	
+	map_width = 0;
+	while (mlx->utils->map[mlx->player->mapy][map_width])
+		map_width++;
+	
+	if (mlx->player->mapx < 0 || mlx->player->mapx >= map_width)
+		return (0);  // No door out of bounds
+	
 	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
 	if (tile == 'D')
 	{
