@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 21:13:37 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:52:55 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char **fix_row_size(char **map);
 char *add_spaces(char *row, int target_len);
 int max_len_finder(char **map);
 
-void	extract_and_pars_the_map(t_utils *util, char **file) // start from here
+void	extract_and_pars_the_map(t_utils *util, char **file)
 {
 	long long	map_start;
 	int			total_lines;

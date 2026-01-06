@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:03:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 18:30:06 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:58:38 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	update_doors_info(t_mlx_helper *mlx)
 {
 	int	i;
 
+	if (!mlx || !mlx->utils || !mlx->utils->doors)
+        return;
 	i = 0;
 
 	while (i < mlx->utils->total_doors)

@@ -6,14 +6,14 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 20:31:03 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:57:59 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "raycasting.h"
 void clean_mlx_helper(t_mlx_helper *mlx_utils);
-void	game_loop(void *param) //memory leak
+void	game_loop(void *param)
 {
 	t_mlx_helper	*mlx;
 
