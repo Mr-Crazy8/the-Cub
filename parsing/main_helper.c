@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 16:26:58 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:22:31 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "raycasting.h"
 #include <stdlib.h>
 void clean_mlx_helper(t_mlx_helper *mlx_utils);
+
 t_mlx_helper	*init_mlx_helper(void)
 {
 	t_mlx_helper	*mlx_utils;
@@ -24,6 +25,18 @@ t_mlx_helper	*init_mlx_helper(void)
 	{
 		write(1, "malloc failed\n", 15);
 	}
+	mlx_utils->mlx_ptr = NULL;
+    mlx_utils->img = NULL;
+    mlx_utils->mini_map_img = NULL;
+    mlx_utils->mlx_img = NULL;
+    mlx_utils->texture = NULL;
+    mlx_utils->sprit = NULL;
+    mlx_utils->player_place = NULL;
+    mlx_utils->map_h_w = NULL;
+    mlx_utils->doors = NULL;
+    mlx_utils->utils = NULL;
+    mlx_utils->player = NULL;
+	
 	return (mlx_utils);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 16:14:31 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:11:47 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,9 +356,9 @@ double				calculate_wall_x(t_wall_x_params *params);
 void				handle_texture_error(char *message);
 mlx_texture_t		*load_texture_with_check(char *path, char *error_msg);
 mlx_texture_t		**allocate_texture_array(void);
-void				load_wall_textures(mlx_texture_t **texture, t_utils *utils);
+int load_wall_textures(mlx_texture_t **texture, t_utils *utils);
 mlx_texture_t		**texture_loader(t_mlx_helper *mlx_utils);
-void				load_door_texture(mlx_texture_t **texture);
+int	load_door_texture(mlx_texture_t **texture);
 void				update_animation(t_sprite *anim);
 int					validate_animation_params(t_mlx_helper *mlx);
 void				delete_previous_frame(t_mlx_helper *mlx, int last_drawn);

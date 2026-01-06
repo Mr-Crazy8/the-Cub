@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:08 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 12:37:35 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:51:04 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	handle_texture_error(char *message)
 {
 	if(!message)
-		exit(1);
-	write(1, message, 30);
-	exit(1);
+		write(1, message, 30);
 }
 
 mlx_texture_t	*load_texture_with_check(char *path, char *error_msg)
@@ -25,57 +23,104 @@ mlx_texture_t	*load_texture_with_check(char *path, char *error_msg)
 	mlx_texture_t	*texture;
 
 	if (!path || !error_msg)
-		exit(1);
+		return NULL;
 	texture = mlx_load_png(path);
 	if (texture == NULL)
-		handle_texture_error(error_msg);
+		return (handle_texture_error(error_msg), NULL);
 	return (texture);
 }
 
 mlx_texture_t	**allocate_texture_array(void)
 {
 	mlx_texture_t	**texture;
-
+	int i;
+	i = 0;
 	texture = malloc(sizeof(mlx_texture_t *) * 5);
 	if (texture == NULL)
 	{
 		write(1, "texture array malloc failed\n", 29);
-		exit(1);
+		return NULL;
+	}
+	while (i < 5)
+	{
+		texture[i] = NULL;
+		i++;
 	}
 	return (texture);
 }
 
-void	load_wall_textures(mlx_texture_t **texture, t_utils *utils)
+int load_wall_textures(mlx_texture_t **texture, t_utils *utils)
 {
 	if (!texture || !utils)
-	{
-		printf("%p\n", utils);
-		printf("%p\n", texture);
-		printf("%p\n", *texture);
-		printf("load_wall_textures\n");
-		exit(1);
-	}
+		return (0);
+	
 	texture[0] = load_texture_with_check(utils->no_path,
-			"the NO texture is not loading");
+			"Error: NO texture failed to load\n");
+	if (!texture[0])
+		return (0);
+	
 	texture[1] = load_texture_with_check(utils->so_path,
-			"the SO texture is not loading");
+			"Error: SO texture failed to load\n");
+	if (!texture[1])
+	{
+		mlx_delete_texture(texture[0]);
+		texture[0] = NULL;
+		return (0);
+	}
+	
 	texture[2] = load_texture_with_check(utils->ea_path,
-			"the EA texture is not loading");
+			"Error: EA texture failed to load\n");
+	if (!texture[2])
+	{
+		mlx_delete_texture(texture[0]);
+		mlx_delete_texture(texture[1]);
+		texture[0] = NULL;
+		texture[1] = NULL;
+		return (0);
+	}
+	
 	texture[3] = load_texture_with_check(utils->we_path,
-			"the WE texture is not loading");
+			"Error: WE texture failed to load\n");
+	if (!texture[3])
+	{
+		mlx_delete_texture(texture[0]);
+		mlx_delete_texture(texture[1]);
+		mlx_delete_texture(texture[2]);
+		texture[0] = NULL;
+		texture[1] = NULL;
+		texture[2] = NULL;
+		return (0);
+	}
+	return (1);
 }
 
-mlx_texture_t	**texture_loader(t_mlx_helper *mlx_utils)
+mlx_texture_t **texture_loader(t_mlx_helper *mlx_utils)
 {
-	mlx_texture_t	**texture;
+	mlx_texture_t **texture;
+	int i;
 
-	if (!mlx_utils)
-	{
-		printf("texture_loader\n");
-		exit(1);
-	}
+	if (!mlx_utils || ! mlx_utils->utils)
+		return (NULL);
+	
 	texture = allocate_texture_array();
-	load_wall_textures(texture, mlx_utils->utils);
-	load_door_texture(texture);
+	if (!texture)
+		return (NULL);
+	if (!load_wall_textures(texture, mlx_utils->utils))
+	{
+		free(texture);
+		return (NULL);
+	}
+	if (!load_door_texture(texture))
+	{
+		i = 0;
+		while (i < 4)
+		{
+			if (texture[i])
+				mlx_delete_texture(texture[i]);
+			i++;
+		}
+		free(texture);
+		return (NULL);
+	}
 	return (texture);
 }

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 16:07:59 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:46:55 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 void clean_mlx_helper(t_mlx_helper *mlx_utils)
 {
+	
 	if (!mlx_utils)
 		return ;
-	
 	if (mlx_utils->texture)
 	{
 		int i;
@@ -35,7 +35,6 @@ void clean_mlx_helper(t_mlx_helper *mlx_utils)
 		}
 		free(mlx_utils->texture);
 	}
-
 	if (mlx_utils->sprit)
 	{
 		int i;
@@ -44,7 +43,7 @@ void clean_mlx_helper(t_mlx_helper *mlx_utils)
 
 		while (i < FIRE_FRAMES)
 		{
-			if (mlx_utils->mlx_ptr && mlx_utils->sprit->images[i])
+			if (mlx_utils && mlx_utils->mlx_ptr && mlx_utils->sprit->images[i])
 				mlx_delete_image(mlx_utils->mlx_ptr, mlx_utils->sprit->images[i]);
 			if (mlx_utils->sprit->frames[i])
 				mlx_delete_xpm42(mlx_utils->sprit->frames[i]);
@@ -52,7 +51,6 @@ void clean_mlx_helper(t_mlx_helper *mlx_utils)
 		}
 		free(mlx_utils->sprit);
 	}
-
 	if (mlx_utils->mlx_ptr)
 	{
 		if (mlx_utils->mini_map_img)
@@ -73,59 +71,93 @@ void clean_mlx_helper(t_mlx_helper *mlx_utils)
 	free(mlx_utils);
 }
 
+// int	load_sprite_frames(t_sprite *sprit)
+// {
+
+// 	sprit->frames[0] = mlx_load_xpm42("parsing/1.xpm42");
+// 	if (!sprit->frames[0])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/1.xpm42", 38);
+// 		return(1);
+// 	}
+// 	sprit->frames[1] = mlx_load_xpm42("parsing/2.xpm42");
+// 	if (!sprit->frames[1])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/2.xpm42", 38);
+// 		return(1);
+// 	}
+// 	sprit->frames[2] = mlx_load_xpm42("parsing/3.xpm42");
+// 	if (!sprit->frames[2])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/3.xpm42", 38);
+// 		return(1);
+// 	}
+// 	sprit->frames[3] = mlx_load_xpm42("parsing/4.xpm42");
+// 	if (!sprit->frames[3])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/4.xpm42", 38);
+// 		return(1);
+// 	}
+// 	sprit->frames[4] = mlx_load_xpm42("parsing/5.xpm42");
+// 	if (!sprit->frames[4])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/5.xpm42", 38);
+// 		return(1);
+// 	}
+// 	sprit->frames[5] = mlx_load_xpm42("parsing/6.xpm42");
+// 	if (!sprit->frames[5])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/6.xpm42", 38);
+// 		return(1);
+// 	}
+// 	sprit->frames[6] = mlx_load_xpm42("parsing/7.xpm42");
+// 	if (!sprit->frames[6])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/7.xpm42", 38);
+// 		return(1);
+// 	}
+// 	sprit->frames[7] = mlx_load_xpm42("parsing/8.xpm42");
+// 	if (!sprit->frames[7])
+// 	{
+// 		write(2, "Error:\nFailed to load parsing/8.xpm42", 38);
+// 		return(1);
+// 	}
+// 	return (0);
+// }
+
 int	load_sprite_frames(t_sprite *sprit)
 {
+	char	*paths[FIRE_FRAMES] = {
+		"parsing/1.xpm42", "parsing/2.xpm42", "parsing/3.xpm42", "parsing/4.xpm42",
+		"parsing/5.xpm42", "parsing/6.xpm42", "parsing/7.xpm42", "parsing/8.xpm42"
+	};
+	int	i;
 
-	sprit->frames[0] = mlx_load_xpm42("parsing/1.xpm42");
-	if (!sprit->frames[0])
+	i = 0;
+	while (i < FIRE_FRAMES)
 	{
-		write(2, "Error:\nFailed to load parsing/1.xpm42", 38);
-		return(1);
-	}
-	sprit->frames[1] = mlx_load_xpm42("parsing/2.xpm42");
-	if (!sprit->frames[1])
-	{
-		write(2, "Error:\nFailed to load parsing/2.xpm42", 38);
-		return(1);
-	}
-	sprit->frames[2] = mlx_load_xpm42("parsing/3.xpm42");
-	if (!sprit->frames[2])
-	{
-		write(2, "Error:\nFailed to load parsing/3.xpm42", 38);
-		return(1);
-	}
-	sprit->frames[3] = mlx_load_xpm42("parsing/4.xpm42");
-	if (!sprit->frames[3])
-	{
-		write(2, "Error:\nFailed to load parsing/4.xpm42", 38);
-		return(1);
-	}
-	sprit->frames[4] = mlx_load_xpm42("parsing/5.xpm42");
-	if (!sprit->frames[4])
-	{
-		write(2, "Error:\nFailed to load parsing/5.xpm42", 38);
-		return(1);
-	}
-	sprit->frames[5] = mlx_load_xpm42("parsing/6.xpm42");
-	if (!sprit->frames[5])
-	{
-		write(2, "Error:\nFailed to load parsing/6.xpm42", 38);
-		return(1);
-	}
-	sprit->frames[6] = mlx_load_xpm42("parsing/7.xpm42");
-	if (!sprit->frames[6])
-	{
-		write(2, "Error:\nFailed to load parsing/7.xpm42", 38);
-		return(1);
-	}
-	sprit->frames[7] = mlx_load_xpm42("parsing/8.xpm42");
-	if (!sprit->frames[7])
-	{
-		write(2, "Error:\nFailed to load parsing/8.xpm42", 38);
-		return(1);
+		sprit->frames[i] = mlx_load_xpm42(paths[i]);
+		if (!sprit->frames[i])
+		{
+			write(2, "Error:\nFailed to load sprite frame\n", 36);
+			int j = 0;
+			while (j < i)
+			{
+				if (sprit->frames[j])
+				{
+					mlx_delete_xpm42(sprit->frames[j]);
+					sprit->frames[j] = NULL;
+				}
+				j++;
+			}
+			return (1);
+		}
+		i++;
 	}
 	return (0);
 }
+
+
 
 t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 {
@@ -136,26 +168,47 @@ t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 	sprit = malloc(sizeof(t_sprite));
 	if (!sprit)
 		return (NULL);
+	i = 0;
+	while (i < FIRE_FRAMES)
+	{
+		sprit->frames[i] = NULL;
+		sprit->images[i] = NULL;
+		i++;
+	}
 	sprit->frame_delay = 10;
 	sprit->frame_counter = 0;
 	sprit->current_frame = 0;
 	sprit->last_frame_time = mlx_get_time();
 	if(load_sprite_frames(sprit) == 1)
 	{
-		clean_up_utils(mlx_utils->utils);
-		return (NULL);
+		free(sprit);
+		return NULL;
 	}
 	i = 0;
 	while (i < FIRE_FRAMES)
 	{
 		sprit->images[i] = mlx_texture_to_image(mlx_utils->mlx_ptr,
 				&sprit->frames[i]->texture);
-		if(!sprit->images[i])
-		{
-			mlx_delete_xpm42(sprit->frames[i]);
-			free(sprit);
-			return NULL;
-		}
+        if(!sprit->images[i])
+        {
+            int j = 0;
+            while (j < i)
+            {
+                if (sprit->images[j])
+                    mlx_delete_image(mlx_utils->mlx_ptr, sprit->images[j]);
+                j++;
+            }
+            j = 0;
+            while (j < FIRE_FRAMES)
+            {
+                if (sprit->frames[j])
+                    mlx_delete_xpm42(sprit->frames[j]);
+                j++;
+            }
+            
+            free(sprit);
+            return NULL;
+        }
 		i++;
 	}
 	return (sprit);
@@ -199,7 +252,7 @@ int	main(int argc, char *argv[])
 		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);
 		return (1);
 	}
-	util = parser(argv[1]);
+	 util = parser(argv[1]);
 	if (!util)
 	{
 		write(2, "Error\nParsing failed\n", 21);
@@ -213,15 +266,30 @@ int	main(int argc, char *argv[])
 	}
 	mlx_utils->player = &player;
 	mlx_utils->utils = util;
+	
 	init_mlx_images(mlx_utils, util);
 	init_mlx_allocations(mlx_utils, util);
 	setup_minimap_config(mlx_utils);
 	helper = find_player(util->map, mlx_utils->player_place); 
 	setup_player(mlx_utils, &player, helper);
 	mlx_utils->texture = texture_loader(mlx_utils);
+	if (!mlx_utils->texture)
+	{
+		write(1, "Error\nFailed to load textures\n", 31);
+		clean_up_utils(util);
+		clean_mlx_helper(mlx_utils);
+		return 1;
+	}
 	update_doors_info(mlx_utils);
 	raycast(mlx_utils, util, &player);
 	mlx_utils->sprit = init_animation(mlx_utils);
+	if (!mlx_utils->sprit)
+	{
+		write(2, "Error\nFailed to load sprite animation\n", 39);
+		clean_mlx_helper(mlx_utils);
+		clean_up_utils(util);
+		return (1);	
+	}
 	setup_mlx_hooks(mlx_utils);
 	mlx_loop(mlx_utils->mlx_ptr);
 	
