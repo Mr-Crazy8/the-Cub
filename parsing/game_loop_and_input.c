@@ -6,14 +6,14 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 18:04:37 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 20:31:03 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "raycasting.h"
-
-void	game_loop(void *param)
+void clean_mlx_helper(t_mlx_helper *mlx_utils);
+void	game_loop(void *param) //memory leak
 {
 	t_mlx_helper	*mlx;
 
@@ -24,11 +24,9 @@ void	game_loop(void *param)
 		move_forward(mlx->player, mlx->utils->map, mlx);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_S))
 		move_back(mlx->player, mlx->utils->map, mlx);
-	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_A) && mlx->dist_to_wall > 0.05)
-	{
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_A))
 		move_right(mlx->player, mlx->utils->map, mlx);
-	}
-	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_D) && mlx->dist_to_wall > 0.05)
+	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_D))
 	{
 		move_left(mlx->player, mlx->utils->map, mlx);
 	}
@@ -37,7 +35,11 @@ void	game_loop(void *param)
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_RIGHT))
 		rotate_left(mlx->player, 0.1);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_ESCAPE))
+	{
+		clean_up_utils(mlx->utils);
+		clean_mlx_helper(mlx);
 		exit(0);
+	}
 	
 	update_doors_info(mlx);
 	clear_img(mlx);

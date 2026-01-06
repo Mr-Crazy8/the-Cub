@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 17:22:31 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:04:38 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ t_mlx_helper	*init_mlx_helper(void)
 	t_mlx_helper	*mlx_utils;
 
 	mlx_utils = malloc(sizeof(t_mlx_helper));
+	//mlx_utils = NULL; //segmentation fault
 	if (mlx_utils == NULL)
 	{
 		write(1, "malloc failed\n", 15);
+		return NULL;
 	}
 	mlx_utils->mlx_ptr = NULL;
     mlx_utils->img = NULL;
@@ -96,12 +98,12 @@ void	init_mlx_allocations(t_mlx_helper *mlx_utils, t_utils *util)
 	mlx_utils->tile = 32;
 	mlx_utils->player_place = malloc(2 * sizeof(int));
 	if (!mlx_utils->player_place)
-		{
-			write(2, "Error\nMemory allocation failed\n", 31);
-			clean_up_utils(util);
-			mlx_terminate(mlx_utils->mlx_ptr);
-			exit(1);
-		}
+	{
+		write(2, "Error\nMemory allocation failed\n", 31);
+		clean_up_utils(util);
+		mlx_terminate(mlx_utils->mlx_ptr);
+		exit(1);
+	}
 	mlx_utils->map_h_w = malloc(2 * sizeof(int));
 	if (!mlx_utils->map_h_w)
 	{

@@ -6,16 +6,17 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 14:37:54 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:13:37 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stdio.h>
 char **fix_row_size(char **map);
 char *add_spaces(char *row, int target_len);
 int max_len_finder(char **map);
 
-void	extract_and_pars_the_map(t_utils *util, char **file)
+void	extract_and_pars_the_map(t_utils *util, char **file) // start from here
 {
 	long long	map_start;
 	int			total_lines;
@@ -28,7 +29,8 @@ void	extract_and_pars_the_map(t_utils *util, char **file)
 	if (!fixed_map)
 	{	
 		write(2, "Error\nFailed to normalize map rows\n", 35);
-		return ;
+		clean_up_utils(util);
+		exit(1);
 	}
 	free_string_array(util->map);
 	util->map = fixed_map;
@@ -47,7 +49,7 @@ void	check_for_valid_character_in_map(char str, t_utils *util)
 	}
 }
 
-void	check_first_line(char **str)
+void	check_first_line(char **str, t_utils *util)
 {
 	int	i;
 	int	j;
@@ -62,12 +64,14 @@ void	check_first_line(char **str)
 			|| str[i][j] == 'W' || str[i][j] == 'D')
 		{
 			write(2, "Error\nthe Map is open 2\n", 25);
-			return ;
+			clean_up_utils(util);
+			exit(1);
 		}
 		if (str[i][j] == ' ' && str[i + 1] && str[i + 1][j] == '0')
 		{
 			write(2, "Error\nthe Map is open 3\n", 25);
-			return ;
+			clean_up_utils(util);
+			exit(1);
 		}
 		j++;
 	}
@@ -84,13 +88,17 @@ int	lent(char **str)
 	return (i);
 }
 
-void	check_the_last_line(char **str)
+void	check_the_last_line(char **str, t_utils *util)
 {
 	int	i;
 	int	j;
 
 	if (!str || !*str)
+	{
+		write(2, "Error\nInvalid map data\n", 23);
+		clean_up_utils(util);
 		exit(1);
+	}
 	i = lent(str) - 1;
 	j = 0;
 	while (str && str[i] && str[i][j])
@@ -100,12 +108,14 @@ void	check_the_last_line(char **str)
 			|| str[i][j] == 'W' || str[i][j] == 'D')
 		{
 			write(2, "Error\nthe Map is open 66\n", 26);
-			exit(2);
+			clean_up_utils(util);
+			exit(1);
 		}
 		if (str[i][j] == ' ' && str[i - 1][j] == '0')
 		{
 			write(2, "Error\nthe Map is open 89\n", 26);
-			exit(2);
+			clean_up_utils(util);
+			exit(1);
 		}
 		j++;
 	}

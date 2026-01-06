@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:58 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 13:37:14 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:40:17 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void clean_up_utils(t_utils *util)
 	
 	if (util->doors)
 		free(util->doors);
+	if (util->file)
+		free_string_array(util->file);
 		
 	free(util);
 }
@@ -156,7 +158,6 @@ t_utils	*parser(char *str)
 	t_utils			*util;
 	int				fd;
 	t_doors_info	*dors;
-	char			**file;
 	
 	util = malloc(sizeof(t_utils));
 	if (!util)
@@ -170,6 +171,7 @@ t_utils	*parser(char *str)
 	util->doors = NULL;
 	util->total_doors = 0;
 	util->map = NULL;
+	util->file = NULL;
 	char **fixed_map;
 	util->c_color = malloc(3 * sizeof(int));
 	if (!util->c_color)
@@ -179,28 +181,21 @@ t_utils	*parser(char *str)
 		return (clean_up_utils(util), NULL);
 	fd = check_file(str);
 	if (fd < 0)
-		return (clean_up_utils(util), NULL);
-	file = read_file(fd, str);
-	if (!file)
+		return (clean_up_utils(util), close(fd), NULL);
+	util->file = read_file(fd, str);
+	if (!util->file)
 		return (close(fd) , clean_up_utils(util), NULL);
-	extract_and_pars_the_texture(util, file);
-	extract_and_pars_the_floor_and_ceiling_color(util, file);
-	extract_and_pars_the_map(util, file);
+	
+	extract_and_pars_the_texture(util, util->file);
+	extract_and_pars_the_floor_and_ceiling_color(util, util->file);
+	extract_and_pars_the_map(util, util->file);
 	if (!util->map)
-	{
-		free_string_array(file);
-		close(fd);
 		return (clean_up_utils(util), NULL);
-	}
 	util->doors = extract_doors_info(util);
 	if (!util->doors && util->total_doors > 0)
-	{
-		free_string_array(file);
-		close(fd);
 		return (clean_up_utils(util), NULL);
-	}
-	free_string_array(file);
-	close(fd);
+	free_string_array(util->file);
+	util->file = NULL;
 	return (util);
 }
 

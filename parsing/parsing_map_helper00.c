@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:20 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 21:23:13 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 19:26:52 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	is_in_set(char c, const char *set)
 
 	i = 0;
 	if (!set)
-		exit(1);
+		return 0;
 	while (set[i] != '\0')
 	{
 		if (set[i] == c)

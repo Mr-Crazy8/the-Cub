@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 23:24:14 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:09:54 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	pars_the_map_helper(t_utils *util)
 		validate_map_boundaries(util->map[i], j, last_char);
 		i++;
 	}
-	check_first_line(util->map);
-	check_the_last_line(util->map);
+	check_first_line(util->map, util);
+	check_the_last_line(util->map, util);
 }
 
 int	is_player_char(char c)

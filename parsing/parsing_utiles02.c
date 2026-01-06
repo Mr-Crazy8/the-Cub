@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 20:19:09 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:39:25 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	**read_file(int fd, char *str)
 		line = get_next_line(fd);
 	}
 	file[i] = NULL;
+	close(fd);
 	return (file);
 }
 

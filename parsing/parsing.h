@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 17:11:47 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:24:00 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ typedef struct s_utils
 	int				*c_color;
 	int				*f_color;
 	char			**map;
+	char			**file;
 	char			*no_path;
 	char			*so_path;
 	char			*ea_path;
@@ -250,9 +251,9 @@ char				**ft_split(char const *s, char c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 void				extract_and_pars_the_map(t_utils *util, char **file);
 void				check_for_valid_character_in_map(char str, t_utils *util);
-void				check_first_line(char **str);
+void	check_first_line(char **str, t_utils *util);
 int					lent(char **str);
-void				check_the_last_line(char **str);
+void	check_the_last_line(char **str, t_utils *util);
 void				pars_the_map_helper(t_utils *util);
 void				pars_the_map(t_utils *util);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -272,9 +273,7 @@ void	copy_map_line(char **map, char *source, int map_line, t_utils *util);
 char	**extract_map_lines(char **file, long long map_start, int total_lines, t_utils *util);
 void	validate_map_start(long long map_start, t_utils *util);
 void				extract_and_pars_the_map(t_utils *util, char **file);
-void				check_first_line(char **str);
 int					lent(char **str);
-void				check_the_last_line(char **str);
 void				skip_leading_whitespace(char *line, int *j);
 int					trim_trailing_whitespace(char *line, int len);
 void				validate_map_boundaries(char *line, int j, int last_char);

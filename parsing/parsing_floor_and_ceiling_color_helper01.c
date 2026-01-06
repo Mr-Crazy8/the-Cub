@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:11 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 21:12:41 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 19:15:53 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	f_c_color_helpr(t_utils *util, char *file)
 	char	**split1;
 
 
-	//if (!is_valid_color_prefix(file[0]))
-	//	return (0);
+	if (!is_valid_color_prefix(file[0]))
+		return (0);
 	validate_comma_count(count_commas(file), util);
 	split = parse_and_validate_split(file, util);
 	split1 = parse_color_components(split, util);

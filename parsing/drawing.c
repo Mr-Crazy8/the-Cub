@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:15:02 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 22:43:35 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 18:42:56 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,10 +153,7 @@ void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 
 	if (!mlx_utils || !player || !params)
 		return;
-	
-	// Protect against division by zero or very small distances
-	if (mlx_utils->dist_to_wall < 0.001)
-		mlx_utils->dist_to_wall = 0.001;
+
 	
 	wall_params.line_height = (int)(SCREEN_HEIGHT / mlx_utils->dist_to_wall);
 	wall_params.real_draw_start = -wall_params.line_height

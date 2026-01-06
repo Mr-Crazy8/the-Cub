@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:35:20 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 17:57:47 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 20:48:48 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	delete_previous_frame(t_mlx_helper *mlx, int last_drawn)
 void	ensure_current_frame_exists(t_mlx_helper *mlx)
 {
 	int	current;
+	///mlx = NULL; segmentation fault
 	if (!mlx)
 		return;
 	current = mlx->sprit->current_frame;

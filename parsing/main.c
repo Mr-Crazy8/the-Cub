@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 17:46:55 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 21:40:32 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ int	main(int argc, char *argv[])
 
 	
 	
-	atexit(FUCK_YOU);
+	//atexit(FUCK_YOU);
 	if (argc != 2)
 	{
 		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);

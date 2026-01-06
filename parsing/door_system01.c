@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:03:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 15:23:02 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 18:30:06 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,20 @@ int	check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
 	int		map_width;
 
 	if (!mlx || !mlx->utils || !mlx->utils->map || !mlx->player)
-		exit(1);
-	
-	// Get map dimensions
+		return 0;
 	map_height = 0;
 	while (mlx->utils->map[map_height])
 		map_height++;
-	
-	// Check if ray is out of bounds
+
 	if (mlx->player->mapy < 0 || mlx->player->mapy >= map_height)
-		return (0);  // No door out of bounds
+		return (0);
 	
 	map_width = 0;
 	while (mlx->utils->map[mlx->player->mapy][map_width])
 		map_width++;
 	
 	if (mlx->player->mapx < 0 || mlx->player->mapx >= map_width)
-		return (0);  // No door out of bounds
+		return (0);
 	
 	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
 	if (tile == 'D')

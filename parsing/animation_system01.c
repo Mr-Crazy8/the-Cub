@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:22:29 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 17:58:01 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/06 20:46:23 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	draw_current_frame(t_mlx_helper *mlx, int x, int y)
 {
-	if (!mlx)
+	printf("%p\n", mlx);
+	if (!mlx || !mlx->sprit || !mlx->sprit->images[mlx->sprit->current_frame])
 		return;
+	puts("0000000");
 	mlx_image_to_window(mlx->mlx_ptr,
 		mlx->sprit->images[mlx->sprit->current_frame],
 		x,
 		y);
+	puts("1111111");
 }
 
 void	animation_loop(void *param)
@@ -30,8 +33,9 @@ void	animation_loop(void *param)
 	int				y;
 
 	mlx = (t_mlx_helper *)param;
-	if (!mlx)
-		return;
+	mlx = NULL;
+	if (!mlx || !mlx->sprit)
+		return ;
 	if (!validate_animation_params(mlx))
 		return ;
 	update_animation(mlx->sprit);
