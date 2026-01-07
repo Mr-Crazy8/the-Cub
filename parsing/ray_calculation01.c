@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:25:09 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 18:54:53 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:40:13 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	calculate_draw_bounds(int *drawStart, int *drawEnd, int lineHeight)
 void	calculate_wall_distance(t_mlx_helper *mlx_utils,
 			t_player *player, int side)
 {
-	if (!mlx_utils || !player)
-		exit(1);
 	if (side == 0)
 		mlx_utils->dist_to_wall = mlx_utils->dist_rayx - player->deltax;
 	else

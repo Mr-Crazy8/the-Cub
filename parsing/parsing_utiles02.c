@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 21:47:46 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:30:58 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**read_file(int fd, char *str)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		file[i] = strdup(line);
+		file[i] = ft_strdup(line);
 		if (!file[i])
 		{
 			free(line);

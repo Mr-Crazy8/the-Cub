@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:11 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 19:15:53 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:27:36 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ char	**parse_color_components(char **split, t_utils *util)
 
 void	set_color_values(int *color, char **split1, t_utils *util)
 {
-	color[0] = atoi(split1[0]);
+	color[0] = ft_atoi(split1[0]);
 	check_if_in_range(color[0], util);
-	color[1] = atoi(split1[1]);
+	color[1] = ft_atoi(split1[1]);
 	check_if_in_range(color[1], util);
-	color[2] = atoi(split1[2]);
+	color[2] = ft_atoi(split1[2]);
 	check_if_in_range(color[2], util);
 }
 

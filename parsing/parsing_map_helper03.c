@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 21:09:54 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:34:20 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	pars_the_map_helper(t_utils *util)
 
 	while (util->map[i])
 	{
-		if (strcmp(util->map[i], "\n") == 0)
+		if (ft_strcmp(util->map[i], "\n") == 0)
 		{
 			i++;
 			continue ;
 		}
 		j = 0;
-		len = strlen(util->map[i]);
+		len = ft_strlen(util->map[i]);
 		skip_leading_whitespace(util->map[i], &j);
 		last_char = trim_trailing_whitespace(util->map[i], len);
 		validate_map_boundaries(util->map[i], j, last_char);

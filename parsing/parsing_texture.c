@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:54 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 20:43:35 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:34:39 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	handle_invalid_identifier(char **texture, t_utils *util)
 void	process_texture_identifier(t_utils *util, char **texture,
 								t_texture_flags *flags)
 {
-	if (strcmp(texture[0], "NO") == 0)
+	if (ft_strcmp(texture[0], "NO") == 0)
 		handle_no_texture(util, texture, flags);
-	else if (strcmp(texture[0], "SO") == 0)
+	else if (ft_strcmp(texture[0], "SO") == 0)
 		handle_so_texture(util, texture, flags);
-	else if (strcmp(texture[0], "EA") == 0)
+	else if (ft_strcmp(texture[0], "EA") == 0)
 		handle_ea_texture(util, texture, flags);
-	else if (strcmp(texture[0], "WE") == 0)
+	else if (ft_strcmp(texture[0], "WE") == 0)
 		handle_we_texture(util, texture, flags);
 	else
 		handle_invalid_identifier(texture, util);

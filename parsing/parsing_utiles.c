@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:58 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 21:40:17 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:29:45 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int max_len_finder(char **map)
 	i = 0;
 	while (map[i])
 	{
-		current_len = strlen(map[i]);
+		current_len = ft_strlen(map[i]);
 		if (current_len > max_len)
 			max_len = current_len;
 		i++;
@@ -94,7 +94,7 @@ char *add_spaces(char *row, int target_len)
 
 	if (!row)
 		return NULL;
-	current_len = strlen(row);
+	current_len = ft_strlen(row);
 	if (current_len >= target_len)
 		return (ft_strdup(row));
 

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:43 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 18:43:32 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:09:34 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ static size_t	count_words(char const *s, char c)
 
 	i = 0;
 	n = 0;
-	// if (!s || !c)
-	// 	exit(1);
-	// printf("ppppppp\n");
 	while (s[i])
 	{
 		if (s[i] != c && (i == 0 || s[i - 1] == c))

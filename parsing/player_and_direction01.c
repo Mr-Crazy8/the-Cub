@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:39:40 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/04 15:18:29 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:40:00 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	check_derction_player(t_player *player, char der)
 {
-	if (!player || !der)
-		exit(1);
 	if (der == 'N')
 		set_direction_north(player);
 	else if (der == 'E')

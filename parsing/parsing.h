@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 21:24:00 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:55:43 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,9 @@ void	check_if_in_range(int color, t_utils *util);
 int					f_c_color_helpr(t_utils *util, char *file);
 void				extract_and_pars_the_floor_and_ceiling_color(t_utils *util,
 						char **file);
+int	ft_atoi(const char *str);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+int	ft_strcmp(const char *s1, const char *s2);
 long long			start_of_map(char **file);
 char				**ft_split(char const *s, char c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -368,6 +371,9 @@ void				draw_current_frame(t_mlx_helper *mlx, int x, int y);
 void				animation_loop(void *param);
 void				raycast(t_mlx_helper *mlx_utils,
 						t_utils *utils, t_player *player);
+void	find_h_w_for_map(char **map, int *map_h_w);
+void	check_derction_player(t_player *player, char der);
+uint32_t    convert_rgba_to_int(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 void				step_ray_x(t_mlx_helper *mlx, int *side);
 void				step_ray_y(t_mlx_helper *mlx, int *side);
 void				advance_ray(t_mlx_helper *mlx, int *side);

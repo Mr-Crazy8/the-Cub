@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:03:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 21:58:38 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:06:52 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,6 @@ void	update_doors_info(t_mlx_helper *mlx)
 		i++;
 	}
 }
-
-// int	check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
-// {
-// 	char	tile;
-
-// 	if (!mlx || !mlx->utils || !mlx->utils->map)
-// 		exit(1);
-// 	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
-// 	if (tile == 'D')
-// 	{
-// 		if (is_door_blocking(mlx, mlx->player->mapx, mlx->player->mapy, 1))
-// 		{
-// 			*did_we_hit_a_door = 1;
-// 			return (1);
-// 		}
-// 	}
-// 	return (0);
-// }
-
 
 int	check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
 {

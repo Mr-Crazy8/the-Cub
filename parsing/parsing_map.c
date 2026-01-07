@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:41 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 23:24:33 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:29:16 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	trim_newline(char *line)
 {
 	int	len;
 
-	len = strlen(line);
+	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
 }

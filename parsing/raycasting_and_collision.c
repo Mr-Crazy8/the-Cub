@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:28:21 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 22:37:41 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:40:44 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	step_ray_x(t_mlx_helper *mlx, int *side)
 {
-	if (!mlx)
-		exit(1);
 	mlx->dist_rayx += mlx->player->deltax;
 	mlx->player->mapx += mlx->stepx;
 	*side = 0;
@@ -23,8 +21,6 @@ void	step_ray_x(t_mlx_helper *mlx, int *side)
 
 void	step_ray_y(t_mlx_helper *mlx, int *side)
 {
-	if (!mlx)
-		exit(1);
 	mlx->dist_rayy += mlx->player->deltay;
 	mlx->player->mapy += mlx->stepy;
 	*side = 1;
@@ -32,8 +28,6 @@ void	step_ray_y(t_mlx_helper *mlx, int *side)
 
 void	advance_ray(t_mlx_helper *mlx, int *side)
 {
-	if (!mlx)
-		exit(1);
 	if (mlx->dist_rayx < mlx->dist_rayy)
 		step_ray_x(mlx, side);
 	else
@@ -61,9 +55,6 @@ int	check_wall_hit(t_mlx_helper *mlx)
 	int		map_height;
 	int		map_width;
 
-	if (!mlx || !mlx->utils || !mlx->utils->map)
-		exit(1);
-	
 	// Get map dimensions
 	map_height = 0;
 	while (mlx->utils->map[map_height])

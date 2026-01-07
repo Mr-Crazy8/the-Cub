@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:26:01 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 18:37:29 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:03:19 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_map_row(t_utils *util, t_mlx_helper *mlx_utils, int map_y)
 
 	if (!mlx_utils || !util)
 		return;
-	map_width = strlen(util->map[map_y]);
+	map_width = ft_strlen(util->map[map_y]);
 	map_x = 0;
 	while (map_x < map_width)
 	{

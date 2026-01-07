@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:25 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 23:10:38 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:30:41 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	handle_strdup_error(char **map, int map_line)
 
 void	copy_map_line(char **map, char *source, int map_line, t_utils *util)
 {
-	map[map_line] = strdup(source);
+	map[map_line] = ft_strdup(source);
 	if (!map[map_line])
 	{
 		handle_strdup_error(map, map_line);

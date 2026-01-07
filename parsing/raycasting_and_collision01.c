@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:49:42 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 23:14:18 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:41:10 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	check_hit(t_mlx_helper *mlx, int *did_we_hit_a_door)
 
 	hit = 0;
 	side = 0;
-	if (!mlx)
-		exit(1);
+
 	while (hit == 0)
 	{
 		advance_ray(mlx, &side);

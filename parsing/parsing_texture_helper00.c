@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:46 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 20:33:56 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:38:53 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	
-	if (!s1 || !s2)
-		exit(1);
 	while (i < n && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
 	{
 		i++;
@@ -34,8 +32,6 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	if (!split || !*split)
-		exit(1);
 	while (split[i])
 	{
 		free(split[i]);
@@ -54,7 +50,7 @@ void	init_texture_flags(t_texture_flags *flags)
 
 int	is_texture_line(char *line)
 {
-	if (strnstr(line, "./", strlen(line)) == NULL)
+	if (ft_strnstr(line, "./", ft_strlen(line)) == NULL)
 		return (0);
 	if (ft_strncmp(line, "NO", 2) == 0
 		|| ft_strncmp(line, "SO", 2) == 0
@@ -71,7 +67,7 @@ char	**parse_texture_line(char *line)
 	texture = ft_split(line, ' ');
 	if (!texture)
 		return NULL;
-	if (texture[1][strlen(texture[1]) - 1] == '\n')
-		texture[1][strlen(texture[1]) - 1] = '\0';
+	if (texture[1][ft_strlen(texture[1]) - 1] == '\n')
+		texture[1][ft_strlen(texture[1]) - 1] = '\0';
 	return (texture);
 }
