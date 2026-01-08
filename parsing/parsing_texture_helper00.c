@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:46 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:38:53 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:58:56 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t	i;
 
 	i = 0;
-	
 	while (i < n && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-	{
 		i++;
-	}
 	if (i == n)
 		return (0);
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
@@ -66,7 +63,7 @@ char	**parse_texture_line(char *line)
 
 	texture = ft_split(line, ' ');
 	if (!texture)
-		return NULL;
+		return (NULL);
 	if (texture[1][ft_strlen(texture[1]) - 1] == '\n')
 		texture[1][ft_strlen(texture[1]) - 1] = '\0';
 	return (texture);

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:30:58 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:02:03 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	print_failed(void)
 {
 	write(2, "File doesn't exist or can't be opened\n", 39);
-	return -1;
+	return (-1);
 }
 
 int	count_lines(char *str)
@@ -49,7 +49,7 @@ char	**read_file(int fd, char *str)
 	i = 0;
 	lent = count_lines(str);
 	if (lent < 0)
-		return NULL;
+		return (NULL);
 	file = malloc(sizeof(char *) * (lent + 1));
 	if (!file)
 		return (NULL);
@@ -60,11 +60,10 @@ char	**read_file(int fd, char *str)
 		if (!file[i])
 		{
 			free(line);
-			while (--i >= 0) 
+			while (--i >= 0)
 				free(file[i]);
 			free(file);
-			return NULL;
-				
+			return (NULL);
 		}
 		free(line);
 		i++;

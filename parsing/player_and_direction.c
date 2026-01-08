@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:33:12 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:39:39 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:04:07 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	find_player(char **map, int *player_place)
 
 void	set_direction_north(t_player *player)
 {
-
 	player->dir_x = 0;
 	player->dir_y = -1;
 	player->plane_x = 0.66;
@@ -49,7 +48,6 @@ void	set_direction_north(t_player *player)
 
 void	set_direction_east(t_player *player)
 {
-
 	player->dir_x = 1;
 	player->dir_y = 0;
 	player->plane_x = 0;
@@ -58,7 +56,6 @@ void	set_direction_east(t_player *player)
 
 void	set_direction_south(t_player *player)
 {
-
 	player->dir_x = 0;
 	player->dir_y = 1;
 	player->plane_x = -0.66;
@@ -67,7 +64,6 @@ void	set_direction_south(t_player *player)
 
 void	set_direction_west(t_player *player)
 {
-
 	player->dir_x = -1;
 	player->dir_y = 0;
 	player->plane_x = 0;

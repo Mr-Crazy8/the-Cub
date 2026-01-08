@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:20 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 19:26:52 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:53:50 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	is_in_set(char c, const char *set)
 
 	i = 0;
 	if (!set)
-		return 0;
+		return (0);
 	while (set[i] != '\0')
 	{
 		if (set[i] == c)
@@ -66,7 +66,6 @@ long long	start_of_map(char **file)
 	i = 0;
 	j = 0;
 	found_config = 0;
-
 	while (file[i])
 	{
 		j = 0;
@@ -91,7 +90,7 @@ int	count_map_lines(char **file, long long map_start)
 {
 	int	total_lines;
 	int	i;
-	
+
 	total_lines = 0;
 	i = map_start;
 	while (file[i])
@@ -110,7 +109,7 @@ char	**allocate_map_array(int total_lines)
 	if (!map)
 	{
 		write(2, "Memory allocation failed\n", 25);
-		return NULL;
+		return (NULL);
 	}
 	return (map);
 }

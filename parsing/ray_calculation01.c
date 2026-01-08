@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:25:09 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:40:13 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:06:52 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	process_single_ray(t_mlx_helper *mlx_utils, t_player *player, int x)
 	did_we_hit_a_door = 0;
 	side = check_hit(mlx_utils, &did_we_hit_a_door);
 	calculate_wall_distance(mlx_utils, player, side);
-		
 	params.x = x;
 	params.side = side;
 	params.did_we_hit_a_door = did_we_hit_a_door;

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:22:29 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:53:25 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:22:38 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_atoi(const char *str)
 	return ((int)(res * sign));
 }
 
-uint32_t    convert_rgba_to_int(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+uint32_t	convert_rgba_to_int(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-    return ((r << 24) | (g << 16) | (b << 8) | a);
+	return ((r << 24) | (g << 16) | (b << 8) | a);
 }

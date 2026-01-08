@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:39:07 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 18:39:30 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:43:33 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_minimap_pixel(t_mlx_helper *mlx, t_minimap_pixel_params *params)
 	int	color;
 
 	if (!mlx || !params)
-		return ; 
+		return ;
 	screen_x = mlx->minimap_x + ((params->map_x - params->min_x)
 			* mlx->minimap_scale) + params->px;
 	screen_y = mlx->minimap_y + ((params->map_y - params->min_y)
@@ -61,16 +61,16 @@ void	draw_minimap_tile(t_mlx_helper *mlx, t_minimap_tile_params *params)
 	t_minimap_pixel_params	pixel_params;
 
 	if (!mlx || !params)
-		return;
+		return ;
 	pixel_params.map_x = params->map_x;
 	pixel_params.map_y = params->map_y;
 	pixel_params.min_x = params->min_x;
 	pixel_params.min_y = params->min_y;
 	py = 0;
-	while (py <= (int)mlx->minimap_scale - 1)
+	while (py <= (int)mlx->minimap_scale)
 	{
 		px = 0;
-		while (px <= (int)mlx->minimap_scale - 1)
+		while (px <= (int)mlx->minimap_scale)
 		{
 			pixel_params.px = px;
 			pixel_params.py = py;
@@ -87,7 +87,7 @@ void	draw_map_(t_utils *util, t_mlx_helper *mlx_utils)
 	int	map_y;
 
 	if (!util || !mlx_utils)
-		return;
+		return ;
 	map_height = lent(util->map);
 	map_y = 0;
 	while (map_y < map_height)

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:51:34 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 16:30:12 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:04:48 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ double	calculate_wall_x(t_wall_x_params *params)
 	double	wx;
 
 	if (!params)
-		return 1;
+		return (1);
 	if (params->side == 1)
 		wx = params->pos_x + params->dist_to_wall * params->raydir_x;
 	else

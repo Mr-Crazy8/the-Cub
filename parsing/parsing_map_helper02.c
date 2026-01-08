@@ -6,28 +6,25 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 21:52:55 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:55:58 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <stdio.h>
-char **fix_row_size(char **map);
-char *add_spaces(char *row, int target_len);
-int max_len_finder(char **map);
 
 void	extract_and_pars_the_map(t_utils *util, char **file)
 {
 	long long	map_start;
 	int			total_lines;
-	char 		**fixed_map;
+	char		**fixed_map;
+
 	map_start = start_of_map(file);
 	validate_map_start(map_start, util);
 	total_lines = count_map_lines(file, map_start);
 	util->map = extract_map_lines(file, map_start, total_lines, util);
 	fixed_map = fix_row_size(util->map);
 	if (!fixed_map)
-	{	
+	{
 		write(2, "Error\nFailed to normalize map rows\n", 35);
 		clean_up_utils(util);
 		exit(1);
@@ -56,7 +53,6 @@ void	check_first_line(char **str, t_utils *util)
 
 	i = 0;
 	j = 0;
-
 	while (str && str[i][j])
 	{
 		if (str[i][j] == '0' || str[i][j] == 'N'
@@ -82,7 +78,6 @@ int	lent(char **str)
 	int	i;
 
 	i = 0;
-
 	while (str && str[i])
 		i++;
 	return (i);

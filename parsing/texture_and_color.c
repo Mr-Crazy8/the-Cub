@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:42:05 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:41:43 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:14:26 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	get_texture_index_horizontal(int did_we_hit_a_door, double raydir_x)
 
 static void	setup_wall_params(t_color_params *params, t_wall_x_params *wall)
 {
-
 	wall->side = params->side;
 	wall->pos_x = params->pos_x;
 	wall->pos_y = params->pos_y;
@@ -46,7 +45,6 @@ static void	setup_wall_params(t_color_params *params, t_wall_x_params *wall)
 static void	setup_tex_params(t_color_params *params, int tex_idx,
 				double wx, t_texture_coords_params *tex)
 {
-
 	tex->tex = params->texture[tex_idx];
 	tex->wx = wx;
 	tex->y = params->y;
@@ -66,6 +64,5 @@ int	get_color(t_color_params *params)
 	setup_wall_params(params, &wall);
 	setup_tex_params(params, tex_idx, calculate_wall_x(&wall), &tex);
 	calculate_texture_coords(&tex, &coord);
-	return (((uint32_t *)params->texture[tex_idx]->pixels)
-		[coord.ty * params->texture[tex_idx]->width + coord.tx]);
+	return (get_pixel_color(params->texture[tex_idx], coord.tx, coord.ty));
 }

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:50 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/05 20:40:44 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:59:36 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	handle_no_texture(t_utils *util, char **texture, t_texture_flags *flags)
 
 void	handle_so_texture(t_utils *util, char **texture, t_texture_flags *flags)
 {
-
 	check_duplicate("SO", flags->done_so, texture, util);
 	util->so_path = ft_strdup(texture[1]);
 	flags->done_so = 1;
@@ -43,7 +42,6 @@ void	handle_so_texture(t_utils *util, char **texture, t_texture_flags *flags)
 
 void	handle_ea_texture(t_utils *util, char **texture, t_texture_flags *flags)
 {
-
 	check_duplicate("EA", flags->done_ea, texture, util);
 	util->ea_path = ft_strdup(texture[1]);
 	flags->done_ea = 1;

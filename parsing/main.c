@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:11:12 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 15:29:02 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,9 +164,9 @@ void	setup_mlx_hooks(t_mlx_helper *mlx_utils)
 {
 	if (!mlx_utils)
 		return ;
-	if(mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->mini_map_img, 0, 0) == -1)
-		return ;
 	if(mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->img, 0, 0) == -1)
+		return ;
+	if(mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->mini_map_img, 0, 0) == -1)
 		return ;
 	mini_map(mlx_utils);
 	

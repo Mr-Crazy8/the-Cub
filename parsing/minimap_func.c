@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:20:19 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 19:10:18 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:47:59 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	calculate_minimap_bounds(t_mlx_helper *mlx, t_minimap_bounds *bounds)
 int	get_row_length(char *row)
 {
 	int	length;
-	
+
 	length = 0;
 	while (row[length])
 		length++;

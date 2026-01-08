@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:34:20 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:56:40 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	pars_the_map_helper(t_utils *util)
 
 	i = 1;
 	j = 0;
-
 	while (util->map[i])
 	{
 		if (ft_strcmp(util->map[i], "\n") == 0)

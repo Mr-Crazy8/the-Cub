@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:41 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:29:16 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:51:53 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	validate_zero_neighbors(t_utils *util, unsigned long i, unsigned long j)
 		clean_up_utils(util);
 		exit(1);
 	}
-	
 }
 
 void	process_map_character(t_utils *util, unsigned long i,
@@ -72,7 +71,6 @@ void	pars_the_map(t_utils *util)
 
 	i = 0;
 	player = 0;
-
 	while (util->map[i])
 	{
 		j = 0;
@@ -81,9 +79,7 @@ void	pars_the_map(t_utils *util)
 			j++;
 		trim_newline(util->map[i]);
 		while (util->map[i][j])
-		{
 			(process_map_character(util, i, j, &player), j++);
-		}
 		i++;
 	}
 	if (player != 1)

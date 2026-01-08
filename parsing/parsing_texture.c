@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:54 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:34:39 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:57:29 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	extract_and_pars_the_texture(t_utils *util, char **file)
 {
 	t_texture_flags	flags;
 	int				i;
-	
+
 	init_texture_flags(&flags);
 	i = 0;
 	while (file[i])

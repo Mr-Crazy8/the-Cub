@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:25 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:30:41 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:54:25 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	copy_map_line(char **map, char *source, int map_line, t_utils *util)
 	}
 }
 
-char	**extract_map_lines(char **file, long long map_start, int total_lines, t_utils *util)
+char	**extract_map_lines(char **file,
+			long long map_start, int total_lines, t_utils *util)
 {
 	char	**map;
 	int		map_line;

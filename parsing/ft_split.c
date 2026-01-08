@@ -6,12 +6,13 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:43 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:09:34 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:44:17 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+
 static char	**free_split(char **split, size_t j)
 {
 	while (j > 0)
@@ -45,7 +46,6 @@ static char	**split_string(char const *s, char c, char **split, size_t n)
 
 	i = 0;
 	j = 0;
-
 	while (s[i] && j < n)
 	{
 		while (s[i] == c)

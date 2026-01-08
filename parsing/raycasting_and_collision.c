@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:28:21 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 14:40:44 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:33:28 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,43 +34,22 @@ void	advance_ray(t_mlx_helper *mlx, int *side)
 		step_ray_y(mlx, side);
 }
 
-
-
-
-// int	check_wall_hit(t_mlx_helper *mlx)
-// {
-// 	char	tile;
-
-// 	if (!mlx || !mlx->utils || !mlx->utils->map)
-// 		exit(1);
-// 	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
-// 	if (tile == '1')
-// 		return (1);
-// 	return (0);
-// }
-
 int	check_wall_hit(t_mlx_helper *mlx)
 {
 	char	tile;
 	int		map_height;
 	int		map_width;
 
-	// Get map dimensions
 	map_height = 0;
 	while (mlx->utils->map[map_height])
 		map_height++;
-	
-	// Check if ray is out of bounds
 	if (mlx->player->mapy < 0 || mlx->player->mapy >= map_height)
-		return (1);  // Treat out of bounds as a wall
-	
+		return (1);
 	map_width = 0;
 	while (mlx->utils->map[mlx->player->mapy][map_width])
 		map_width++;
-	
 	if (mlx->player->mapx < 0 || mlx->player->mapx >= map_width)
-		return (1);  // Treat out of bounds as a wall
-	
+		return (1);
 	tile = mlx->utils->map[mlx->player->mapy][mlx->player->mapx];
 	if (tile == '1')
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:37:45 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 15:26:26 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:03:10 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ t_doors_info	*extract_doors_info(t_utils *util)
 	int				total_doors;
 
 	if (!util || !util->map)
-		return NULL;
+		return (NULL);
 	total_doors = count_total_doors(util->map);
-	doors = allocate_doors_array(total_doors); 
+	doors = allocate_doors_array(total_doors);
 	if (!doors)
-		return (NULL); 
+		return (NULL);
 	populate_doors_array(util->map, doors);
 	util->total_doors = total_doors;
 	return (doors);
