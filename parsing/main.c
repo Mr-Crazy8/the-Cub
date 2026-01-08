@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 15:29:02 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 17:58:23 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,146 +16,28 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
-void clean_mlx_helper(t_mlx_helper *mlx_utils)
-{
-	
-	if (!mlx_utils)
-		return ;
-	if (mlx_utils->texture)
-	{
-		int i;
-
-		i = 0;
-		while (i < 5)
-		{
-			if (mlx_utils->texture[i])
-				mlx_delete_texture(mlx_utils->texture[i]);
-			i++;
-		}
-		free(mlx_utils->texture);
-	}
-	if (mlx_utils->sprit)
-	{
-		int i;
-
-		i = 0;
-
-		while (i < FIRE_FRAMES)
-		{
-			if (mlx_utils && mlx_utils->mlx_ptr && mlx_utils->sprit->images[i])
-				mlx_delete_image(mlx_utils->mlx_ptr, mlx_utils->sprit->images[i]);
-			if (mlx_utils->sprit->frames[i])
-				mlx_delete_xpm42(mlx_utils->sprit->frames[i]);
-			i++;
-		}
-		free(mlx_utils->sprit);
-	}
-	if (mlx_utils->mlx_ptr)
-	{
-		if (mlx_utils->mini_map_img)
-			mlx_delete_image(mlx_utils->mlx_ptr, mlx_utils->mini_map_img);
-		if (mlx_utils->img)
-			mlx_delete_image(mlx_utils->mlx_ptr, mlx_utils->img);
-		if (mlx_utils->mlx_img)
-			mlx_delete_image(mlx_utils->mlx_ptr, mlx_utils->mlx_img);
-		mlx_terminate(mlx_utils->mlx_ptr);
-	}
-
-	if (mlx_utils->player_place)
-		free(mlx_utils->player_place);
-	if (mlx_utils->map_h_w)
-		free(mlx_utils->map_h_w);
-	if (mlx_utils->doors)
-		free(mlx_utils->doors);
-	free(mlx_utils);
-}
-
-int	load_sprite_frames(t_sprite *sprit)
-{
-	char	*paths[FIRE_FRAMES] = {
-		"parsing/1.xpm42", "parsing/2.xpm42", "parsing/3.xpm42", "parsing/4.xpm42",
-		"parsing/5.xpm42", "parsing/6.xpm42", "parsing/7.xpm42", "parsing/8.xpm42"
-	};
-	int	i;
-
-	i = 0;
-	while (i < FIRE_FRAMES)
-	{
-		sprit->frames[i] = mlx_load_xpm42(paths[i]);
-		if (!sprit->frames[i])
-		{
-			write(2, "Error:\nFailed to load sprite frame\n", 36);
-			int j = 0;
-			while (j < i)
-			{
-				if (sprit->frames[j])
-				{
-					mlx_delete_xpm42(sprit->frames[j]);
-					sprit->frames[j] = NULL;
-				}
-				j++;
-			}
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-
-
 t_sprite	*init_animation(t_mlx_helper *mlx_utils)
 {
 	t_sprite	*sprit;
 	int			i;
 
-
 	sprit = malloc(sizeof(t_sprite));
 	if (!sprit)
 		return (NULL);
-	i = 0;
-	while (i < FIRE_FRAMES)
-	{
-		sprit->frames[i] = NULL;
-		sprit->images[i] = NULL;
-		i++;
-	}
+	init_sprite_arrays(sprit);
 	sprit->frame_delay = 10;
 	sprit->frame_counter = 0;
 	sprit->current_frame = 0;
 	sprit->last_frame_time = mlx_get_time();
-	if(load_sprite_frames(sprit) == 1)
-	{
-		free(sprit);
-		return NULL;
-	}
-	i = 0;
-	while (i < FIRE_FRAMES)
+	if (load_sprite_frames(sprit) == 1)
+		return (free(sprit), NULL);
+	i = -1;
+	while (++i < FIRE_FRAMES)
 	{
 		sprit->images[i] = mlx_texture_to_image(mlx_utils->mlx_ptr,
 				&sprit->frames[i]->texture);
-        if(!sprit->images[i])
-        {
-            int j = 0;
-            while (j < i)
-            {
-                if (sprit->images[j])
-                    mlx_delete_image(mlx_utils->mlx_ptr, sprit->images[j]);
-                j++;
-            }
-            j = 0;
-            while (j < FIRE_FRAMES)
-            {
-                if (sprit->frames[j])
-                    mlx_delete_xpm42(sprit->frames[j]);
-                j++;
-            }
-            
-            free(sprit);
-            return NULL;
-        }
-		i++;
+		if (!sprit->images[i])
+			return (cleanup_failed_animation(mlx_utils, sprit, i), NULL);
 	}
 	return (sprit);
 }
@@ -164,81 +46,76 @@ void	setup_mlx_hooks(t_mlx_helper *mlx_utils)
 {
 	if (!mlx_utils)
 		return ;
-	if(mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->img, 0, 0) == -1)
+	if (mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->img, 0, 0) == -1)
 		return ;
-	if(mlx_image_to_window(mlx_utils->mlx_ptr, mlx_utils->mini_map_img, 0, 0) == -1)
+	if (mlx_image_to_window(mlx_utils->mlx_ptr,
+			mlx_utils->mini_map_img, 0, 0) == -1)
 		return ;
 	mini_map(mlx_utils);
-	
 	mlx_cursor_hook(mlx_utils->mlx_ptr, mouse_rotate_hook, mlx_utils);
 	mlx_set_cursor_mode(mlx_utils->mlx_ptr, MLX_MOUSE_DISABLED);
-	
 	mlx_loop_hook(mlx_utils->mlx_ptr, game_loop, mlx_utils);
 	mlx_loop_hook(mlx_utils->mlx_ptr, animation_loop, mlx_utils);
 }
 
-void FUCK_YOU()
+void	init_core(char **av, t_mlx_helper **mlx_utils, t_utils **util, int argc)
 {
-	system("leaks cub3d");
+	if (argc != 2)
+	{
+		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);
+		exit(1);
+	}
+	*util = parser(av[1]);
+	if (!*util)
+	{
+		write(2, "Error\nParsing failed\n", 21);
+		exit(1);
+	}
+	*mlx_utils = init_mlx_helper();
+	if (!*mlx_utils)
+	{
+		clean_up_utils(*util);
+		exit (1);
+	}
+}
+
+int	init_game(t_utils *util, t_mlx_helper *mlx, t_player *player)
+{
+	char	helper;
+
+	mlx->player = player;
+	mlx->utils = util;
+	init_mlx_images(mlx, util);
+	init_mlx_allocations(mlx, util);
+	setup_minimap_config(mlx);
+	helper = find_player(util->map, mlx->player_place);
+	setup_player(mlx, player, helper);
+	mlx->texture = texture_loader(mlx);
+	if (!mlx->texture)
+		return (write(1, "Error\nFailed to load textures\n", 31),
+			clean_up_utils(util),
+			clean_mlx_helper(mlx), 1);
+	update_doors_info(mlx);
+	raycast(mlx, util, player);
+	mlx->sprit = init_animation(mlx);
+	if (!mlx->sprit)
+		return (write(2, "Error\nFailed to load sprite animation\n", 39),
+			clean_up_utils(util),
+			clean_mlx_helper(mlx), 1);
+	return (0);
 }
 
 int	main(int argc, char *argv[])
 {
-
 	t_utils			*util;
 	t_mlx_helper	*mlx_utils;
 	t_player		player;
-	char			helper;
 
-	
-	
-	//atexit(FUCK_YOU);
-	if (argc != 2)
-	{
-		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);
+	init_core(argv, &mlx_utils, &util, argc);
+	if (init_game(util, mlx_utils, &player))
 		return (1);
-	}
-	 util = parser(argv[1]);
-	if (!util)
-	{
-		write(2, "Error\nParsing failed\n", 21);
-		return 1;
-	}
-	mlx_utils = init_mlx_helper();
-	if (!mlx_utils)
-	{
-		clean_up_utils(util);
-		return 1;
-	}
-	mlx_utils->player = &player;
-	mlx_utils->utils = util;
-	
-	init_mlx_images(mlx_utils, util);
-	init_mlx_allocations(mlx_utils, util);
-	setup_minimap_config(mlx_utils);
-	helper = find_player(util->map, mlx_utils->player_place); 
-	setup_player(mlx_utils, &player, helper);
-	mlx_utils->texture = texture_loader(mlx_utils);
-	if (!mlx_utils->texture)
-	{
-		write(1, "Error\nFailed to load textures\n", 31);
-		clean_up_utils(util);
-		clean_mlx_helper(mlx_utils);
-		return 1;
-	}
-	update_doors_info(mlx_utils);
-	raycast(mlx_utils, util, &player);
-	mlx_utils->sprit = init_animation(mlx_utils);
-	if (!mlx_utils->sprit)
-	{
-		write(2, "Error\nFailed to load sprite animation\n", 39);
-		clean_mlx_helper(mlx_utils);
-		clean_up_utils(util);
-		return (1);	
-	}
 	setup_mlx_hooks(mlx_utils);
 	mlx_loop(mlx_utils->mlx_ptr);
-	
 	clean_mlx_helper(mlx_utils);
 	clean_up_utils(util);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 22:55:58 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 14:38:21 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ void	check_the_last_line(char **str, t_utils *util)
 	if (!str || !*str)
 	{
 		write(2, "Error\nInvalid map data\n", 23);
-		clean_up_utils(util);
-		exit(1);
+		(clean_up_utils(util), exit(1));
 	}
 	i = lent(str) - 1;
 	j = 0;
@@ -102,16 +101,12 @@ void	check_the_last_line(char **str, t_utils *util)
 			|| str[i][j] == 'S' || str[i][j] == 'E'
 			|| str[i][j] == 'W' || str[i][j] == 'D')
 		{
-			write(2, "Error\nthe Map is open 66\n", 26);
-			clean_up_utils(util);
-			exit(1);
+			write(2, "Error\nthe Map is open\n", 23);
+			(clean_up_utils(util), exit(1));
 		}
 		if (str[i][j] == ' ' && str[i - 1][j] == '0')
-		{
-			write(2, "Error\nthe Map is open 89\n", 26);
-			clean_up_utils(util);
-			exit(1);
-		}
+			(write(2, "Error\nthe Map is open\n", 23),
+				clean_up_utils(util), exit(1));
 		j++;
 	}
 }

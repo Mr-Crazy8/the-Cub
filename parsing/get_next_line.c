@@ -6,11 +6,12 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 09:27:09 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/06 18:53:35 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 17:29:22 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "parsing.h"
 
 int	here_your_line(char *str)
 {
@@ -81,4 +82,15 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (free(old), free(line), NULL);
 	return (free(old), line);
+}
+
+void	cleanup_textures(t_mlx_helper *mlx)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 5)
+		if (mlx->texture[i])
+			mlx_delete_texture(mlx->texture[i]);
+	free(mlx->texture);
 }

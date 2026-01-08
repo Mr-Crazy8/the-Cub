@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:08 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 23:28:05 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 16:50:29 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,33 +61,15 @@ int	load_wall_textures(mlx_texture_t **texture, t_utils *utils)
 	texture[1] = load_texture_with_check(utils->so_path,
 			"Error: SO texture failed to load\n");
 	if (!texture[1])
-	{
-		mlx_delete_texture(texture[0]);
-		texture[0] = NULL;
-		return (0);
-	}
+		return (clean_textures_in_case_error(texture, 1));
 	texture[2] = load_texture_with_check(utils->ea_path,
 			"Error: EA texture failed to load\n");
 	if (!texture[2])
-	{
-		mlx_delete_texture(texture[0]);
-		mlx_delete_texture(texture[1]);
-		texture[0] = NULL;
-		texture[1] = NULL;
-		return (0);
-	}
+		return (clean_textures_in_case_error(texture, 2));
 	texture[3] = load_texture_with_check(utils->we_path,
 			"Error: WE texture failed to load\n");
 	if (!texture[3])
-	{
-		mlx_delete_texture(texture[0]);
-		mlx_delete_texture(texture[1]);
-		mlx_delete_texture(texture[2]);
-		texture[0] = NULL;
-		texture[1] = NULL;
-		texture[2] = NULL;
-		return (0);
-	}
+		return (clean_textures_in_case_error(texture, 3));
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:22:29 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 23:22:38 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 17:56:39 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	animation_loop(void *param)
 	int				y;
 
 	mlx = (t_mlx_helper *)param;
-	mlx = NULL;
 	if (!mlx || !mlx->sprit)
 		return ;
 	if (!validate_animation_params(mlx))

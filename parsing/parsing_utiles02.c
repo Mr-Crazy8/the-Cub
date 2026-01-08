@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 23:02:03 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 14:56:53 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,11 @@ char	**read_file(int fd, char *str)
 	{
 		file[i] = ft_strdup(line);
 		if (!file[i])
-		{
-			free(line);
-			while (--i >= 0)
-				free(file[i]);
-			free(file);
-			return (NULL);
-		}
-		free(line);
-		i++;
+			return (free(line), free_split(file, i));
+		(free(line), i++);
 		line = get_next_line(fd);
 	}
-	file[i] = NULL;
-	close(fd);
-	return (file);
+	return (file[i] = NULL, close(fd), file);
 }
 
 int	count_doors_in_row(char *row)

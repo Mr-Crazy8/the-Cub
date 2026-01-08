@@ -6,14 +6,14 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:43 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 22:44:17 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 16:57:56 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-static char	**free_split(char **split, size_t j)
+char	**free_split(char **split, size_t j)
 {
 	while (j > 0)
 		free(split[--j]);
@@ -77,4 +77,14 @@ char	**ft_split(char const *s, char c)
 	if (split == NULL)
 		return (NULL);
 	return (split_string(s, c, split, n));
+}
+
+void	free_normalized(char **normalized, int i)
+{
+	while (i >= 0)
+	{
+		free(normalized[i]);
+		i--;
+	}
+	free(normalized);
 }

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:20:41 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 23:15:46 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 17:35:36 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,32 @@ uint32_t	get_pixel_color(mlx_texture_t *texture, int x, int y)
 	pixel = &texture->pixels[(y * texture->width + x) * 4];
 	color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
 	return (color);
+}
+
+void	cleanup_failed_animation(t_mlx_helper *mlx,
+				t_sprite *sprit, int img_count)
+{
+	int	j;
+
+	j = -1;
+	while (++j < img_count)
+		if (sprit->images[j])
+			mlx_delete_image(mlx->mlx_ptr, sprit->images[j]);
+	j = -1;
+	while (++j < FIRE_FRAMES)
+		if (sprit->frames[j])
+			mlx_delete_xpm42(sprit->frames[j]);
+	free(sprit);
+}
+
+void	init_sprite_arrays(t_sprite *sprit)
+{
+	int	i;
+
+	i = -1;
+	while (++i < FIRE_FRAMES)
+	{
+		sprit->frames[i] = NULL;
+		sprit->images[i] = NULL;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 14:32:03 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/08 16:58:51 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,68 @@ void	mouse_rotate_hook(double xpos, double ypos, void *param)
 	else if (rot < 0)
 		rotate_right(mlx->player, (rot * -1));
 	mlx_set_mouse_pos(mlx->mlx_ptr, SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0);
+}
+
+int	count_rows(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+char	**fix_row_size(char **map)
+{
+	char	**normalized;
+	int		max_len;
+	int		row_count;
+	int		i;
+
+	if (!map || !*map)
+		return (NULL);
+	max_len = max_len_finder(map);
+	if (max_len == 0)
+		return (NULL);
+	row_count = count_rows(map);
+	normalized = malloc(sizeof(char *) * (row_count + 1));
+	if (!normalized)
+		return (NULL);
+	i = 0;
+	while (i < row_count)
+	{
+		normalized[i] = add_spaces(map[i], max_len);
+		if (!normalized[i])
+			return (free_normalized(normalized, i), NULL);
+		i++;
+	}
+	normalized[row_count] = NULL;
+	return (normalized);
+}
+
+t_utils	*init_utils(void)
+{
+	t_utils			*util;
+
+	util = malloc(sizeof(t_utils));
+	if (!util)
+		return (NULL);
+	util->c_color = NULL;
+	util->f_color = NULL;
+	util->no_path = NULL;
+	util->so_path = NULL;
+	util->ea_path = NULL;
+	util->we_path = NULL;
+	util->doors = NULL;
+	util->total_doors = 0;
+	util->map = NULL;
+	util->file = NULL;
+	util->c_color = malloc(3 * sizeof(int));
+	if (!util->c_color)
+		return (clean_up_utils(util), NULL);
+	util->f_color = malloc(3 * sizeof(int));
+	if (!util->f_color)
+		return (clean_up_utils(util), NULL);
+	return (util);
 }
