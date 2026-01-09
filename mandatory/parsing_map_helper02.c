@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 14:38:21 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:32:56 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	extract_and_pars_the_map(t_utils *util, char **file)
 	fixed_map = fix_row_size(util->map);
 	if (!fixed_map)
 	{
-		write(2, "Error\nFailed to normalize map rows\n", 35);
+		write(2, "Error\nFailed to normalize map rows\n", 36);
 		clean_up_utils(util);
 		exit(1);
 	}
@@ -59,13 +59,13 @@ void	check_first_line(char **str, t_utils *util)
 			|| str[i][j] == 'S' || str[i][j] == 'E'
 			|| str[i][j] == 'W' || str[i][j] == 'D')
 		{
-			write(2, "Error\nthe Map is open 2\n", 25);
+			write(2, "Error\nthe Map is open\n", 23);
 			clean_up_utils(util);
 			exit(1);
 		}
 		if (str[i][j] == ' ' && str[i + 1] && str[i + 1][j] == '0')
 		{
-			write(2, "Error\nthe Map is open 3\n", 25);
+			write(2, "Error\nthe Map is open\n", 23);
 			clean_up_utils(util);
 			exit(1);
 		}

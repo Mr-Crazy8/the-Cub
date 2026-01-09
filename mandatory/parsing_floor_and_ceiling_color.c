@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:16 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 22:49:06 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:33:57 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	extract_and_pars_the_floor_and_ceiling_color(t_utils *util, char **file)
 		}
 		else if ((file[i][0] == 'F' && done_f == 1)
 			|| (file[i][0] == 'C' && done_c == 1))
-			(write(2, "Duplicate color identifier\n", 28),
+			(write(2, "Error\nDuplicate color identifier\n", 34),
 				clean_up_utils(util), exit(2));
 		i++;
 	}

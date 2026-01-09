@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:11 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 14:54:11 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:35:00 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**parse_and_validate_split(char *file, t_utils *util)
 	split = ft_split(file, ' ');
 	if (!split || !split[1])
 	{
-		write(2, "Invalid color format\n", 21);
+		write(2, "Error\nInvalid color format\n", 28);
 		clean_up_utils(util);
 		exit(2);
 	}
@@ -34,7 +34,7 @@ char	**parse_color_components(char **split, t_utils *util)
 	if (!split1 || !split1[0] || !split1[1] || !split1[2])
 	{
 		free_string_array(split);
-		write(2, "Invalid color format\n", 21);
+		write(2, "Error\nInvalid color format\n", 28);
 		clean_up_utils(util);
 		exit(2);
 	}

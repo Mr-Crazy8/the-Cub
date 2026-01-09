@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:15:02 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 22:40:50 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 11:42:24 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,4 @@ void	draw_vertical_line(t_mlx_helper *mlx_utils, t_player *player,
 	draw_wall_slice(mlx_utils, player, &wall_params);
 	draw_floor(mlx_utils, params->x, wall_params.draw_end);
 	draw_ceiling(mlx_utils, params->x, wall_params.draw_start);
-}
-
-void	draw_pixel_if_in_bounds(t_mlx_helper *mlx_utils, int screen_x,
-			int screen_y, int color)
-{
-	if (!mlx_utils)
-		return ;
-	if (screen_x < SCREEN_WIDTH && screen_y < SCREEN_HEIGHT)
-		mlx_put_pixel(mlx_utils->mini_map_img, screen_x, screen_y, color);
 }

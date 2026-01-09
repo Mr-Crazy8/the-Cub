@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:58 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 16:56:48 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 11:45:00 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	clean_up_utils(t_utils *util)
 		free(util->f_color);
 	if (util->map)
 		free_string_array(util->map);
-	if (util->doors)
-		free(util->doors);
 	if (util->file)
 		free_string_array(util->file);
 	free(util);
@@ -105,7 +103,7 @@ t_utils	*parser(char *str)
 {
 	t_utils			*util;
 	int				fd;
-	t_doors_info	*dors;
+	//t_doors_info	*dors;
 
 	util = init_utils();
 	if (!util)
@@ -120,9 +118,6 @@ t_utils	*parser(char *str)
 	extract_and_pars_the_floor_and_ceiling_color(util, util->file);
 	extract_and_pars_the_map(util, util->file);
 	if (!util->map)
-		return (clean_up_utils(util), NULL);
-	util->doors = extract_doors_info(util);
-	if (!util->doors && util->total_doors > 0)
 		return (clean_up_utils(util), NULL);
 	(free_string_array(util->file), util->file = NULL);
 	return (util);

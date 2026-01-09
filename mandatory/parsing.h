@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:35:02 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:41:30 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,32 +73,6 @@ typedef struct s_wall_x_params
 	double	raydir_y;
 }	t_wall_x_params;
 
-typedef struct s_minimap_bounds
-{
-	int	min_x;
-	int	max_x;
-	int	min_y;
-	int	max_y;
-}	t_minimap_bounds;
-
-typedef struct s_minimap_pixel_params
-{
-	int	map_x;
-	int	map_y;
-	int	min_x;
-	int	min_y;
-	int	px;
-	int	py;
-}	t_minimap_pixel_params;
-
-typedef struct s_minimap_tile_params
-{
-	int	map_x;
-	int	map_y;
-	int	min_x;
-	int	min_y;
-}	t_minimap_tile_params;
-
 typedef struct s_player_draw_params
 {
 	int	player_x;
@@ -138,15 +112,6 @@ typedef struct s_wall_data
 	int	did_we_hit_a_door;
 }	t_wall_data;
 
-typedef struct doors
-{
-	int		map_x;
-	int		map_y;
-	int		state; //0 == closed; 1 == openning; 2 == fully open;
-	float	animation_progress;
-	float	activation_distance;
-}	t_doors_info;
-
 typedef struct s_texture_flags
 {
 	int	done_no;
@@ -154,16 +119,6 @@ typedef struct s_texture_flags
 	int	done_we;
 	int	done_ea;
 }	t_texture_flags;
-
-typedef struct s_sprite
-{
-	xpm_t		*frames[FIRE_FRAMES];// mlx image pointers
-	mlx_image_t	*images[FIRE_FRAMES];// actual mlx images to draw
-	int			current_frame;// index of current frame
-	int			frame_delay;// how many loops before switching
-	int			frame_counter;// counts frames
-	double		last_frame_time;
-}	t_sprite;
 
 typedef struct s_player
 {
@@ -198,13 +153,10 @@ typedef struct s_utils
 	char			*so_path;
 	char			*ea_path;
 	char			*we_path;
-	int				total_doors;
-	t_doors_info	*doors;
 }	t_utils;
 
 typedef struct s_mlx_helper
 {
-	t_sprite		*sprit;
 	t_utils			*utils;
 	t_player		*player;
 	mlx_texture_t	**texture;
@@ -225,7 +177,6 @@ typedef struct s_mlx_helper
 	int				*player_place;
 	int				*map_h_w;
 	int				doors_count;
-	t_doors_info	*doors;
 	mlx_image_t		*mini_map_img;
 	int				minimap_size;
 	int				minimap_x;
@@ -235,7 +186,6 @@ typedef struct s_mlx_helper
 }	t_mlx_helper;
 
 void				free_string_array(char **array);
-void				init_sprite_arrays(t_sprite *sprit);
 void				clean_up_utils(t_utils *util);
 void				cleanup_textures(t_mlx_helper *mlx);
 void				free_string_array(char **array);
@@ -270,8 +220,6 @@ void				pars_the_map_helper(t_utils *util);
 void				init_texture_flags(t_texture_flags *flags);
 void				check_duplicate(char *id, int done,
 						char **texture, t_utils *util);
-void				cleanup_failed_animation(t_mlx_helper *mlx,
-						t_sprite *sprit, int img_count);
 void				handle_no_texture(t_utils *util,
 						char **texture, t_texture_flags *flags);
 void				handle_so_texture(t_utils *util,
@@ -303,10 +251,6 @@ void				draw_map_row(t_utils *util,
 void				draw_tile_pixels(t_mlx_helper *mlx_utils,
 						int map_x, int map_y, int color);
 void				clear_img_mini_map(t_mlx_helper *mlx);
-void				draw_minimap_pixel(t_mlx_helper *mlx,
-						t_minimap_pixel_params *params);
-void				draw_minimap_tile(t_mlx_helper *mlx,
-						t_minimap_tile_params *params);
 void				move_right(t_player *player, char **map, t_mlx_helper *mlx);
 void				rotate_right(t_player *player, double rot);
 void				rotate_left(t_player *player, double rot);
@@ -320,7 +264,6 @@ void				calculate_texture_coords(t_texture_coords_params *params,
 						t_texture_coord *coord);
 void				clean_mlx_helper(t_mlx_helper *mlx_utils);
 void				handle_texture_error(char *message);
-void				update_animation(t_sprite *anim);
 void				setup_player(t_mlx_helper *mlx_utils,
 						t_player *player, char helper);
 void				delete_previous_frame(t_mlx_helper *mlx, int last_drawn);
@@ -358,14 +301,9 @@ void				set_direction_south(t_player *player);
 void				set_direction_west(t_player *player);
 void				calculate_ray_direction(t_player *player, int screen_column,
 						float *ray_dir_x, float *ray_dir_y);
-void				init_door_info(t_doors_info *door, int x, int y);
-void				populate_doors_array(char **map, t_doors_info *doors);
 int					check_file(char *str);
 int					print_failed(void);
-int					cleanup_sprite_frames(t_sprite *sprit,
-						int count);
 int					count_lines(char *str);
-int					load_sprite_frames(t_sprite *sprit);
 int					f_c_color_helpr(t_utils *util, char *file);
 int					ft_atoi(const char *str);
 int					ft_strcmp(const char *s1, const char *s2);
@@ -413,8 +351,6 @@ int					check_door_hit(t_mlx_helper *mlx, int *did_we_hit_a_door);
 int					count_lines(char *str);
 int					count_doors_in_row(char *row);
 int					count_total_doors(char **map);
-int					fill_doors_in_row(char *row, int row_y,
-						t_doors_info *doors, int start_index);
 char				*ft_strnstr(const char *big,
 						const char *little, size_t len);
 char				*ft_strtrim(char const *s1, char const *set);
@@ -447,6 +383,5 @@ uint32_t			convert_rgba_to_int(uint8_t r,
 						uint8_t g, uint8_t b, uint8_t a);
 t_utils				*parser(char *str);
 t_utils				*init_utils(void);
-t_doors_info		*allocate_doors_array(int count);
-t_doors_info		*extract_doors_info(t_utils *util);
+
 #endif

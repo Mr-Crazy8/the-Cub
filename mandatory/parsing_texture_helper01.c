@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:50 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 22:19:19 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:30:52 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_duplicate(char *id, int done, char **texture, t_utils *util)
 {
 	if (done == 1)
 	{
-		write(2, "Duplicate identifier\n", 22);
+		write(2, "Error\nDuplicate identifier\n", 28);
 		free_string_array(texture);
 		clean_up_utils(util);
 		exit(1);

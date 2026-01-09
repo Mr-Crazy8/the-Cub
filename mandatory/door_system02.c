@@ -6,25 +6,11 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:36:24 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 23:00:33 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 11:41:52 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-int	load_door_texture(mlx_texture_t **texture)
-{
-	char	*door_path;
-
-	if (!texture)
-		return (0);
-	door_path = "mandatory/texture/doors.png";
-	texture[4] = load_texture_with_check(door_path,
-			"Error: Door texture failed to load\n");
-	if (!texture[4])
-		return (0);
-	return (1);
-}
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -82,8 +68,6 @@ int	check_collision_at(char **map, double x, double y, t_mlx_helper *mlx)
 		map[(int)(y - margin)][(int)(x + margin)] == '1' ||
 		map[(int)(y + margin)][(int)(x - margin)] == '1' ||
 		map[(int)(y + margin)][(int)(x + margin)] == '1')
-		return (1);
-	if (is_door_blocking(mlx, (int)x, (int)y, 0))
 		return (1);
 	return (0);
 }

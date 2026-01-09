@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 23:16:08 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 11:42:40 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,8 @@ void	game_loop(void *param)
 		rotate_left(mlx->player, 0.1);
 	if (mlx_is_key_down(mlx->mlx_ptr, MLX_KEY_ESCAPE))
 		(clean_up_utils(mlx->utils), clean_mlx_helper(mlx), exit(0));
-	update_doors_info(mlx);
 	clear_img(mlx);
 	raycast(mlx, mlx->utils, mlx->player);
-	mini_map(mlx);
-}
-
-void	mouse_rotate_hook(double xpos, double ypos, void *param)
-{
-	t_mlx_helper	*mlx;
-	double			diff;
-	double			rot;
-
-	(void)ypos;
-	mlx = (t_mlx_helper *)param;
-	if (!mlx)
-		return ;
-	diff = xpos - (SCREEN_WIDTH / 2.0);
-	if (fabs(diff) < 2.0)
-		return ;
-	rot = diff * 0.002;
-	if (rot > 0)
-		rotate_left(mlx->player, rot);
-	else if (rot < 0)
-		rotate_right(mlx->player, (rot * -1));
-	mlx_set_mouse_pos(mlx->mlx_ptr, SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0);
 }
 
 int	count_rows(char **map)
@@ -112,8 +89,6 @@ t_utils	*init_utils(void)
 	util->so_path = NULL;
 	util->ea_path = NULL;
 	util->we_path = NULL;
-	util->doors = NULL;
-	util->total_doors = 0;
 	util->map = NULL;
 	util->file = NULL;
 	util->c_color = malloc(3 * sizeof(int));

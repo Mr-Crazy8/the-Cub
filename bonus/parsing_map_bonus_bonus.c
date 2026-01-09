@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:41 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:54:55 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:11:45 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	validate_space_neighbors(t_utils *util, unsigned long i,
 		(util->map[i - 1][j] != '1' && util->map[i - 1][j] != ' ') ||
 		(util->map[i + 1][j] != '1' && util->map[i + 1][j] != ' '))
 	{
-		write(2, "Error\nthe Map is open 78\n", 23);
+		write(2, "Error\nthe Map is open\n", 23);
 		clean_up_utils(util);
 		exit(1);
 	}
@@ -36,7 +36,7 @@ void	validate_zero_neighbors(t_utils *util, unsigned long i, unsigned long j)
 	if (util->map[i][j + 1] == ' ' || util->map[i][j - 1] == ' ' ||
 		util->map[i - 1][j] == ' ' || util->map[i + 1][j] == ' ')
 	{
-		write(2, "Error\nthe Map is open 1\n", 25);
+		write(2, "Error\nthe Map is open\n", 23);
 		clean_up_utils(util);
 		exit(1);
 	}

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:50:53 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 23:10:59 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:08:23 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	cleanup_sprite_frames(t_sprite *sprit, int count)
 			mlx_delete_xpm42(sprit->frames[j]);
 		sprit->frames[j++] = NULL;
 	}
-	return (write(2, "Error:\nFailed to load sprite frame\n", 36), 1);
+	return (write(2, "Error\nFailed to load sprite frame\n", 35), 1);
 }
 
 int	load_sprite_frames(t_sprite *sprit)

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:55:33 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:21:23 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_failed(void)
 {
-	write(2, "File doesn't exist or can't be opened\n", 39);
+	write(2, "Error\nFile doesn't exist or can't be opened\n", 45);
 	return (-1);
 }
 

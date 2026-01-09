@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:06 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 22:49:55 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:35:20 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	validate_comma_count(int counter, t_utils *util)
 {
 	if (counter != 2)
 	{
-		write(2, "not valide color for floor or ceiling\n", 39);
+		write(2, "Error\nnot valide color for floor or ceiling\n", 45);
 		clean_up_utils(util);
 		exit(1);
 	}

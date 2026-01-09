@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:54 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:55:16 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:14:42 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handle_invalid_identifier(char **texture, t_utils *util)
 {
-	write(2, "not valide identifier\n", 23);
+	write(2, "Error\nNot Valide Identifier\n", 29);
 	free_string_array(texture);
 	clean_up_utils(util);
 	exit(2);

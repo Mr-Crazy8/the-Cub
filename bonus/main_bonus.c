@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:52:05 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:26:34 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	init_core(char **av, t_mlx_helper **mlx_utils, t_utils **util, int argc)
 {
 	if (argc != 2)
 	{
-		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 31);
+		write(2, "Error\nUsage: ./cub3d <map.cub>\n", 32);
 		exit(1);
 	}
 	*util = parser(av[1]);
 	if (!*util)
 	{
-		write(2, "Error\nParsing failed\n", 21);
+		write(2, "Error\nParsing failed\n", 22);
 		exit(1);
 	}
 	*mlx_utils = init_mlx_helper();
@@ -92,7 +92,7 @@ int	init_game(t_utils *util, t_mlx_helper *mlx, t_player *player)
 	setup_player(mlx, player, helper);
 	mlx->texture = texture_loader(mlx);
 	if (!mlx->texture)
-		return (write(1, "Error\nFailed to load textures\n", 31),
+		return (write(2, "Error\nFailed to load textures\n", 31),
 			clean_up_utils(util),
 			clean_mlx_helper(mlx), 1);
 	update_doors_info(mlx);

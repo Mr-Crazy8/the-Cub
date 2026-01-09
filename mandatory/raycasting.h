@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 16:11:13 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 23:10:46 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:42:10 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void			check_derction_player(t_player *player, char der);
 void			clear_img(t_mlx_helper *mlx);
 void			handel_key(mlx_key_data_t keydata, void *param);
 void			game_loop(void *param);
-void			update_animation(t_sprite *anim);
 void			animation_loop(void *param);
 bool			is_door_blocking(t_mlx_helper *mlx, int x, int y, int type);
 int				get_color(t_color_params *params);

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:55:09 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:14:01 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	validate_map_boundaries(char *line, int j, int last_char)
 {
 	if (line[j] != '1' || (last_char >= 0 && line[last_char] != '1'))
 	{
-		write(2, "Error\nthe Map is open 55\n", 26);
+		write(2, "Error\nthe Map is open\n", 23);
 		return ;
 	}
 }

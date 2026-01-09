@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:14:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:55:29 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:16:09 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_error(int fd)
 {
 	if (fd == -1)
 	{
-		write(2, "Texture file not found\n", 23);
+		write(2, "Error\nTexture file not found\n", 30);
 		exit(2);
 	}
 	close(fd);
@@ -57,13 +57,13 @@ int	check_file(char *str)
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 	{
-		write(2, "File doesn't exist or can't be opened\n", 39);
+		write(2, "Error\nFile doesn't exist or can't be opened\n", 45);
 		return (-1);
 	}
 	len = ft_strlen(str);
 	if (len < 4 || ft_strcmp(str + len - 4, ".cub") != 0)
 	{
-		write(2, "Not valid extension\n", 21);
+		write(2, "Error\nNot valid extension\n", 27);
 		return (-1);
 	}
 	return (fd);

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:20 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/07 22:53:50 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:33:38 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**allocate_map_array(int total_lines)
 	map = malloc(sizeof(char *) * (total_lines + 1));
 	if (!map)
 	{
-		write(2, "Memory allocation failed\n", 25);
+		write(2, "Error\nMemory allocation failed\n", 32);
 		return (NULL);
 	}
 	return (map);

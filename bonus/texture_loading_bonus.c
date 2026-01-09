@@ -6,16 +6,17 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:08 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:56:14 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:36:58 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line_bonus.h"
 #include "parsing_bonus.h"
 
 void	handle_texture_error(char *message)
 {
 	if (!message)
-		write(1, message, 30);
+		write(2, message,  ft_strlen(message));
 }
 
 mlx_texture_t	*load_texture_with_check(char *path, char *error_msg)
@@ -39,7 +40,7 @@ mlx_texture_t	**allocate_texture_array(void)
 	texture = malloc(sizeof(mlx_texture_t *) * 5);
 	if (texture == NULL)
 	{
-		write(1, "texture array malloc failed\n", 29);
+		write(2, "Error\ntexture array malloc failed\n", 35);
 		return (NULL);
 	}
 	while (i < 5)
@@ -55,19 +56,19 @@ int	load_wall_textures(mlx_texture_t **texture, t_utils *utils)
 	if (!texture || !utils)
 		return (0);
 	texture[0] = load_texture_with_check(utils->no_path,
-			"Error: NO texture failed to load\n");
+			"Error\nNO texture failed to load\n");
 	if (!texture[0])
 		return (0);
 	texture[1] = load_texture_with_check(utils->so_path,
-			"Error: SO texture failed to load\n");
+			"Error\nSO texture failed to load\n");
 	if (!texture[1])
 		return (clean_textures_in_case_error(texture, 1));
 	texture[2] = load_texture_with_check(utils->ea_path,
-			"Error: EA texture failed to load\n");
+			"Error\nEA texture failed to load\n");
 	if (!texture[2])
 		return (clean_textures_in_case_error(texture, 2));
 	texture[3] = load_texture_with_check(utils->we_path,
-			"Error: WE texture failed to load\n");
+			"Error\nWE texture failed to load\n");
 	if (!texture[3])
 		return (clean_textures_in_case_error(texture, 3));
 	return (1);

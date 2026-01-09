@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:54:24 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:10:08 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_mlx_helper	*init_mlx_helper(void)
 	mlx_utils = malloc(sizeof(t_mlx_helper));
 	if (mlx_utils == NULL)
 	{
-		write(1, "malloc failed\n", 15);
+		write(2, "Error\nMalloc failed\n", 21);
 		return (NULL);
 	}
 	mlx_utils->mlx_ptr = NULL;

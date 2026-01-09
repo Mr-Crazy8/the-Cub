@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:17:27 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 14:56:53 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:43:47 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_failed(void)
 {
-	write(2, "File doesn't exist or can't be opened\n", 39);
+	write(2, "Error\nFile doesn't exist or can't be opened\n", 45);
 	return (-1);
 }
 
@@ -63,35 +63,4 @@ char	**read_file(int fd, char *str)
 		line = get_next_line(fd);
 	}
 	return (file[i] = NULL, close(fd), file);
-}
-
-int	count_doors_in_row(char *row)
-{
-	int	j;
-	int	count;
-
-	j = 0;
-	count = 0;
-	while (row[j])
-	{
-		if (row[j] == 'D')
-			count++;
-		j++;
-	}
-	return (count);
-}
-
-int	count_total_doors(char **map)
-{
-	int	i;
-	int	total;
-
-	i = 0;
-	total = 0;
-	while (map[i])
-	{
-		total += count_doors_in_row(map[i]);
-		i++;
-	}
-	return (total);
 }

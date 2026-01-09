@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:25 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:55:03 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:12:36 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_partial_map(char **map, int lines_allocated)
 
 void	handle_strdup_error(char **map, int map_line)
 {
-	write(2, "Memory allocation failed\n", 25);
+	write(2, "Error\nMemory allocation failed\n", 32);
 	free_partial_map(map, map_line);
 }
 
