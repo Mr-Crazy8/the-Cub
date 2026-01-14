@@ -6,12 +6,12 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:59:04 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:24:04 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:40:52 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSING_BONUS_H
+# define PARSING_BONUS_H
 
 # include "get_next_line_bonus.h"
 # include <stdio.h>
@@ -187,8 +187,8 @@ typedef struct s_utils
 {
 	int				is_hit;
 	int				tile;
-	int				*c_color;
-	int				*f_color;
+	long long				*c_color;
+	long long				*f_color;
 	char			**map;
 	char			**file;
 	char			*no_path;
@@ -233,6 +233,7 @@ typedef struct s_mlx_helper
 
 void				free_string_array(char **array);
 void				init_sprite_arrays(t_sprite *sprit);
+void	trim_newline(char *line);
 void				clean_up_utils(t_utils *util);
 void				cleanup_textures(t_mlx_helper *mlx);
 void				free_string_array(char **array);
@@ -241,7 +242,7 @@ void				check_if_it_texture(char *line);
 void				check_floor_and_ceiling_color(char *line);
 void				check_line(char *line);
 void				read_map(int fd);
-void				check_if_in_range(int color, t_utils *util);
+void				check_if_in_range(long long color, t_utils *util);
 void				extract_and_pars_the_floor_and_ceiling_color(t_utils *util,
 						char **file);
 void				free_normalized(char **normalized, int i);
@@ -262,7 +263,7 @@ void				copy_map_line(char **map, char *source,
 void				validate_map_start(long long map_start, t_utils *util);
 void				extract_and_pars_the_map(t_utils *util, char **file);
 void				skip_leading_whitespace(char *line, int *j);
-void				validate_map_boundaries(char *line, int j, int last_char);
+void	validate_map_boundaries(t_utils *util, char *line, int j, int last_char);
 void				pars_the_map_helper(t_utils *util);
 void				init_texture_flags(t_texture_flags *flags);
 void				check_duplicate(char *id, int done,
@@ -278,7 +279,7 @@ void				handle_ea_texture(t_utils *util,
 void				handle_we_texture(t_utils *util,
 						char **texture, t_texture_flags *flags);
 void				validate_comma_count(int counter, t_utils *util);
-void				set_color_values(int *color, char **split1, t_utils *util);
+void	set_color_values(long long *color, char **split1, t_utils *util);
 void				assign_color_to_util(t_utils *util,
 						char type, char **split1);
 void				draw_wall_slice(t_mlx_helper *mlx_utils, t_player *player,
@@ -364,7 +365,7 @@ int					cleanup_sprite_frames(t_sprite *sprit,
 int					count_lines(char *str);
 int					load_sprite_frames(t_sprite *sprit);
 int					f_c_color_helpr(t_utils *util, char *file);
-int					ft_atoi(const char *str);
+long long 	ft_atoi(const char *str);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					lent(char **str);

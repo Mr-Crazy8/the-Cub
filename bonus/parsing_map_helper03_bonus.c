@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:33 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:14:01 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/11 20:39:39 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ int	trim_trailing_whitespace(char *line, int len)
 	return (last_char);
 }
 
-void	validate_map_boundaries(char *line, int j, int last_char)
+void	validate_map_boundaries(t_utils *util, char *line, int j, int last_char)
 {
 	if (line[j] != '1' || (last_char >= 0 && line[last_char] != '1'))
 	{
 		write(2, "Error\nthe Map is open\n", 23);
-		return ;
+		clean_up_utils(util);
+		exit(1);
 	}
 }
 
@@ -60,7 +61,7 @@ void	pars_the_map_helper(t_utils *util)
 		len = ft_strlen(util->map[i]);
 		skip_leading_whitespace(util->map[i], &j);
 		last_char = trim_trailing_whitespace(util->map[i], len);
-		validate_map_boundaries(util->map[i], j, last_char);
+		validate_map_boundaries(util, util->map[i], j, last_char);
 		i++;
 	}
 	check_first_line(util->map, util);

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:41 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:11:45 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:41:11 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	validate_space_neighbors(t_utils *util, unsigned long i,
 {
 	if (!check_boundaries_exist(util, i, j))
 		return ;
+	
 	if ((util->map[i][j + 1] != '1' && util->map[i][j + 1] != ' ') ||
 		(util->map[i][j - 1] != '1' && util->map[i][j - 1] != ' ') ||
 		(util->map[i - 1][j] != '1' && util->map[i - 1][j] != ' ') ||
@@ -77,7 +78,6 @@ void	pars_the_map(t_utils *util)
 		while (util->map[i][j] == ' '
 			|| (util->map[i][j] >= 9 && util->map[i][j] <= 13))
 			j++;
-		trim_newline(util->map[i]);
 		while (util->map[i][j])
 			(process_map_character(util, i, j, &player), j++);
 		i++;

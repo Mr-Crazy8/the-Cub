@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:22:29 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 11:41:31 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/12 15:15:01 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	skip_whitespace_and_sing(const char *str, int *sign)
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	int			i;
 	int			sign;
@@ -43,16 +43,13 @@ int	ft_atoi(const char *str)
 	while (str[i] != '\0' && (str[i] >= 48 && str[i] <= 57))
 	{
 		res = res * 10 + (str[i] - '0');
+		
 		if (res / 10 != check)
-		{
-			if (sign == 1)
-				return (-1);
-			return (0);
-		}
+			return (-1);
 		check = res;
 		i++;
 	}
-	return ((int)(res * sign));
+	return ((res * sign));
 }
 
 uint32_t	convert_rgba_to_int(uint8_t r, uint8_t g, uint8_t b, uint8_t a)

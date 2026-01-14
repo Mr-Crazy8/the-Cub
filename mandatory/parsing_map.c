@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:41 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:31:24 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 12:06:39 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,14 @@ void	pars_the_map(t_utils *util)
 
 	i = 0;
 	player = 0;
+	
+	i = 0;
 	while (util->map[i])
 	{
 		j = 0;
 		while (util->map[i][j] == ' '
 			|| (util->map[i][j] >= 9 && util->map[i][j] <= 13))
 			j++;
-		trim_newline(util->map[i]);
 		while (util->map[i][j])
 			(process_map_character(util, i, j, &player), j++);
 		i++;

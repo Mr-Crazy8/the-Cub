@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 16:36:24 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 11:41:52 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 12:53:37 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	setup_player(t_mlx_helper *mlx_utils, t_player *player, char helper)
 {
-	if (!mlx_utils || !player || !helper)
-		return ;
 	find_h_w_for_map(mlx_utils->utils->map, mlx_utils->map_h_w);
 	player->pos_x = mlx_utils->player_place[0] + 0.5;
 	player->pos_y = mlx_utils->player_place[1] + 0.5;

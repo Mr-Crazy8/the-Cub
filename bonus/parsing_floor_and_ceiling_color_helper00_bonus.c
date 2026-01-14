@@ -6,13 +6,13 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:06 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:09:39 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/12 15:17:51 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing_bonus.h"
 
-void	check_if_in_range(int color, t_utils *util)
+void	check_if_in_range(long long color, t_utils *util)
 {
 	if (!(color >= 0 && color <= 255))
 	{

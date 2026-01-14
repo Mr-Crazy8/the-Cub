@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:08 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:36:58 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 11:56:39 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	handle_texture_error(char *message)
 {
 	if (!message)
-		write(2, message,  ft_strlen(message));
+		write(2, message, ft_strlen(message));
 }
 
 mlx_texture_t	*load_texture_with_check(char *path, char *error_msg)
@@ -62,15 +62,15 @@ int	load_wall_textures(mlx_texture_t **texture, t_utils *utils)
 	texture[1] = load_texture_with_check(utils->so_path,
 			"Error\nSO texture failed to load\n");
 	if (!texture[1])
-		return (clean_textures_in_case_error(texture, 1));
+		return (clean_textures_in_case_error(texture, 1), 0);
 	texture[2] = load_texture_with_check(utils->ea_path,
 			"Error\nEA texture failed to load\n");
 	if (!texture[2])
-		return (clean_textures_in_case_error(texture, 2));
+		return (clean_textures_in_case_error(texture, 2), 0);
 	texture[3] = load_texture_with_check(utils->we_path,
 			"Error\nWE texture failed to load\n");
 	if (!texture[3])
-		return (clean_textures_in_case_error(texture, 3));
+		return (clean_textures_in_case_error(texture, 3), 0);
 	return (1);
 }
 

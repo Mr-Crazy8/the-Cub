@@ -6,14 +6,14 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 16:11:13 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:53:46 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/09 16:49:07 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#ifndef RAYCASTING_BONUS_H
+# define RAYCASTING_BONUS_H
 
-#	include "parsing_bonus.h"
+# include "parsing_bonus.h"
 
 void			raycast(t_mlx_helper *mlx_utils,
 					t_utils *utils, t_player *player);

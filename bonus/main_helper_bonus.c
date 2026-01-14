@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:10:08 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:30:58 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	helper_function_clean(t_mlx_helper *mlx_utils)
 		mlx_terminate(mlx_utils->mlx_ptr);
 		clean_up_utils(mlx_utils->utils);
 		free(mlx_utils);
+		write(2, "Error\nmini_map_img fialed\n", 27);
 		exit(1);
 	}
 	if (!mlx_utils->img)
@@ -55,6 +56,7 @@ void	helper_function_clean(t_mlx_helper *mlx_utils)
 		mlx_terminate(mlx_utils->mlx_ptr);
 		clean_up_utils(mlx_utils->utils);
 		free(mlx_utils);
+		write(2, "Error\nmlx_utils->img\n", 22);
 		exit(1);
 	}
 	if (!mlx_utils->mlx_img)
@@ -64,6 +66,7 @@ void	helper_function_clean(t_mlx_helper *mlx_utils)
 		mlx_terminate(mlx_utils->mlx_ptr);
 		clean_up_utils(mlx_utils->utils);
 		free(mlx_utils);
+		write(2, "Error\nmlx_utils->mlx_img\n", 26);
 		exit(1);
 	}
 }
@@ -73,6 +76,7 @@ void	init_mlx_images(t_mlx_helper *mlx_utils, t_utils *util)
 	if (!mlx_utils)
 	{
 		clean_up_utils(util);
+		write(2, "Error\nMlx_utils is emty\n", 25);
 		exit (1);
 	}
 	mlx_utils->mlx_ptr = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D", true);
@@ -80,6 +84,7 @@ void	init_mlx_images(t_mlx_helper *mlx_utils, t_utils *util)
 	{
 		clean_up_utils(util);
 		clean_mlx_helper(mlx_utils);
+		write(2, "Error\nmlx_utils->mlx_ptr has failed\n", 37);
 		exit(1);
 	}
 	mlx_utils->mini_map_img = mlx_new_image(mlx_utils->mlx_ptr, 250, 250);
@@ -92,7 +97,7 @@ void	init_mlx_images(t_mlx_helper *mlx_utils, t_utils *util)
 void	init_mlx_allocations(t_mlx_helper *mlx_utils, t_utils *util)
 {
 	if (!mlx_utils)
-		(clean_up_utils(util), exit(1));
+		(clean_up_utils(util), write(2, "Error\nMlx_utils is emty\n", 25),exit(1));
 	mlx_utils->tile = 32;
 	mlx_utils->player_place = malloc(2 * sizeof(int));
 	if (!mlx_utils->player_place)

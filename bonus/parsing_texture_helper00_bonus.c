@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:46 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:55:19 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:24:07 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,49 @@ void	init_texture_flags(t_texture_flags *flags)
 
 int	is_texture_line(char *line)
 {
-	if (ft_strnstr(line, "./", ft_strlen(line)) == NULL)
-		return (0);
+	// if (ft_strnstr(line, "./", ft_strlen(line)) == NULL)
+	// 	return (0);
 	if (ft_strncmp(line, "NO", 2) == 0
 		|| ft_strncmp(line, "SO", 2) == 0
 		|| ft_strncmp(line, "EA", 2) == 0
 		|| ft_strncmp(line, "WE", 2) == 0)
 		return (1);
+	if (ft_strchr(line, '/') != NULL)
+        return (1);
 	return (0);
 }
 
 char	**parse_texture_line(char *line)
 {
 	char	**texture;
-
-	texture = ft_split(line, ' ');
+	char 	*id;
+	char	*path;
+	int 	i;
+	
+	texture = malloc(sizeof(char *)* 3);
 	if (!texture)
 		return (NULL);
+
+	i = 0;
+	while (line[i] && line[i] != ' ')
+		i++;
+	id = ft_substr(line, 0, i);
+	if (!id)
+		return (free(texture), NULL);
+	
+	while (line[i] && line[i] == ' ')
+		i++;
+	
+	path = ft_strdup(line + i);
+	if (!path)
+		return (free(id), free(texture), NULL);
+	
+	texture[0] = id;
+	texture[1] = path;
+	texture[2] = NULL;
+	
+	
+	
 	if (texture[1][ft_strlen(texture[1]) - 1] == '\n')
 		texture[1][ft_strlen(texture[1]) - 1] = '\0';
 	return (texture);

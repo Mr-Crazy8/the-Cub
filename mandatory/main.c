@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 11:53:42 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:24:51 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,25 @@ int	init_game(t_utils *util, t_mlx_helper *mlx, t_player *player)
 
 	mlx->player = player;
 	mlx->utils = util;
-	init_mlx_images(mlx, util);
-	init_mlx_allocations(mlx, util);
-	helper = find_player(util->map, mlx->player_place);
-	setup_player(mlx, player, helper);
 	mlx->texture = texture_loader(mlx);
 	if (!mlx->texture)
 		return (write(1, "Error\nFailed to load textures\n", 31),
 			clean_up_utils(util),
 			clean_mlx_helper(mlx), 1);
+	init_mlx_images(mlx, util);
+	init_mlx_allocations(mlx, util);
+	helper = find_player(util->map, mlx->player_place);
+	setup_player(mlx, player, helper);
 	raycast(mlx, util, player);
 	return (0);
 }
 
-void ff(void)
-{
-	system("leaks cub3d");
-}
 int	main(int argc, char *argv[])
 {
 	t_utils			*util;
 	t_mlx_helper	*mlx_utils;
 	t_player		player;
-	atexit(ff);
+
 	init_core(argv, &mlx_utils, &util, argc);
 	if (init_game(util, mlx_utils, &player))
 		return (1);

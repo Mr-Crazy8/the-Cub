@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:00 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:26:34 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:27:14 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	init_core(char **av, t_mlx_helper **mlx_utils, t_utils **util, int argc)
 	if (!*mlx_utils)
 	{
 		clean_up_utils(*util);
+		write(2, "Error\n Init_mlx_helper failed\n", 31);
 		exit (1);
 	}
 }
@@ -85,16 +86,16 @@ int	init_game(t_utils *util, t_mlx_helper *mlx, t_player *player)
 
 	mlx->player = player;
 	mlx->utils = util;
-	init_mlx_images(mlx, util);
-	init_mlx_allocations(mlx, util);
-	setup_minimap_config(mlx);
-	helper = find_player(util->map, mlx->player_place);
-	setup_player(mlx, player, helper);
 	mlx->texture = texture_loader(mlx);
 	if (!mlx->texture)
 		return (write(2, "Error\nFailed to load textures\n", 31),
 			clean_up_utils(util),
 			clean_mlx_helper(mlx), 1);
+	init_mlx_images(mlx, util);
+	init_mlx_allocations(mlx, util);
+	setup_minimap_config(mlx);
+	helper = find_player(util->map, mlx->player_place);
+	setup_player(mlx, player, helper);
 	update_doors_info(mlx);
 	raycast(mlx, util, player);
 	mlx->sprit = init_animation(mlx);

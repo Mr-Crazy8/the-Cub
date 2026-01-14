@@ -6,13 +6,13 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:06 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:35:20 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:25:00 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	check_if_in_range(int color, t_utils *util)
+void	check_if_in_range(long long color, t_utils *util) //check this shit leak split1
 {
 	if (!(color >= 0 && color <= 255))
 	{
@@ -54,12 +54,13 @@ int	count_commas(char *file)
 	return (counter);
 }
 
-void	validate_comma_count(int counter, t_utils *util)
+void	validate_comma_count(int counter, t_utils *util, char *file)
 {
 	if (counter != 2)
 	{
 		write(2, "Error\nnot valide color for floor or ceiling\n", 45);
 		clean_up_utils(util);
+		free(file); //check this shit
 		exit(1);
 	}
 }

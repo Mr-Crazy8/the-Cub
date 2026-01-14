@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:08 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 11:47:59 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/13 20:07:33 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ mlx_texture_t	**allocate_texture_array(void)
 int	load_wall_textures(mlx_texture_t **texture, t_utils *utils)
 {
 	if (!texture || !utils)
-		return (0);
+	 	return (0);
 	texture[0] = load_texture_with_check(utils->no_path,
 			"Error\nNO texture failed to load\n");
 	if (!texture[0])
@@ -79,7 +79,7 @@ mlx_texture_t	**texture_loader(t_mlx_helper *mlx_utils)
 	int				i;
 
 	if (!mlx_utils || ! mlx_utils->utils)
-		return (NULL);
+	 	return (NULL);
 	texture = allocate_texture_array();
 	if (!texture)
 		return (NULL);

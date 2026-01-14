@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:28 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:32:56 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:25:50 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	extract_and_pars_the_map(t_utils *util, char **file)
 void	check_for_valid_character_in_map(char str, t_utils *util)
 {
 	if (str != '0' && str != '1'
-		&& str != 'N' && str != 'S' && str != 'D'
+		&& str != 'N' && str != 'S'
 		&& str != 'E' && str != 'W' && str != ' ' && str != '\n')
 	{
 		write(2, "Error\nNon valid character in the map\n", 38);
@@ -57,7 +57,7 @@ void	check_first_line(char **str, t_utils *util)
 	{
 		if (str[i][j] == '0' || str[i][j] == 'N'
 			|| str[i][j] == 'S' || str[i][j] == 'E'
-			|| str[i][j] == 'W' || str[i][j] == 'D')
+			|| str[i][j] == 'W')
 		{
 			write(2, "Error\nthe Map is open\n", 23);
 			clean_up_utils(util);
@@ -99,7 +99,7 @@ void	check_the_last_line(char **str, t_utils *util)
 	{
 		if (str[i][j] == '0' || str[i][j] == 'N'
 			|| str[i][j] == 'S' || str[i][j] == 'E'
-			|| str[i][j] == 'W' || str[i][j] == 'D')
+			|| str[i][j] == 'W')
 		{
 			write(2, "Error\nthe Map is open\n", 23);
 			(clean_up_utils(util), exit(1));

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:50 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:15:09 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:42:41 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ void	handle_no_texture(t_utils *util, char **texture, t_texture_flags *flags)
 {
 	check_duplicate("NO", flags->done_no, texture, util);
 	util->no_path = ft_strdup(texture[1]);
+	if (!util->no_path)
+	{
+		clean_up_utils(util);
+		free_string_array(texture);
+		write(2, "Error\nutil->no_path failed\n", 28);
+		exit(1);
+	}
 	flags->done_no = 1;
 	free_string_array(texture);
 }
@@ -36,6 +43,13 @@ void	handle_so_texture(t_utils *util, char **texture, t_texture_flags *flags)
 {
 	check_duplicate("SO", flags->done_so, texture, util);
 	util->so_path = ft_strdup(texture[1]);
+	if (!util->so_path)
+	{
+		clean_up_utils(util);
+		free_string_array(texture);
+		write(2, "Error\nutil->so_path failed\n", 28);
+		exit(1);
+	}
 	flags->done_so = 1;
 	free_string_array(texture);
 }
@@ -44,6 +58,13 @@ void	handle_ea_texture(t_utils *util, char **texture, t_texture_flags *flags)
 {
 	check_duplicate("EA", flags->done_ea, texture, util);
 	util->ea_path = ft_strdup(texture[1]);
+	if (!util->ea_path)
+	{
+		clean_up_utils(util);
+		free_string_array(texture);
+		write(2, "Error\nutil->ea_path failed\n", 28);
+		exit(1);
+	}
 	flags->done_ea = 1;
 	free_string_array(texture);
 }
@@ -52,6 +73,13 @@ void	handle_we_texture(t_utils *util, char **texture, t_texture_flags *flags)
 {
 	check_duplicate("WE", flags->done_we, texture, util);
 	util->we_path = ft_strdup(texture[1]);
+	if (!util->we_path)
+	{
+		clean_up_utils(util);
+		free_string_array(texture);
+		write(2, "Error\nutil->we_path failed\n", 28);
+		exit(1);
+	}
 	flags->done_we = 1;
 	free_string_array(texture);
 }

@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:47:56 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 11:43:33 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:39:06 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	helper_function_clean(t_mlx_helper *mlx_utils)
 	{
 		mlx_terminate(mlx_utils->mlx_ptr);
 		clean_up_utils(mlx_utils->utils);
-		free(mlx_utils);
+		clean_mlx_helper(mlx_utils);
+		write(2, "Error\nmlx_utils->img failed\n", 29);
 		exit(1);
 	}
 	if (!mlx_utils->mlx_img)
@@ -49,23 +50,20 @@ void	helper_function_clean(t_mlx_helper *mlx_utils)
 		mlx_delete_image(mlx_utils->mlx_ptr, mlx_utils->img);
 		mlx_terminate(mlx_utils->mlx_ptr);
 		clean_up_utils(mlx_utils->utils);
-		free(mlx_utils);
+		clean_mlx_helper(mlx_utils);
+		write(2, "Error\nmlx_utils->mlx_img failed\n", 33);
 		exit(1);
 	}
 }
 
 void	init_mlx_images(t_mlx_helper *mlx_utils, t_utils *util)
 {
-	if (!mlx_utils)
-	{
-		clean_up_utils(util);
-		exit (1);
-	}
 	mlx_utils->mlx_ptr = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D", true);
 	if (!mlx_utils->mlx_ptr)
 	{
 		clean_up_utils(util);
 		clean_mlx_helper(mlx_utils);
+		write(2, "Error\nmlx_utils->mlx_ptr failed\n", 33);
 		exit(1);
 	}
 	mlx_utils->img = mlx_new_image(mlx_utils->mlx_ptr,
@@ -76,8 +74,6 @@ void	init_mlx_images(t_mlx_helper *mlx_utils, t_utils *util)
 
 void	init_mlx_allocations(t_mlx_helper *mlx_utils, t_utils *util)
 {
-	if (!mlx_utils)
-		(clean_up_utils(util), exit(1));
 	mlx_utils->tile = 32;
 	mlx_utils->player_place = malloc(2 * sizeof(int));
 	if (!mlx_utils->player_place)
@@ -85,6 +81,7 @@ void	init_mlx_allocations(t_mlx_helper *mlx_utils, t_utils *util)
 		write(2, "Error\nMemory allocation failed\n", 32);
 		clean_up_utils(util);
 		mlx_terminate(mlx_utils->mlx_ptr);
+		clean_mlx_helper(mlx_utils);
 		exit(1);
 	}
 	mlx_utils->map_h_w = malloc(2 * sizeof(int));

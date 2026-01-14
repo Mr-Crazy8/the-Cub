@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:58 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:55:26 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/12 19:10:25 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char	*add_spaces(char *row, int target_len)
 
 	if (!row)
 		return (NULL);
+
+	trim_newline(row);
 	current_len = ft_strlen(row);
 	if (current_len >= target_len)
 		return (ft_strdup(row));
@@ -101,6 +103,44 @@ char	*add_spaces(char *row, int target_len)
 	return (padded);
 }
 
+int is_whitespace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r');
+}
+
+int is_line_empty_or_spaces(const char *line)
+{
+	if (!line)
+		return 1;
+	while (*line)
+	{
+		if (!is_whitespace(*line))
+			return 0;
+		line++;
+	}
+	return 1;
+}
+
+
+void clean_file_trailing_space_or_newline(char **file)
+{
+	int i;
+
+	if (!file)
+		return;
+
+	i = 0;
+	while (file[i])
+		i++;
+	
+	i--;
+	while(i >= 0 && is_line_empty_or_spaces(file[i]))
+	{
+		free(file[i]);
+		file[i] = NULL;
+		i--;
+	}
+}
 t_utils	*parser(char *str)
 {
 	t_utils			*util;
@@ -116,6 +156,7 @@ t_utils	*parser(char *str)
 	util->file = read_file(fd, str);
 	if (!util->file)
 		return (close(fd), clean_up_utils(util), NULL);
+	clean_file_trailing_space_or_newline(util->file);
 	extract_and_pars_the_texture(util, util->file);
 	extract_and_pars_the_floor_and_ceiling_color(util, util->file);
 	extract_and_pars_the_map(util, util->file);

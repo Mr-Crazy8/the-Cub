@@ -1,7 +1,7 @@
 NAME = cub3d
 NAME_BONUS = cub3d_bonus
 
-FLAGS = #-Wall -Wextra -Werror #-g3 -fsanitize=address
+FLAGS = #-g3 -fsanitize=address
 
 # Mandatory sources
 SRC_DIR = mandatory/

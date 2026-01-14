@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:48:25 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/09 00:12:36 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:50:01 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**extract_map_lines(char **file,
 
 	map = allocate_map_array(total_lines);
 	if (!map)
-		(clean_up_utils(util), exit(1));
+		(clean_up_utils(util), write(2, "Error\nallocate_map_array failed\n", 33), exit(1));
 	i = map_start;
 	map_line = 0;
 	while (file[i] && map_line < total_lines)

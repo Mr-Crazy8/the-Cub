@@ -1,7 +1,7 @@
-NO ./texture/NO.png
-SO ./texture/SO_1.png
-EA ./texture/EA.png
-WE ./texture/WE.png
+NO ./bonus/texture/NO.png
+SO ./bonus/texture/SO_1.png
+EA ./bonus/texture/EA.png
+WE ./bonus/texture/WE.png
 C 30,30,36
 F 10,10,12
 

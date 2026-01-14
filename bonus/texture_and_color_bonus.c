@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:42:05 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 20:56:07 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:26:41 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	get_texture_index_vertical(int did_we_hit_a_door, double raydir_y)
 {
 	if (did_we_hit_a_door == 1)
 		return (4);
-	else if (raydir_y > 0)
+	else if (raydir_y < 0)
 		return (0);
 	else
 		return (1);
@@ -26,7 +26,7 @@ int	get_texture_index_horizontal(int did_we_hit_a_door, double raydir_x)
 {
 	if (did_we_hit_a_door == 1)
 		return (4);
-	else if (raydir_x > 0)
+	else if (raydir_x < 0)
 		return (3);
 	else
 		return (2);

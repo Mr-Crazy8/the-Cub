@@ -6,7 +6,7 @@
 /*   By: anel-men <anel-men@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 18:14:18 by anel-men          #+#    #+#             */
-/*   Updated: 2026/01/08 23:59:44 by anel-men         ###   ########.fr       */
+/*   Updated: 2026/01/12 15:21:15 by anel-men         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,10 @@ t_utils	*init_utils(void)
 	util->total_doors = 0;
 	util->map = NULL;
 	util->file = NULL;
-	util->c_color = malloc(3 * sizeof(int));
+	util->c_color = malloc(3 * sizeof(long long));
 	if (!util->c_color)
 		return (clean_up_utils(util), NULL);
-	util->f_color = malloc(3 * sizeof(int));
+	util->f_color = malloc(3 * sizeof(long long));
 	if (!util->f_color)
 		return (clean_up_utils(util), NULL);
 	return (util);
